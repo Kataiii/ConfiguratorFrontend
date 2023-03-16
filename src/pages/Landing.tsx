@@ -1,10 +1,12 @@
 import Header from "../widgets/Header";
+import styles from "../app/App.module.css"
 
+const className:string = styles.App;
 
 const Landing = () =>{
 
     return(
-        <div>
+        <div className={className}>
             <Header></Header>
         </div>
     );

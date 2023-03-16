@@ -15,7 +15,7 @@ const items: MenuProps['items'] = [
 
 const Header = () => {
     return(
-        <div>
+        <div className="Header">
             <LinkLanding></LinkLanding>
             <DropdownMenu items={items}></DropdownMenu>
         </div>

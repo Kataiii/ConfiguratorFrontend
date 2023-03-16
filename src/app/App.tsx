@@ -1,11 +1,10 @@
-import './App.css';
+import styles from 'App.module.css';
 import Landing from '../pages/Landing';
+
 
 function App() {
   return (
-    <div className="App">
-      <Landing></Landing>
-    </div>
+    <div></div>
   );
 }
 
