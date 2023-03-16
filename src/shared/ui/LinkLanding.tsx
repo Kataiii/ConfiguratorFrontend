@@ -3,7 +3,7 @@ import Logo from "../../assets/images/Logo.svg";
 
 const LinkLanding = () => {
     return(
-        <div className="linkLanding">
+        <div className="linkLanding" id="linkMainPage">
             <Link to={'/'}>
                 <img src={Logo} alt="img"></img>
             </Link>
