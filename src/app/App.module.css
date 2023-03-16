@@ -1,6 +1,8 @@
 .App {
-    text-align: center;
-    background-color: aqua;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #FCFCFC;
   }
   
   .App-logo {
@@ -37,7 +39,37 @@
       transform: rotate(360deg);
     }
   }
-  
-  .App{
-    background-color: red;
-  }
+
+.LinkLanding{
+  margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #FCFCFC;
+}
+
+.Header{
+  padding: 1% 10%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.BtnMenu{
+  background-color: #FCFCFC;
+}
+
+.AntButton{
+  background-color: #61dafb;
+}
+
+.PText{
+  color: #313131;
+  font-size: 13px;
+  line-height: 15px;
+  font-family: 'Ubuntu';
+  font-weight: 300;
+  display: block;
+}
+
+.ImgHouse{
+  display: block;
+}
