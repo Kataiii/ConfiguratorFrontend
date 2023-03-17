@@ -1,27 +1,32 @@
-import DropdownMenu from "../features/DropDownMenu";
+import DropdownMenu, { DropdownButtonItem } from "../features/DropDownMenu";
 import LinkLanding from "../shared/ui/LinkLanding";
 import { MenuProps } from 'antd';
 import styles from "../app/App.module.css"
+import { useMemo } from "react";
+import { useNavigate } from "react-router";
 
-const items: MenuProps['items'] = [
-    {
-      label: 'Регистрация',
-      key: '1',
-    },
-    {
-      label: 'Войти',
-      key: '2'
-    }
-  ];
-  
+
 
 const Header = () => {
     const className : string = styles.Header;
 
+    const navigate = useNavigate();
+
+    const unauthorisedmenuItems = useMemo<DropdownButtonItem[]>(() =>  [
+      {
+        label: 'Регистрация',
+        action: () => navigate('/')
+      },
+      {
+        label: 'Авторизация',
+        action: () => navigate('/login')
+      }
+    ], [])
+
     return(
         <div className={className}>
             <LinkLanding></LinkLanding>
-            <DropdownMenu items={items}></DropdownMenu>
+            <DropdownMenu links={unauthorisedmenuItems}></DropdownMenu>
         </div>
     );
 }

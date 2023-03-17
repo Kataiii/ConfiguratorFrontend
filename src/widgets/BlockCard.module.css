@@ -1,5 +1,13 @@
 .BlockCard{
     text-align: center;
+    margin-top: 50%;
+}
+
+.BlockCardWrapper{
+    width: 70%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-around;
 }
 
 .DivContent_Div_Title{
@@ -8,5 +16,5 @@
         font-weight: 700;
         font-size: 24px;
         color: #313131;
-        margin-bottom: 30px;
+        margin-bottom: 56px;
 }

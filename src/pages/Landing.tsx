@@ -10,7 +10,6 @@ const Landing = () =>{
         <div className={styles.App}>
             <Header></Header>
             <Banner></Banner>
-            
             <BlockCards></BlockCards>
         </div>
     );
