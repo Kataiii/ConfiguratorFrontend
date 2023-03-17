@@ -2,7 +2,6 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    background-color: #FCFCFC;
   }
   
   .App-logo {
@@ -24,7 +23,7 @@
     align-items: center;
     justify-content: center;
     font-size: calc(10px + 2vmin);
-    color: white;
+    color: rgba(255, 255, 255, 0);
   }
   
   .App-link {
@@ -51,6 +50,7 @@
   padding: 1% 10%;
   display: flex;
   justify-content: space-between;
+  background-color: #fcfcfc00;
 }
 
 .BtnMenu{
@@ -64,12 +64,69 @@
 .PText{
   color: #313131;
   font-size: 13px;
-  line-height: 15px;
+  line-height: 18.2px;
   font-family: 'Ubuntu';
   font-weight: 300;
   display: block;
 }
 
+.Bunner{
+  display: flex;
+  justify-content: space-between;
+  position: absolute;
+  width: 100%;
+  height: 983.46px;
+  top: 5px;
+  z-index: -10;
+}
+
+.Bunner_DivContent_Div{
+  display: flex;
+  padding-top: 15%;
+}
+
+.DivContent_Div{
+  width: 70%;
+  margin: 0 auto;
+  padding-left: 30%;
+}
+
+.DivContent_Div_Wrapper{
+  margin-bottom: 30px;
+}
+
 .ImgHouse{
   display: block;
+}
+
+.DivContent_Div_Title{
+  font-family: 'Ubuntu';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 40px;
+  line-height: 46px;
+  color: #313131;
+  margin-bottom: 30px;
+}
+
+.BtnStyle{
+  padding: 12px 55px;
+  gap: 10px;
+  border: none;
+  background: linear-gradient(0deg, #E73C3C, #E73C3C), #FFFFFF;
+  border-radius: 24px;
+  font-family: 'Ubuntu';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 15px;
+  color: #FCFCFC;
+}
+
+.BtnStyle:hover{
+  background: linear-gradient(0deg, #c93434, #c93434), #FCFCFC;
+}
+
+.BtnStyle:active{
+  background: linear-gradient(0deg, #8e2424, #8e2424), #FCFCFC;
 }

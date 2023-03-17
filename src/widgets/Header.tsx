@@ -13,20 +13,7 @@ const items: MenuProps['items'] = [
       key: '2'
     }
   ];
-// const items: MenuProps['items'] = [
-//   {
-//     key: '1',
-//     label: 'Item 1',
-//   },
-//   {
-//     key: '2',
-//     label: 'Item 2',
-//   },
-//   {
-//     key: '3',
-//     label: 'Item 3',
-//   },
-// ];
+  
 
 const Header = () => {
     const className : string = styles.Header;
