@@ -13,13 +13,13 @@ import ErrorPage from './routes/error-page';
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <Root/>,
-    errorElement: <ErrorPage/>
+    element: <Root />,
+    errorElement: <ErrorPage />
   },
   {
     path: '/login',
-    element: <Login/>,
-    errorElement: <ErrorPage/>
+    element: <Login />,
+    errorElement: <ErrorPage />
   }
 ]);
 
@@ -28,8 +28,8 @@ const root = ReactDOM.createRoot(
 );
 
 root.render(
-  <React.StrictMode>
-    <RouterProvider router={router} />
-  </React.StrictMode>
+
+  <RouterProvider router={router} />
+
 );
 

@@ -1,0 +1,12 @@
+.BlockCard{
+    text-align: center;
+}
+
+.DivContent_Div_Title{
+        font-family: 'Ubuntu';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 24px;
+        color: #313131;
+        margin-bottom: 30px;
+}

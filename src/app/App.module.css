@@ -130,3 +130,9 @@
 .BtnStyle:active{
   background: linear-gradient(0deg, #8e2424, #8e2424), #FCFCFC;
 }
+
+.WrapperBanner{
+  width: 100%;
+  height: 700px;
+  z-index: -9900;
+}
