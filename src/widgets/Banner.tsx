@@ -19,7 +19,7 @@ const Banner = () => {
                     <Button title='Создать проект' onClick={() => navigate('login', { replace: false })}></Button>
                 </div>
             </div>
-            <img className={styles.ImgHouse} src={House}></img>
+            <img className={styles.ImgHouse} src={House} alt='image-house'></img>
         </div>
     );
 }

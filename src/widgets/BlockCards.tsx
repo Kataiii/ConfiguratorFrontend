@@ -12,17 +12,20 @@ const BlockCards = () => {
         {
           image: House,
           title: 'Экстерьер',
-          content: `Создавай внешний облик </br> здания, обустраивай </br> придомовую территорию,</br> продумай ландшафтный дизайн`
+          content: `Создавай внешний облик </br> здания, обустраивай </br> придомовую территорию,</br> продумай ландшафтный дизайн`,
+          alt: 'image-house'
         },
         {
             image: Sofa,
             title: 'Интерьер',
-            content: 'Оформляй внутреннее </br> пространство помещения, </br> расставляй мебель, технику </br> и декор по своему вкусу'
+            content: 'Оформляй внутреннее </br> пространство помещения, </br> расставляй мебель, технику </br> и декор по своему вкусу',
+            alt: 'image-sofa'
         },
         {
           image: Camera,
           title: 'Безопасность',
-          content: 'Проектируй системы </br> безопасности, размещай </br> камеры и датчик в ручном и </br> автоматическом режиме'
+          content: 'Проектируй системы </br> безопасности, размещай </br> камеры и датчик в ручном и </br> автоматическом режиме',
+          alt: 'image-camera'
         }
       ], [])
 
@@ -33,7 +36,7 @@ const BlockCards = () => {
                 <h1 className={styles.DivContent_Div_Title}>Возможности</h1>
                 <div className={styles.BlockCardWrapper}>
                     {cardPosibilityItems.map((item, index) => {
-                        return(<CardPossibility key={index} title={item.title} image={item.image} content={item.content}/>);
+                        return(<CardPossibility key={index} title={item.title} image={item.image} content={item.content} alt={item.alt}/>);
                     })}
                 </div>
             </>

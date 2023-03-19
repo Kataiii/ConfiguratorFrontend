@@ -1,13 +1,12 @@
-import DropdownMenu, { DropdownButtonItem } from "../features/DropDownMenu";
-import LinkLanding from "../shared/ui/LinkLanding";
-import { MenuProps } from 'antd';
-import styles from "../app/App.module.css"
+import DropdownMenu, { DropdownButtonItem } from "../../features/DropDownMenu";
+import LinkLanding from "./LinkLanding";
+import styles from "../../app/App.module.css"
 import { useMemo } from "react";
 import { useNavigate } from "react-router";
 
 
 
-const Header = () => {
+const UnauthorisedHeader = () => {
     const className : string = styles.Header;
 
     const navigate = useNavigate();
@@ -31,4 +30,4 @@ const Header = () => {
     );
 }
 
-export default Header;
+export default UnauthorisedHeader;

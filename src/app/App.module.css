@@ -40,17 +40,20 @@
   }
 
 .LinkLanding{
-  margin: 0;
+    margin-left: 12%;
     padding: 0;
     box-sizing: border-box;
     background-color: #FCFCFC;
 }
 
 .Header{
-  padding: 1% 10%;
+  width: 100%;
+  padding: 1% 0%;
   display: flex;
   justify-content: space-between;
   background-color: #fcfcfc00;
+  position: absolute;
+  top: 0;
 }
 
 .BtnMenu{
@@ -73,11 +76,11 @@
 .Bunner{
   display: flex;
   justify-content: space-between;
-  position: absolute;
+  /*position: absolute;
   width: 100%;
   height: 983.46px;
   top: 5px;
-  z-index: -10;
+  z-index: -10;*/
 }
 
 .Bunner_DivContent_Div{
@@ -138,5 +141,18 @@
 }
 
 .Aaa{
-  background-color: #c93434;
+  font-family: 'Ubuntu';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 8px;
+  line-height: 30px;
+  color: #FCFCFC;
+  background: #313131;
+  border-radius: 10px 0px 10px 10px;
+  cursor: pointer;
+  padding: 5%;
+}
+
+.DropdownMenuWrapper{
+  margin-right: 12%;
 }

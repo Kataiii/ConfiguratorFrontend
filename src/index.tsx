@@ -5,31 +5,14 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
-import Root from './routing/root';
-import Login from './routing/login';
-import ErrorPage from './routing/error-page';
+import router from './routing/Router';
 
-
-const router = createBrowserRouter([
-  {
-    path: '/',
-    element: <Root />,
-    errorElement: <ErrorPage />
-  },
-  {
-    path: '/login',
-    element: <Login />,
-    errorElement: <ErrorPage />
-  }
-]);
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 
 root.render(
-
   <RouterProvider router={router} />
-
 );
 

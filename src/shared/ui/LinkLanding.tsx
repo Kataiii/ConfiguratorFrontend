@@ -9,7 +9,7 @@ const LinkLanding = () => {
     return(
         <div className={className} id="linkMainPage">
             <Link to={'/'}>
-                <img src={Logo} alt="img"></img>
+                <img src={Logo} alt="img-logo"></img>
             </Link>
         </div>
     );
