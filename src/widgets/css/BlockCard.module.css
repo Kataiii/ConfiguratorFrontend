@@ -18,3 +18,11 @@
         color: #313131;
         margin-bottom: 56px;
 }
+
+.BlockCardAdvantagesWrapper{
+    width: 40%;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    gap: 50px 125px
+}

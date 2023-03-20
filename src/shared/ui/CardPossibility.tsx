@@ -1,4 +1,4 @@
-import styles from "../css/CardPosibility.module.css"
+import styles from "./css/CardPosibility.module.css"
 
 export interface CardProps{
     image : any,

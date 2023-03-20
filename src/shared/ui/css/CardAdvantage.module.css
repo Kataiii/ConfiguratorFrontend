@@ -1,0 +1,17 @@
+.CardTitle{
+    font-family: 'Ubuntu';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    text-align: center;
+    color: #313131;
+}
+
+.CardContent{
+    font-family: 'Ubuntu';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 13px;
+    text-align: center;
+    color: #313131;
+}
