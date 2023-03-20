@@ -1,12 +1,8 @@
-import {
-  createBrowserRouter,
-  RouterProvider,
-} from "react-router-dom";
+import { createBrowserRouter } from "react-router-dom";
 import Root from './layouts/root';
-import Login from './layouts/login';
 import ErrorPage from './layouts/error-page';
-import path from "path";
 import Landing from "../pages/Landing";
+import AuthenticationRoutes from "./routes/AuthenticationRoute";
 
 
 const router = createBrowserRouter([
@@ -21,11 +17,7 @@ const router = createBrowserRouter([
         }
     ]
   },
-  {
-    path: '/login',
-    element: <Login />,
-    errorElement: <ErrorPage />
-  }
+  AuthenticationRoutes.data[0]
 ]);
 
 export default router;

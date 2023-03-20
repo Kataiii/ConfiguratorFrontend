@@ -14,7 +14,7 @@ const UnauthorisedHeader = () => {
     const unauthorisedmenuItems = useMemo<DropdownButtonItem[]>(() =>  [
       {
         label: 'Регистрация',
-        action: () => navigate('/')
+        action: () => navigate('/login/register')
       },
       {
         label: 'Авторизация',

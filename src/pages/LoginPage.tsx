@@ -1,6 +1,8 @@
 const LoginPage = () => {
     return(
-        <div></div>
+        <div>
+            <h1>Hello</h1>
+        </div>
     );
 }
 

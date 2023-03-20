@@ -1,4 +1,4 @@
-import styles from "./BlockCard.module.css"
+import styles from "./css/BlockCard.module.css"
 import CardPossibility, {CardProps} from "../shared/ui/CardPossibility";
 import { useMemo } from "react";
 import House from "../assets/icons/icon-house.svg"
