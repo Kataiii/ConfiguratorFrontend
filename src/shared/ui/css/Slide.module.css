@@ -1,0 +1,12 @@
+.SlideTitle{
+    font-family: 'Ubuntu';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 13px;
+    color: #313131;
+    margin-bottom: 3%;
+}
+
+.SlideWrapperImage{
+    border-radius: 15px;
+}

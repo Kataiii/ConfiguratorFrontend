@@ -1,0 +1,17 @@
+.ArrowRigth{
+    display: block;
+    transform: rotate(0);
+}
+
+.ArrowLeft{
+    display: block;
+    transform: rotate(180deg);
+}
+
+.Dot{
+    margin: 0 2.5px;
+}
+
+.ContainerArrow{
+    display: flex;
+}

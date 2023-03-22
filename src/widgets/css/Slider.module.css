@@ -1,0 +1,23 @@
+.SliderWrapper{
+    text-align: center;
+    margin: 5% auto;
+}
+
+.SliderContainer{
+    width: 40%;
+    display: flex;
+    margin: 0 auto;
+}
+
+.DivSliderContainer{
+    display: flex;
+    margin: 0 auto;
+}
+
+.Slider{
+    overflow: hidden;
+    width: 645px;
+    text-align: center;
+    margin: 0 auto;
+}
+
