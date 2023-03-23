@@ -5,6 +5,8 @@ import Slider from "../widgets/Slider";
 import BlockCardsAdvantages from "../widgets/BlockCardsAdvantages";
 import VideoPlayer from "../widgets/VideoPlayer";
 import BlockCardLicencce from "../widgets/BlockCardsLicence";
+import BlockPartners from "../widgets/BlockPartners";
+import Footer from "../shared/ui/Footer";
 
 
 const Landing = () =>{
@@ -17,6 +19,8 @@ const Landing = () =>{
             <BlockCardsAdvantages/>
             <VideoPlayer/>
             <BlockCardLicencce/>
+            <BlockPartners/>
+            <Footer/>
         </div>
     );
 }

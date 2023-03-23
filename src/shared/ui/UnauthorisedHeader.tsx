@@ -1,4 +1,4 @@
-import DropdownMenu, { DropdownButtonItem } from "../../features/DropDownMenu";
+import DropdownMenu, { DropdownButtonItem } from "./DropDownMenu";
 import LinkLanding from "./LinkLanding";
 import styles from "../../app/App.module.css"
 import { useMemo } from "react";

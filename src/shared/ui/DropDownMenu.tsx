@@ -1,6 +1,6 @@
-import IconProfile from '../assets/icons/icon-profile.svg'
-import IconMenu from '../assets/icons/icon-dropdown menu.svg'
-import styles from "../app/App.module.css"
+import IconProfile from '../../assets/icons/icon-profile.svg'
+import IconMenu from '../../assets/icons/icon-dropdown menu.svg'
+import styles from "../../app/App.module.css"
 import React from 'react';
 import type { MenuProps } from 'antd';
 import { Dropdown, Space, Typography } from 'antd';

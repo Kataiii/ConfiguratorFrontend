@@ -36,3 +36,17 @@
     width: 80%;
     margin: 0 auto;
 }
+
+.DivPartners{
+    margin: 7% 0;
+    text-align: center;
+}
+
+.DivImages{
+    width: 70%;
+    margin: 0 auto;
+}
+
+.DivImage{
+    margin: 0 2.5%;
+}
