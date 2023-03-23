@@ -50,3 +50,17 @@
 .DivImage{
     margin: 0 2.5%;
 }
+
+.BlockVideoPlayer{
+    text-align: center;
+    margin: 5% auto;
+}
+
+.TitleVideoPlayer{
+    font-family: 'Ubuntu';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 20px;
+    text-align: center;
+    color: #313131;
+}
