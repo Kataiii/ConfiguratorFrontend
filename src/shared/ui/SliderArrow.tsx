@@ -15,7 +15,7 @@ const SliderArrow = (props : arrowProps) => {
     return(
         <div className={styles.ContainerArrow}>
             <img  src={Arrow} className={className}
-                 onClick={() => {changeSlide(props.directionArrow)}}></img>
+                 onClick={() => {changeSlide(props.directionArrow)}} alt='arrow'></img>
         </div>
     );
 }

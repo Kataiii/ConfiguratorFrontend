@@ -27,3 +27,12 @@
     gap: 50px 125px
 }
 
+.BlockCardWrap{
+    text-align: center;
+}
+
+.BlockCardDiv{
+    display: flex;
+    width: 80%;
+    margin: 0 auto;
+}

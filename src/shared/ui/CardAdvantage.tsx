@@ -10,7 +10,7 @@ export interface CardAdvantageProps{
 const CardAdvantage = (props : CardAdvantageProps) => {
     return(
         <div>
-            <img src={Tick}/>
+            <img src={Tick} alt='check_mark'/>
             <h2 className={styles.CardTitle}>{props.title}</h2>
             <p dangerouslySetInnerHTML={{ __html: props.content }} className={styles.CardContent}></p>
         </div>

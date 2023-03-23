@@ -1,11 +1,13 @@
 .ArrowRigth{
     display: block;
     transform: rotate(0);
+    margin-top: 100%;
 }
 
 .ArrowLeft{
     display: block;
     transform: rotate(180deg);
+    margin-top: 100%;
 }
 
 .Dot{
