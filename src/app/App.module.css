@@ -56,6 +56,14 @@
   top: 0;
 }
 
+.RegHeader{
+  width: 100%;
+  padding: 1% 0%;
+  display: flex;
+  justify-content: space-between;
+  background-color: #fcfcfc00;
+}
+
 .BtnMenu{
   background-color: #FCFCFC;
 }

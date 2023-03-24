@@ -1,4 +1,5 @@
 import Button from "./ButtonPrim";
+import styles from "./css/CardRegister.module.css"
 
 
 export interface cardRegistProps{
@@ -10,9 +11,9 @@ export interface cardRegistProps{
 
 const CardRegist = (props: cardRegistProps) => {
     return(
-        <div>
-            <h1>{props.title}</h1>
-            <img src={props.image} alt={props.altImage}></img>
+        <div className={styles.CardDiv}>
+            <h1 className={styles.CardTitle}>{props.title}</h1>
+            <img className={styles.CardImage} src={props.image} alt={props.altImage}></img>
             <Button title="Регистрация" onClick={props.action}></Button>
         </div>
     );

@@ -22,7 +22,7 @@ const BlockCardLicencce = () => {
                 'И это тоже'
             ],
             buttonContent: 'Бесплатно',
-            action: () => navigate('/'),
+            action: () => navigate('/login'),
             image : Person
         },
         {

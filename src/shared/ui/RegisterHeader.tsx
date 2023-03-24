@@ -3,7 +3,7 @@ import styles from "../../app/App.module.css"
 
 
 const RegisterHeader = () => {
-    const className : string = styles.Header;
+    const className : string = styles.RegHeader;
 
     return(
         <div className={className}>
