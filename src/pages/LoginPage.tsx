@@ -1,7 +1,11 @@
+import FormLogin from "../widgets/FormLogin";
+
+
 const LoginPage = () => {
     return(
         <div>
-            <h1>Hello</h1>
+            <FormLogin/>
+            
         </div>
     );
 }

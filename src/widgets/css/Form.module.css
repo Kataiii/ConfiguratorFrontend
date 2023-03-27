@@ -1,0 +1,16 @@
+.FormDiv{
+    background: #4A4A4A;
+    border-radius: 20px;
+    width: 35%;
+    margin: 8% auto;
+    padding: 1%;
+    text-align: center;
+}
+
+.FormTitle{
+    font-family: 'Ubuntu';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    color: #FCFCFC;
+}
