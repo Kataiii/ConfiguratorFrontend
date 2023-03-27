@@ -49,13 +49,35 @@
 .VolumeDivWrapper{
     position: absolute;
     bottom: 0;
-    /*background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2));*/
-    background: springgreen;
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2));
+    /*background: springgreen;*/
     width: 100%;
     padding: 1.5%;
+    display: flex;
+    justify-content: space-between;
 }
 
 .VolumeDiv{
     display: flex;
     width: 60%;
+}
+
+.ImageVolume{
+    display: block;
+    width: 20px;
+}
+
+.ImageScreen{
+    display: block;
+    width: 20px;
+    margin-right: 3.5%;
+}
+
+.Slider{
+    width: 40%;
+    margin-left: 10px;
+}
+
+.TrackSlider{
+    background: #f6f6f6;
 }

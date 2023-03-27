@@ -10,18 +10,28 @@ import VideoVolume from "../shared/ui/VideoVolume";
 const WEBPATHVIDEO = 'http://127.0.0.1:9000'
 
 interface IVideo{
-    playing : boolean
+    playing : boolean,
+    volume : number
 }
 
 const VideoPlayer = () => {
     const navigate = useNavigate();
     const [video, setVideo] = useState<IVideo>({
-        playing : false
+        playing : false,
+        volume : 50
     })
 
-    const handlePlay = () => {setVideo({
-        ...video, playing : !video.playing
-    })}
+    const handlePlay = () => {
+        setVideo({
+            ...video, playing : !video.playing
+        })
+    }
+
+    const handleVolume = (value : number) => {
+        setVideo({
+            ...video, volume : value
+        })
+    }
 
     return(
         <div className={styles.BlockVideoPlayer}>
@@ -30,9 +40,11 @@ const VideoPlayer = () => {
                 <ReactPlayer  url={`${WEBPATHVIDEO}/video.mp4`}
                               controls={false}
                               playing={video.playing}
+                              volume={(video.volume / 100)}
                 />
                 <VideoController isPause={!video.playing} action={handlePlay}/>
-                <VideoVolume min={0} max={100}></VideoVolume>
+                
+                <VideoVolume min={0} max={100} volume={video.volume} action={handleVolume}></VideoVolume>
             </div>
             <Button title="Попробовать!" onClick={() => navigate('/login')}></Button>
         </div>
