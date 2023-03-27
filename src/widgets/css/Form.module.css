@@ -1,7 +1,7 @@
 .FormDiv{
     background: #4A4A4A;
     border-radius: 20px;
-    width: 35%;
+    width: 30%;
     margin: 8% auto;
     padding: 1%;
     text-align: center;
@@ -13,4 +13,60 @@
     font-weight: 700;
     font-size: 20px;
     color: #FCFCFC;
+    margin: 3% 0 0;
+}
+
+.FormDivWrapLink{
+    display: flex;
+    justify-content: center;
+    margin: 1% 0 3%;
+}
+
+.FormContent{
+    display: block;
+    font-family: 'Ubuntu';
+    font-style: italic;
+    font-weight: 300;
+    font-size: 13px;
+    color: #FCFCFC;
+    margin: 0 5px 0 0;
+    
+}
+
+.FormLink{
+    display: block;
+    font-family: 'Ubuntu';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 13px;
+    color: #FCFCFC;
+    text-decoration: none;
+    border-bottom: solid 1px #FCFCFC;
+    margin-top: 0;
+}
+
+.FormDivWrapInput{
+    width: 70%;
+    margin: 0 auto;
+}
+
+.FormInput{
+    display: block;
+    width: 100%;
+    background: #FCFCFC;
+    border-radius: 30px;
+    border: none;
+    font-family: 'Ubuntu';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 13px;
+    line-height: 15px;
+    color: rgba(49, 49, 49, 0.5);
+    padding: 15px 0;
+    padding-left: 25px;
+    margin-bottom: 5%;
+}
+
+.FormDivWrapButton{
+    margin: 6% 0;
 }

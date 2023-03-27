@@ -7,15 +7,17 @@ const FormLogin = () => {
     return(
         <div className={styles.FormDiv}>
             <h1 className={styles.FormTitle}>Вход</h1>
-            <div>
-                <p>У вас нет аккаунта?</p>
-                <Link to={'/login/register'}>Регистрация</Link>
+            <div className={styles.FormDivWrapLink}>
+                <p className={styles.FormContent}>У вас нет аккаунта?</p>
+                <Link to={'/login/register'} >
+                  <p className={styles.FormLink}>Регистрация</p>
+                </Link>
             </div>
-            <div>
-                <input type='text' placeholder="Логин или email..."></input>
-                <input type='password' placeholder="Пароль..."></input>
+            <div className={styles.FormDivWrapInput}>
+                <input className={styles.FormInput} type='text' placeholder="Логин или email..."></input>
+                <input className={styles.FormInput} type='password' placeholder="Пароль..."></input>
             </div>
-            <div>
+            <div className={styles.FormDivWrapButton}>
                 <Button title="Вход" onClick={()=> {console.log("AAAAAAAAAAAAA")}}></Button>
             </div>
         </div>
