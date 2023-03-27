@@ -1,9 +1,71 @@
 import { Link, useNavigate } from "react-router-dom";
 import Button from "../shared/ui/ButtonPrim";
 import styles from "./css/Form.module.css"
+import { useState, useEffect } from "react";
+import InputForm, {InputFormProps} from "../shared/ui/InputForm";
+import axios from "axios";
 
+
+interface IFormLogin{
+  email : string,
+  password : string
+}
 
 const FormLogin = () => {
+    const [loginState, setLoginState] = useState<IFormLogin>({
+        email : '',
+        password : ''
+    })
+
+    useEffect(() => {
+      const apiLoginUrl = 'http://127.0.0.1:9000/sanctum/csrf-cookie';
+      axios.get(apiLoginUrl,{
+        headers: {
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': '*',
+        }, withCredentials: true
+      }).then((response) => {
+        //let str1 : string = `csrf-token":"`;
+        //let str: number = response.data.indexOf(str1, response.data);
+        //let csrfToken : string = response.data.slice(str + str1.length, str + str1.length+response.data.slice(str + str1.length).indexOf('"'));
+        //console.log(csrfToken);
+        //document.cookie = "csrf-token="+csrfToken;
+        //localStorage.setItem('csrf-token', csrfToken);
+        console.log(response.data)
+      })
+    }, [setLoginState]);
+
+    const apiLogin = () => {
+      const apiLoginUrl = 'http://127.0.0.1:9000/api/login';
+      axios.post(apiLoginUrl, 
+        {
+          email : loginState.email,
+          password : loginState.password 
+        }, 
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*',
+            'X-CSRF-TOKEN': localStorage.getItem('csrf-token') 
+          },
+        withCredentials:false})
+      .then((response) => {
+        console.log(response);
+      })
+    }
+
+    const onBlurEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
+      setLoginState({
+        ...loginState,email: e.target.value
+      });
+    }
+
+    const onBlurPassword = (e: React.ChangeEvent<HTMLInputElement>) => {
+      setLoginState({
+        ...loginState,password: e.target.value
+      });
+    }
+
     return(
         <div className={styles.FormDiv}>
             <h1 className={styles.FormTitle}>Вход</h1>
@@ -14,68 +76,14 @@ const FormLogin = () => {
                 </Link>
             </div>
             <div className={styles.FormDivWrapInput}>
-                <input className={styles.FormInput} type='text' placeholder="Логин или email..."></input>
-                <input className={styles.FormInput} type='password' placeholder="Пароль..."></input>
+                <InputForm type="text" placeholder="Логин или email..." error="Неверный формат" action={onBlurEmail}></InputForm>
+                <InputForm type="password" placeholder="Пароль..." error="Неверный пароль" action={onBlurPassword}></InputForm>
             </div>
             <div className={styles.FormDivWrapButton}>
-                <Button title="Вход" onClick={()=> {console.log("AAAAAAAAAAAAA")}}></Button>
+                <Button title="Вход" onClick={apiLogin}></Button>
             </div>
         </div>
     )
 }
 
 export default FormLogin;
-
-
-
-/*import React from 'react';
-import { Button, Checkbox, Form, Input } from 'antd';
-
-const onFinish = (values: any) => {
-  console.log('Success:', values);
-};
-
-const onFinishFailed = (errorInfo: any) => {
-  console.log('Failed:', errorInfo);
-};
-
-const App: React.FC = () => (
-  <Form
-    name="basic"
-    labelCol={{ span: 8 }}
-    wrapperCol={{ span: 16 }}
-    style={{ maxWidth: 600 }}
-    initialValues={{ remember: true }}
-    onFinish={onFinish}
-    onFinishFailed={onFinishFailed}
-    autoComplete="off"
-  >
-    <Form.Item
-      label="Логин или email..."
-      name="username"
-      rules={[{ required: true, message: 'Неверный формат' }]}
-    >
-      <Input />
-    </Form.Item>
-
-    <Form.Item
-      label="Пароль..."
-      name="password"
-      rules={[{ required: true, message: 'Неверный пароль' }]}
-    >
-      <Input.Password />
-    </Form.Item>
-
-    <Form.Item name="remember" valuePropName="checked" wrapperCol={{ offset: 8, span: 16 }}>
-      <Checkbox>Remember me</Checkbox>
-</Form.Item>
-
-    <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-      <Button type="primary" htmlType="submit">
-        Вход
-      </Button>
-    </Form.Item>
-  </Form>
-);
-
-export default App;*/

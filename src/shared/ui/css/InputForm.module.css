@@ -1,0 +1,16 @@
+.FormInput{
+    display: block;
+    width: 100%;
+    background: #FCFCFC;
+    border-radius: 30px;
+    border: none;
+    font-family: 'Ubuntu';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 13px;
+    line-height: 15px;
+    color: rgba(49, 49, 49, 0.5);
+    padding: 15px 0;
+    padding-left: 25px;
+    margin-bottom: 5%;
+}
