@@ -4,6 +4,7 @@ import styles from "./css/Form.module.css"
 import { useState, useEffect } from "react";
 import InputForm, {InputFormProps} from "../shared/ui/InputForm";
 import axios from "axios";
+import ErrorForm from "../shared/ui/FormPart/ErrorForm";
 
 
 interface IFormLogin{
@@ -17,23 +18,17 @@ const FormLogin = () => {
         password : ''
     })
 
-    useEffect(() => {
-      const apiLoginUrl = 'http://127.0.0.1:9000/sanctum/csrf-cookie';
-      axios.get(apiLoginUrl,{
-        headers: {
-          'Content-Type': 'application/json',
-          'Access-Control-Allow-Origin': '*',
-        }, withCredentials: true
-      }).then((response) => {
-        //let str1 : string = `csrf-token":"`;
-        //let str: number = response.data.indexOf(str1, response.data);
-        //let csrfToken : string = response.data.slice(str + str1.length, str + str1.length+response.data.slice(str + str1.length).indexOf('"'));
-        //console.log(csrfToken);
-        //document.cookie = "csrf-token="+csrfToken;
-        //localStorage.setItem('csrf-token', csrfToken);
-        console.log(response.data)
-      })
-    }, [setLoginState]);
+    // useEffect(() => {
+    //   const apiLoginUrl = 'http://127.0.0.1:9000/sanctum/csrf-cookie';
+    //   axios.get(apiLoginUrl,{
+    //     headers: {
+    //       'Content-Type': 'application/json',
+    //       'Access-Control-Allow-Origin': '*',
+    //     }, withCredentials: true
+    //   }).then((response) => {
+    //     console.log(response.data)
+    //   })
+    // }, [setLoginState]);
 
     const apiLogin = () => {
       const apiLoginUrl = 'http://127.0.0.1:9000/api/login';
@@ -51,7 +46,15 @@ const FormLogin = () => {
         withCredentials:false})
       .then((response) => {
         console.log(response);
-      })
+      }
+      )
+      .catch(function (error) {
+        if (error.response) {
+          console.log(error.response.data);
+          console.log(error.response.status);
+          console.log(error.response.headers);
+        }
+      });
     }
 
     const onBlurEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -71,13 +74,17 @@ const FormLogin = () => {
             <h1 className={styles.FormTitle}>Вход</h1>
             <div className={styles.FormDivWrapLink}>
                 <p className={styles.FormContent}>У вас нет аккаунта?</p>
-                <Link to={'/login/register'} >
+                <Link to={'/login/register'} className={styles.FormLinkWrap}>
                   <p className={styles.FormLink}>Регистрация</p>
                 </Link>
             </div>
-            <div className={styles.FormDivWrapInput}>
+            <div>
                 <InputForm type="text" placeholder="Логин или email..." error="Неверный формат" action={onBlurEmail}></InputForm>
+                <ErrorForm errorcontent="Неверный формат"></ErrorForm>
+            </div>
+            <div>
                 <InputForm type="password" placeholder="Пароль..." error="Неверный пароль" action={onBlurPassword}></InputForm>
+                <ErrorForm errorcontent="Неверный пароль"></ErrorForm>
             </div>
             <div className={styles.FormDivWrapButton}>
                 <Button title="Вход" onClick={apiLogin}></Button>
