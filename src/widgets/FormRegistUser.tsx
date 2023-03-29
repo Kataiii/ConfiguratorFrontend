@@ -4,29 +4,46 @@ import WrapInputForm from "../shared/ui/FormPart/WrapInputForm";
 import { useState } from "react";
 import Button from "../shared/ui/ButtonPrim";
 import CheckboxForm from "../shared/ui/FormPart/CheckboxForm";
+import { ValidationHelper, INVALID_EMAIL_MESSAGE, INVALID_NAME_MESSAGE, INVALID_PASSWORD_MESSAGE } from "../shared/common/ValidationHelper";
 
-export interface IFormLogin {
+export interface IFormRegUser {
+    name : string
     email: string,
     password: string,
     failAuth: boolean
 }
 
 const FormRegistUser = () => {
-    const [registState, setLoginState] = useState<IFormLogin>({
+    const [registState, setLoginState] = useState<IFormRegUser>({
+        name: '',
         email: '',
         password: '',
         failAuth: false
     })
 
-    const onBlurEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const onBluerName = (e: React.ChangeEvent<HTMLInputElement> | string) => {
+        if(typeof e != 'string')
+        setLoginState({
+            ...registState, name: e.target.value
+        });
+    }
+
+    const onBlurEmail = (e: React.ChangeEvent<HTMLInputElement> | string) => {
+        if(typeof e != 'string')
         setLoginState({
             ...registState, email: e.target.value
         });
-        console.log("change");
+    }
+
+    const onBlurPassword = (e: React.ChangeEvent<HTMLInputElement> | string) => {
+        if(typeof e != 'string')
+        setLoginState({
+            ...registState, password: e.target.value
+        });
     }
 
     return (
-        <div className={styles.FormDiv}>
+        <div className={styles.FormDivReg}>
             <h1 className={styles.FormTitle}>Регистрация</h1>
             <div className={styles.FormDivWrapLink}>
                 <p className={styles.FormContent}>У вас уже есть аккаунт?  </p>
@@ -34,36 +51,35 @@ const FormRegistUser = () => {
                     <p className={styles.FormLink}>Войти</p>
                 </Link>
             </div>
-            {/*<WrapInputForm type="text"
+            <WrapInputForm type="text"
                 placeholderInput="Ваше имя..."
-                action={onBlurEmail}
-                state={registState}
-                error="Незаполненное поле" 
-                hasHelper={false}/>
+                hasHelper={false}
+                contentHelper={null}
+                onBlur={ValidationHelper.nameValidate}
+                onChange={onBluerName}
+                error={INVALID_NAME_MESSAGE}/>
             <WrapInputForm type="text"
                 placeholderInput="Email..."
-                action={onBlurEmail}
-                state={registState}
-                error="Неверный формат email" 
-                hasHelper={false}/>*/}
+                hasHelper={false}
+                contentHelper={null}
+                onBlur={ValidationHelper.emailValidate}
+                onChange={onBlurEmail}
+                error={INVALID_EMAIL_MESSAGE}/>
             <WrapInputForm type="password"
                 placeholderInput="Пароль..."
                 hasHelper={true}
-                onFocus={() => {console.log('Helper')}}
                 contentHelper = "Пароль должен содержать минимум 8 знаков, среди которых есть </br> прописные и строчные буквы, а также специальные символы"
-                onBlur={() => {console.log('error')}}
-                onChange={onBlurEmail}
-                error="Пароль должен содержать минимум 8 знаков, среди которых есть </br> прописные и строчные буквы, а также специальные символы" 
-                />
-            <WrapInputForm type="password"
+                onBlur={ValidationHelper.passworsValidate}
+                onChange={onBlurPassword}
+                error={INVALID_PASSWORD_MESSAGE}/>
+            {/*<WrapInputForm type="password"
                 placeholderInput="Подтверждение пароля..."
                 hasHelper={false}
-                onFocus={undefined}
                 contentHelper={null}
-                onBlur={() => {console.log('error')}}
+                onBlur={undefined}
                 onChange={onBlurEmail}
                 error="Пароли не совпадают" 
-            />
+            />*/}
             <CheckboxForm ischecked={true} 
                           content="Я даю согласие на получение новостной рассылки </br> и другой маркетинговой информации"/>
             <CheckboxForm ischecked={false} 

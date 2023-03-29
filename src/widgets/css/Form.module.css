@@ -7,6 +7,15 @@
     text-align: center;
 }
 
+.FormDivReg{
+    background: #4A4A4A;
+    border-radius: 20px;
+    width: 30%;
+    margin: 3% auto 0;
+    padding: 1%;
+    text-align: center;
+}
+
 .FormTitle{
     font-family: 'Ubuntu';
     font-style: normal;

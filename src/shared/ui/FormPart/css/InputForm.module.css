@@ -14,14 +14,36 @@
     margin: 0 auto 5%;
 }
 
+.FormInputEr{
+    display: block;
+    width: 65%;
+    background: #FCFCFC;
+    border-radius: 30px;
+    border: none;
+    font-family: 'Ubuntu';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 13px;
+    line-height: 15px;
+    color: #E73C3C;
+    padding: 15px 25px;
+    margin: 0 auto 5%;
+}
+
 .FormDivWrapError{
     position: relative;
 }
 
-.FormError{
+.FormErrorWrap{
+    width: 400px;
     position: absolute;
     top: 20px;
-    right: -50px;
+    right: -330px;
+    display: flex;
+    justify-content: left;
+}
+
+.FormError{
     display: flex;
     background: #313131;
     border-radius: 0px 11px 11px 11px;

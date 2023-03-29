@@ -8,9 +8,11 @@ interface ErrorFormProps{
 
 const ErrorForm = (props : ErrorFormProps) => {
     return(
-        <div className={styles.FormError}>
-            <img className={styles.FormErrorImg} src={Error} alt="icon-error"/>
-            <p dangerouslySetInnerHTML={{ __html: props.errorcontent }} className={styles.FormErrorContent}></p>
+        <div className={styles.FormErrorWrap}>
+            <div className={styles.FormError}>
+                <img className={styles.FormErrorImg} src={Error} alt="icon-error"/>
+                <p dangerouslySetInnerHTML={{ __html: props.errorcontent }} className={styles.FormErrorContent}></p>
+            </div>
         </div>
     )
 }

@@ -15,12 +15,11 @@ interface IWrapInputFormProps{
     type : string,
     placeholderInput : string,
     hasHelper : boolean,
-    onFocus : {() : void} | undefined
     contentHelper : string | null,
-    onBlur : {() : void} | undefined,
+    onBlur : {(value : string) : string | boolean} | undefined,
     error : string,
     //onChange : () => void | null
-    onChange : {(e: React.ChangeEvent<HTMLInputElement>) : void} | undefined,
+    onChange : {(e: React.ChangeEvent<HTMLInputElement> | string) : void} | undefined,
     //state : IFormLogin,
 }
 
@@ -33,7 +32,8 @@ const WrapInputForm = (props : IWrapInputFormProps) => {
     const onMouseEnterHandler  = () => {
         if(props.hasHelper == true){
             setHelperState({
-                ...helperState, isVisibleHelper : true
+                isVisibleHelper : true,
+                isVisibleError : false
             })
         }
     }
@@ -54,16 +54,33 @@ const WrapInputForm = (props : IWrapInputFormProps) => {
         }
     }
 
+    const onBlurHandler = (value : string) => {
+        if(props.onBlur != undefined){
+            let result : string | boolean = props.onBlur(value);
+            if(typeof result === "string"){
+                setHelperState({
+                    ...helperState, isVisibleError : true
+                })
+            }
+        }
+    }
+
     return (
         <div className={styles.FormDivWrapError}>
+            {/*{
+                helperState.isVisibleError == true
+                ?
+
+                :
+            }*/}
             <InputForm type={props.type} 
                         placeholder={props.placeholderInput} 
-                        onBlur={props.onBlur}
-                        //onFocus={props.onFocus}
+                        onBlur={onBlurHandler}
                         onFocus={onFocusHandler}
                         onMouseEnter={onMouseEnterHandler}
                         onMouseLeave={onMouseLeaveHandler}
-                        onChange={props.onChange}></InputForm>
+                        onChange={props.onChange}
+                        errorVis={helperState.isVisibleError}/>
             {
                 helperState.isVisibleError == true
                     ?
