@@ -1,6 +1,7 @@
 export const INVALID_PASSWORD_MESSAGE = 'Пароль должен содержать минимум 8 знаков, среди которых есть </br> прописные и строчные буквы, а также специальные символы';
 export const INVALID_NAME_MESSAGE = 'Пустое поле';
 export const INVALID_EMAIL_MESSAGE = 'Неверный формат email';
+export const INVALID_REP_PASSWORD_MESSAGE = 'Пароли не совпадают';
 
 export class ValidationHelper{
     static nameValidate(value : string) : string | boolean {
@@ -18,5 +19,13 @@ export class ValidationHelper{
         let regex : RegExp = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,}$/;
         if(regex.test(value)) return true;
         return INVALID_PASSWORD_MESSAGE;
+    }
+
+    static repPasswordValidate(value : string, valueInput :string) : string | boolean {
+        if(value.length != valueInput.length) return INVALID_REP_PASSWORD_MESSAGE;
+        for(let i : number = 0; i < value.length; i++){
+            if(value[i] != valueInput[i]) return INVALID_REP_PASSWORD_MESSAGE;
+        }
+        return true;
     }
 }

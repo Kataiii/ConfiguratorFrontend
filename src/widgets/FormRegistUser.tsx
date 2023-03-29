@@ -5,9 +5,10 @@ import { useState } from "react";
 import Button from "../shared/ui/ButtonPrim";
 import CheckboxForm from "../shared/ui/FormPart/CheckboxForm";
 import { ValidationHelper, INVALID_EMAIL_MESSAGE, INVALID_NAME_MESSAGE, INVALID_PASSWORD_MESSAGE } from "../shared/common/ValidationHelper";
+import InputRepPassword from "../shared/ui/FormPart/InputRepPassword";
 
 export interface IFormRegUser {
-    name : string
+    name: string
     email: string,
     password: string,
     failAuth: boolean
@@ -22,25 +23,27 @@ const FormRegistUser = () => {
     })
 
     const onBluerName = (e: React.ChangeEvent<HTMLInputElement> | string) => {
-        if(typeof e != 'string')
-        setLoginState({
-            ...registState, name: e.target.value
-        });
+        if (typeof e != 'string')
+            setLoginState({
+                ...registState, name: e.target.value
+            });
     }
 
     const onBlurEmail = (e: React.ChangeEvent<HTMLInputElement> | string) => {
-        if(typeof e != 'string')
-        setLoginState({
-            ...registState, email: e.target.value
-        });
+        if (typeof e != 'string')
+            setLoginState({
+                ...registState, email: e.target.value
+            });
     }
 
     const onBlurPassword = (e: React.ChangeEvent<HTMLInputElement> | string) => {
-        if(typeof e != 'string')
-        setLoginState({
-            ...registState, password: e.target.value
-        });
+        if (typeof e != 'string')
+            setLoginState({
+                ...registState, password: e.target.value
+            });
+            console.log(registState.password)
     }
+
 
     return (
         <div className={styles.FormDivReg}>
@@ -57,34 +60,29 @@ const FormRegistUser = () => {
                 contentHelper={null}
                 onBlur={ValidationHelper.nameValidate}
                 onChange={onBluerName}
-                error={INVALID_NAME_MESSAGE}/>
+                error={INVALID_NAME_MESSAGE} />
             <WrapInputForm type="text"
                 placeholderInput="Email..."
                 hasHelper={false}
                 contentHelper={null}
                 onBlur={ValidationHelper.emailValidate}
                 onChange={onBlurEmail}
-                error={INVALID_EMAIL_MESSAGE}/>
+                error={INVALID_EMAIL_MESSAGE} />
             <WrapInputForm type="password"
                 placeholderInput="Пароль..."
                 hasHelper={true}
-                contentHelper = "Пароль должен содержать минимум 8 знаков, среди которых есть </br> прописные и строчные буквы, а также специальные символы"
+                contentHelper="Пароль должен содержать минимум 8 знаков, среди которых есть </br> прописные и строчные буквы, а также специальные символы"
                 onBlur={ValidationHelper.passworsValidate}
                 onChange={onBlurPassword}
-                error={INVALID_PASSWORD_MESSAGE}/>
-            {/*<WrapInputForm type="password"
-                placeholderInput="Подтверждение пароля..."
-                hasHelper={false}
-                contentHelper={null}
-                onBlur={undefined}
-                onChange={onBlurEmail}
-                error="Пароли не совпадают" 
-            />*/}
-            <CheckboxForm ischecked={true} 
-                          content="Я даю согласие на получение новостной рассылки </br> и другой маркетинговой информации"/>
-            <CheckboxForm ischecked={false} 
-                          content="Я принимаю условия пользовательского соглашения </br> и даю согласие на обработку персональных данных"></CheckboxForm>
-            <Button title="Готово" onClick={() => {console.log("Готово")}}/>
+                error={INVALID_PASSWORD_MESSAGE} />
+            <InputRepPassword type="password"
+                placeholder="Подтверждение пароля..."
+                inputMain={registState.password} />
+            <CheckboxForm ischecked={true}
+                content="Я даю согласие на получение новостной рассылки </br> и другой маркетинговой информации" />
+            <CheckboxForm ischecked={false}
+                content="Я принимаю условия пользовательского соглашения </br> и даю согласие на обработку персональных данных"></CheckboxForm>
+            <Button title="Готово" onClick={() => { console.log("Готово") }} />
         </div>
     )
 }
