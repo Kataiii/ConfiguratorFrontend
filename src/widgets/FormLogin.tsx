@@ -1,22 +1,25 @@
 import { Link } from "react-router-dom";
 import Button from "../shared/ui/ButtonPrim";
 import styles from "./css/Form.module.css"
+import stylesInput from "../shared/ui/FormPart/css/InputForm.module.css"
 import { useState } from "react";
 import axios from "axios";
-import WrapInputForm from "../shared/ui/FormPart/WrapInputForm";
+import ErrorForm from "../shared/ui/FormPart/ErrorForm";
 
 
 export interface IFormLogin {
   email: string,
   password: string,
-  failAuth: boolean
+  failEmail: boolean,
+  failPassword: boolean
 }
 
 const FormLogin = () => {
   const [loginState, setLoginState] = useState<IFormLogin>({
     email: '',
     password: '',
-    failAuth: false
+    failEmail: false,
+    failPassword: false
   })
 
   const apiLogin = () => {
@@ -45,23 +48,39 @@ const FormLogin = () => {
       });
   }
 
-  const onBlurEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setLoginState({
-      ...loginState, email: e.target.value
-    });
+  const onBlurEmail = (e: React.ChangeEvent<HTMLInputElement> | string) => {
+    if (typeof e != 'string')
+      setLoginState({
+        ...loginState, email: e.target.value
+      });
   }
 
-  const onBlurPassword = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setLoginState({
-      ...loginState, password: e.target.value
-    });
+  const onBlurPassword = (e: React.ChangeEvent<HTMLInputElement> | string) => {
+    if (typeof e != 'string')
+      setLoginState({
+        ...loginState, password: e.target.value
+      });
   }
 
   const visibleError = (isVisible: boolean) => {
     setLoginState({
-      ...loginState, failAuth: isVisible
+      ...loginState, failEmail: isVisible, failPassword: isVisible
     })
   }
+
+  const onFocusEmail = () => {
+    setLoginState({
+      ...loginState, failEmail: false
+    });
+  }
+
+  const onFocusPassword = () => {
+    setLoginState({
+      ...loginState, failPassword: false
+    });
+  }
+
+  const style = loginState.failEmail ? stylesInput.FormInputEr : stylesInput.FormInput;
 
   return (
     <div className={styles.FormDiv}>
@@ -72,18 +91,34 @@ const FormLogin = () => {
           <p className={styles.FormLink}>Регистрация</p>
         </Link>
       </div>
-      {/*<WrapInputForm type="text"
-        placeholderInput="Логин или email..."
-        action={onBlurEmail}
-        state={loginState}
-        error="Неверный формат" 
-        hasHelper={false}/>
-      <WrapInputForm type="password"
-        placeholderInput="Пароль..."
-        action={onBlurPassword}
-        state={loginState}
-        error="Неверный пароль" 
-  hasHelper={false}/>*/}
+      <div className={stylesInput.FormDivWrapError}>
+        <input className={style}
+          type="text"
+          placeholder="Логин или email..."
+          onFocus={onFocusEmail}
+          onChange={onBlurEmail} />
+        {
+          loginState.failEmail
+            ?
+            <ErrorForm errorcontent="Неверный формат" />
+            :
+            null
+        }
+      </div>
+      <div className={stylesInput.FormDivWrapError}>
+        <input className={style}
+          type="password"
+          placeholder="Пароль..."
+          onFocus={onFocusPassword}
+          onChange={onBlurPassword} />
+        {
+          loginState.failPassword
+            ?
+            <ErrorForm errorcontent="Неверный пароль" />
+            :
+            null
+        }
+      </div>
       <div className={styles.FormDivWrapButton}>
         <Button title="Вход" onClick={apiLogin}></Button>
       </div>

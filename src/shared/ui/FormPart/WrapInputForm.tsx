@@ -1,7 +1,6 @@
 import InputForm from "./InputForm";
 import ErrorForm from "./ErrorForm";
-import styles from "./css/InputForm.module.css"
-import { IFormLogin } from "../../../widgets/FormLogin";
+import styles from "./css/InputForm.module.css";
 import HelperForm from "./HelperForm";
 import { useState } from "react";
 
@@ -18,9 +17,7 @@ interface IWrapInputFormProps{
     contentHelper : string | null,
     onBlur : {(value : string) : string | boolean} | undefined,
     error : string,
-    //onChange : () => void | null
     onChange : {(e: React.ChangeEvent<HTMLInputElement> | string) : void} | undefined,
-    //state : IFormLogin,
 }
 
 const WrapInputForm = (props : IWrapInputFormProps) => {
@@ -67,12 +64,6 @@ const WrapInputForm = (props : IWrapInputFormProps) => {
 
     return (
         <div className={styles.FormDivWrapError}>
-            {/*{
-                helperState.isVisibleError == true
-                ?
-
-                :
-            }*/}
             <InputForm type={props.type} 
                         placeholder={props.placeholderInput} 
                         onBlur={onBlurHandler}
