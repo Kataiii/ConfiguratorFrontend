@@ -58,3 +58,7 @@
 .FormDivWrapButton{
     margin: 6% 0;
 }
+
+.FormDivWrapError{
+    position: relative;
+}

@@ -9,26 +9,16 @@ import ErrorForm from "../shared/ui/FormPart/ErrorForm";
 
 interface IFormLogin{
   email : string,
-  password : string
+  password : string,
+  failAuth : boolean
 }
 
 const FormLogin = () => {
     const [loginState, setLoginState] = useState<IFormLogin>({
         email : '',
-        password : ''
+        password : '',
+        failAuth : false
     })
-
-    // useEffect(() => {
-    //   const apiLoginUrl = 'http://127.0.0.1:9000/sanctum/csrf-cookie';
-    //   axios.get(apiLoginUrl,{
-    //     headers: {
-    //       'Content-Type': 'application/json',
-    //       'Access-Control-Allow-Origin': '*',
-    //     }, withCredentials: true
-    //   }).then((response) => {
-    //     console.log(response.data)
-    //   })
-    // }, [setLoginState]);
 
     const apiLogin = () => {
       const apiLoginUrl = 'http://127.0.0.1:9000/api/login';
@@ -40,19 +30,17 @@ const FormLogin = () => {
         {
           headers: {
             'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': '*',
-            'X-CSRF-TOKEN': localStorage.getItem('csrf-token') 
+            'Access-Control-Allow-Origin': '*'
           },
-        withCredentials:false})
+        withCredentials:true})
       .then((response) => {
-        console.log(response);
+        visibleError(false);
+        console.log("Урааа");
       }
       )
       .catch(function (error) {
         if (error.response) {
-          console.log(error.response.data);
-          console.log(error.response.status);
-          console.log(error.response.headers);
+          visibleError(true);
         }
       });
     }
@@ -69,6 +57,12 @@ const FormLogin = () => {
       });
     }
 
+    const visibleError = (isVisible : boolean) => {
+      setLoginState({
+        ...loginState,failAuth : isVisible
+      })
+    }
+
     return(
         <div className={styles.FormDiv}>
             <h1 className={styles.FormTitle}>Вход</h1>
@@ -78,13 +72,26 @@ const FormLogin = () => {
                   <p className={styles.FormLink}>Регистрация</p>
                 </Link>
             </div>
-            <div>
+            <div className={styles.FormDivWrapError}>
                 <InputForm type="text" placeholder="Логин или email..." error="Неверный формат" action={onBlurEmail}></InputForm>
-                <ErrorForm errorcontent="Неверный формат"></ErrorForm>
+                {
+                  loginState.failAuth == true 
+                  ?
+                  <ErrorForm errorcontent="Неверный формат"></ErrorForm>
+                  :
+                  null
+                }
             </div>
-            <div>
+            <div className={styles.FormDivWrapError}>
                 <InputForm type="password" placeholder="Пароль..." error="Неверный пароль" action={onBlurPassword}></InputForm>
-                <ErrorForm errorcontent="Неверный пароль"></ErrorForm>
+                {
+                  loginState.failAuth == true 
+                  ?
+                  <ErrorForm errorcontent="Неверный пароль"></ErrorForm>
+                  :
+                  null
+                }
+                
             </div>
             <div className={styles.FormDivWrapButton}>
                 <Button title="Вход" onClick={apiLogin}></Button>
