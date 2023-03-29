@@ -1,5 +1,5 @@
 import Error from '../../../assets/icons/icon-error.svg'
-import styles from '../css/InputForm.module.css'
+import styles from './css/InputForm.module.css'
 
 
 interface ErrorFormProps{
@@ -10,7 +10,7 @@ const ErrorForm = (props : ErrorFormProps) => {
     return(
         <div className={styles.FormError}>
             <img className={styles.FormErrorImg} src={Error} alt="icon-error"/>
-            <p className={styles.FormErrorContent}>{props.errorcontent}</p>
+            <p dangerouslySetInnerHTML={{ __html: props.errorcontent }} className={styles.FormErrorContent}></p>
         </div>
     )
 }
