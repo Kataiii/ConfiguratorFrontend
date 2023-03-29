@@ -72,16 +72,18 @@ const FormLogin = () => {
           <p className={styles.FormLink}>Регистрация</p>
         </Link>
       </div>
-      <WrapInputForm type="text"
+      {/*<WrapInputForm type="text"
         placeholderInput="Логин или email..."
         action={onBlurEmail}
         state={loginState}
-        error="Неверный формат" />
+        error="Неверный формат" 
+        hasHelper={false}/>
       <WrapInputForm type="password"
         placeholderInput="Пароль..."
         action={onBlurPassword}
         state={loginState}
-        error="Неверный пароль" />
+        error="Неверный пароль" 
+  hasHelper={false}/>*/}
       <div className={styles.FormDivWrapButton}>
         <Button title="Вход" onClick={apiLogin}></Button>
       </div>

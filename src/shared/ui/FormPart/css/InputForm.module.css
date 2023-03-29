@@ -26,6 +26,7 @@
     background: #313131;
     border-radius: 0px 11px 11px 11px;
     padding: 8px 20px 8px 14px;
+    z-index: 100;
 }
 
 .FormErrorImg{
@@ -40,4 +41,18 @@
     font-weight: 300;
     font-size: 10px;
     color: #FFFFFF;
+}
+
+.CheckboxDiv{
+    display: flex;
+}
+
+.CheckboxContent{
+    display: block;
+    font-family: 'Ubuntu';
+    font-style: italic;
+    font-weight: 300;
+    font-size: 11px;
+    line-height: 13px;
+    color: #FCFCFC;
 }
