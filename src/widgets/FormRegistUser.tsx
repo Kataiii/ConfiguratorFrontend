@@ -11,6 +11,8 @@ export interface IFormRegUser {
     name: string
     email: string,
     password: string,
+    isCheckedMailing: boolean,
+    isCheckedUserAgreement: boolean
     failAuth: boolean
 }
 
@@ -19,6 +21,8 @@ const FormRegistUser = () => {
         name: '',
         email: '',
         password: '',
+        isCheckedMailing: true,
+        isCheckedUserAgreement: false,
         failAuth: false
     })
 
@@ -36,19 +40,19 @@ const FormRegistUser = () => {
                 hasHelper={false}
                 contentHelper={null}
                 onBlur={ValidationHelper.nameValidate}
-                error={INVALID_NAME_MESSAGE} 
+                error={INVALID_NAME_MESSAGE}
                 setState={setLoginState}
                 state={registState}
-                name="name"/>
+                name="name" />
             <WrapInputForm type="text"
                 placeholderInput="Email..."
                 hasHelper={false}
                 contentHelper={null}
                 onBlur={ValidationHelper.emailValidate}
-                error={INVALID_EMAIL_MESSAGE} 
+                error={INVALID_EMAIL_MESSAGE}
                 setState={setLoginState}
                 state={registState}
-                name="email"/>
+                name="email" />
             <WrapInputForm type="password"
                 placeholderInput="Пароль..."
                 hasHelper={true}
@@ -61,11 +65,19 @@ const FormRegistUser = () => {
             <InputRepPassword type="password"
                 placeholder="Подтверждение пароля..."
                 inputMain={registState.password} />
-            <CheckboxForm ischecked={true}
-                content="Я даю согласие на получение новостной рассылки </br> и другой маркетинговой информации" />
-            <CheckboxForm ischecked={false}
-                content="Я принимаю условия пользовательского соглашения </br> и даю согласие на обработку персональных данных"></CheckboxForm>
-            <Button title="Готово" onClick={() => { console.log("Готово") }} />
+            <div className={styles.DivWrapCheckbox}>
+                <CheckboxForm ischecked={true}
+                    content="Я даю согласие на получение новостной рассылки </br> и другой маркетинговой информации"
+                    state={registState}
+                    setState={setLoginState}
+                    name="isCheckedMailing" />
+                <CheckboxForm ischecked={false}
+                    content="Я принимаю условия пользовательского соглашения </br> и даю согласие на обработку персональных данных"
+                    state={registState}
+                    setState={setLoginState}
+                    name="isCheckedUserAgreement" />
+            </div>
+            <Button isDisabled={registState.failAuth} title="Готово" onClick={() => { console.log("Готово") }} />
         </div>
     )
 }

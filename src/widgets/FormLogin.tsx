@@ -120,7 +120,7 @@ const FormLogin = () => {
         }
       </div>
       <div className={styles.FormDivWrapButton}>
-        <Button title="Вход" onClick={apiLogin}></Button>
+        <Button isDisabled={false} title="Вход" onClick={apiLogin}></Button>
       </div>
     </div>
   )

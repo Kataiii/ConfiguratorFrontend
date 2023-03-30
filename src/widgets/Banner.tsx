@@ -16,7 +16,7 @@ const Banner = () => {
                         Размещай камеры видеонаблюдения и датчики <br /> безопасности. 
                         Создавай проекты и отправляй на <br /> оценку Исполнителю</p>
                     </div>
-                    <Button title='Создать проект' onClick={() => navigate('login', { replace: false })}></Button>
+                    <Button isDisabled={false} title='Создать проект' onClick={() => navigate('login', { replace: false })}></Button>
                 </div>
             </div>
             <img className={styles.ImgHouse} src={House} alt='image-house'></img>

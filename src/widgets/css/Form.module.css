@@ -71,3 +71,7 @@
 .FormDivWrapError{
     position: relative;
 }
+
+.DivWrapCheckbox{
+    margin-bottom: 15px;
+}

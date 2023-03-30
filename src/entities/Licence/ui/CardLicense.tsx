@@ -37,7 +37,7 @@ const CardLicence = (props : CardLicenceProps) => {
                         }
                     </>
                 </div>
-                <Button title={props.buttonContent} onClick={props.action}></Button>
+                <Button isDisabled={false} title={props.buttonContent} onClick={props.action}></Button>
             </div>
         </div>
     );

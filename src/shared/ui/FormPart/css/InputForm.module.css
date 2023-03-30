@@ -46,7 +46,7 @@
     width: 400px;
     position: absolute;
     top: 20px;
-    right: -330px;
+    right: -300px;
     display: flex;
     justify-content: left;
 }
@@ -74,15 +74,35 @@
 }
 
 .CheckboxDiv{
+    width: 325px;
+    margin: 0 auto;
+}
+
+.CheckboxDivWrap{
     display: flex;
+    justify-content: start;
 }
 
 .CheckboxContent{
     display: block;
+    text-align: start;
     font-family: 'Ubuntu';
     font-style: italic;
     font-weight: 300;
     font-size: 11px;
     line-height: 13px;
     color: #FCFCFC;
+}
+
+.CheckBoxWrapImg{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-right: 15px;
+}
+
+.CheckBoxImg{
+    display: block;
+    width: 15px;
+    height: 15px;
 }

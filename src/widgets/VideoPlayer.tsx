@@ -46,7 +46,7 @@ const VideoPlayer = () => {
                 
                 <VideoVolume min={0} max={100} volume={video.volume} action={handleVolume}></VideoVolume>
             </div>
-            <Button title="Попробовать!" onClick={() => navigate('/login')}></Button>
+            <Button isDisabled={false} title="Попробовать!" onClick={() => navigate('/login')}></Button>
         </div>
     )
 }

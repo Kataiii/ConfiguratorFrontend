@@ -14,7 +14,7 @@ const CardRegist = (props: cardRegistProps) => {
         <div className={styles.CardDiv}>
             <h1 className={styles.CardTitle}>{props.title}</h1>
             <img className={styles.CardImage} src={props.image} alt={props.altImage}></img>
-            <Button title="Регистрация" onClick={props.action}></Button>
+            <Button isDisabled={false} title="Регистрация" onClick={props.action}></Button>
         </div>
     );
 }
