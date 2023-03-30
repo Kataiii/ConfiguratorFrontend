@@ -14,6 +14,14 @@
     margin: 0 auto 5%;
 }
 
+.FormInput::placeholder{
+    color: rgba(49, 49, 49, 0.5);
+}
+
+.FormInputEr::placeholder{
+    color: #E73C3C;
+}
+
 .FormInputEr{
     display: block;
     width: 65%;

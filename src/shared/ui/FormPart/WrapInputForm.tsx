@@ -3,12 +3,10 @@ import ErrorForm from "./ErrorForm";
 import styles from "./css/InputForm.module.css";
 import HelperForm from "./HelperForm";
 import { useState } from "react";
+import { IFormRegUser } from "../../../widgets/FormRegistUser"; 
 
 //TODO обработку ошибки (скорее всего в самой форме регистрации), нормальную верстку - написано на листе, 
 //      валидацию полную - объект отправляется только при не красных полях
-
-//Made возникновение подсказки при наведении мыши, если она есть
-//      убирание ошибки при фокусе на поле 
 
 interface IWrapInputFormProps{
     type : string,
@@ -17,7 +15,9 @@ interface IWrapInputFormProps{
     contentHelper : string | null,
     onBlur : {(value : string) : string | boolean} | undefined,
     error : string,
-    onChange : {(e: React.ChangeEvent<HTMLInputElement> | string) : void} | undefined,
+    state : IFormRegUser,
+    setState : React.Dispatch<React.SetStateAction<IFormRegUser>>,
+    name : string
 }
 
 const WrapInputForm = (props : IWrapInputFormProps) => {
@@ -70,8 +70,10 @@ const WrapInputForm = (props : IWrapInputFormProps) => {
                         onFocus={onFocusHandler}
                         onMouseEnter={onMouseEnterHandler}
                         onMouseLeave={onMouseLeaveHandler}
-                        onChange={props.onChange}
-                        errorVis={helperState.isVisibleError}/>
+                        errorVis={helperState.isVisibleError}
+                        state={props.state}
+                        setState={props.setState}
+                        name={props.name}/>
             {
                 helperState.isVisibleError == true
                     ?

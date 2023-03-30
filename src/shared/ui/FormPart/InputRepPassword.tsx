@@ -4,15 +4,11 @@ import ErrorForm from "./ErrorForm";
 import { ValidationHelper, INVALID_REP_PASSWORD_MESSAGE } from "../../common/ValidationHelper";
 
 
+
 export interface PasFormProps{
     type : string,
     placeholder : string,
-    inputMain : string
-    //onBlur : {(value : string) : void} | undefined,
-    //onFocus : {() : void} | undefined,
-    //onChange : {(e: React.ChangeEvent<HTMLInputElement> | string) : void} | undefined,
-    //onChange : any,
-    //errorVis : boolean
+    inputMain : string,
 }
 
 const InputRepPassword = (props : PasFormProps) => {
@@ -27,9 +23,6 @@ const InputRepPassword = (props : PasFormProps) => {
         stateInputValue({
             ...inputValue, value: e.target.value
         });
-        // if(ValidationHelper.repPasswordValidate(props.inputMain, inputValue.value) != true){
-        //     validate(true);
-        // }
     }
 
     const onFocus = () => {

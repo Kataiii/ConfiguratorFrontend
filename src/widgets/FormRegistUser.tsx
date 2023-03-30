@@ -22,29 +22,6 @@ const FormRegistUser = () => {
         failAuth: false
     })
 
-    const onBluerName = (e: React.ChangeEvent<HTMLInputElement> | string) => {
-        if (typeof e != 'string')
-            setLoginState({
-                ...registState, name: e.target.value
-            });
-    }
-
-    const onBlurEmail = (e: React.ChangeEvent<HTMLInputElement> | string) => {
-        if (typeof e != 'string')
-            setLoginState({
-                ...registState, email: e.target.value
-            });
-    }
-
-    const onBlurPassword = (e: React.ChangeEvent<HTMLInputElement> | string) => {
-        if (typeof e != 'string')
-            setLoginState({
-                ...registState, password: e.target.value
-            });
-            console.log(registState.password)
-    }
-
-
     return (
         <div className={styles.FormDivReg}>
             <h1 className={styles.FormTitle}>Регистрация</h1>
@@ -59,22 +36,28 @@ const FormRegistUser = () => {
                 hasHelper={false}
                 contentHelper={null}
                 onBlur={ValidationHelper.nameValidate}
-                onChange={onBluerName}
-                error={INVALID_NAME_MESSAGE} />
+                error={INVALID_NAME_MESSAGE} 
+                setState={setLoginState}
+                state={registState}
+                name="name"/>
             <WrapInputForm type="text"
                 placeholderInput="Email..."
                 hasHelper={false}
                 contentHelper={null}
                 onBlur={ValidationHelper.emailValidate}
-                onChange={onBlurEmail}
-                error={INVALID_EMAIL_MESSAGE} />
+                error={INVALID_EMAIL_MESSAGE} 
+                setState={setLoginState}
+                state={registState}
+                name="email"/>
             <WrapInputForm type="password"
                 placeholderInput="Пароль..."
                 hasHelper={true}
                 contentHelper="Пароль должен содержать минимум 8 знаков, среди которых есть </br> прописные и строчные буквы, а также специальные символы"
                 onBlur={ValidationHelper.passworsValidate}
-                onChange={onBlurPassword}
-                error={INVALID_PASSWORD_MESSAGE} />
+                error={INVALID_PASSWORD_MESSAGE}
+                setState={setLoginState}
+                state={registState}
+                name="password" />
             <InputRepPassword type="password"
                 placeholder="Подтверждение пароля..."
                 inputMain={registState.password} />

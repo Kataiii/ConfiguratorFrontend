@@ -1,5 +1,6 @@
 import styles from "./css/InputForm.module.css"
 import { useState } from "react";
+import { IFormRegUser } from "../../../widgets/FormRegistUser"; 
 
 export interface InputFormProps{
     type : string,
@@ -8,8 +9,10 @@ export interface InputFormProps{
     onFocus : {() : void} | undefined,
     onMouseEnter : {() : void} | undefined,
     onMouseLeave : {() : void} | undefined,
-    onChange : {(e: React.ChangeEvent<HTMLInputElement> | string) : void} | undefined,
-    errorVis : boolean
+    errorVis : boolean,
+    state : IFormRegUser,
+    setState : React.Dispatch<React.SetStateAction<IFormRegUser>>,
+    name : string
 }
 
 const InputForm = (props : InputFormProps) => {
@@ -23,8 +26,24 @@ const InputForm = (props : InputFormProps) => {
         stateInputValue({
             ...inputValue, value: e.target.value
         });
-        if(typeof e === "string" && props.onChange != undefined){
-            props.onChange(e);
+        setLoginFields();
+    }
+
+    const setLoginFields = () =>{
+        if(props.name == "name"){
+            props.setState({
+                ...props.state, name : inputValue.value
+            })
+        }
+        if(props.name == "email"){
+            props.setState({
+                ...props.state, email : inputValue.value
+            })
+        }
+        if(props.name == "password"){
+            props.setState({
+                ...props.state, password : inputValue.value
+            })
         }
     }
 
@@ -34,11 +53,12 @@ const InputForm = (props : InputFormProps) => {
         <input className={style} 
                 type={props.type}
                 placeholder={props.placeholder}
-                onBlur={() => {if(props.onBlur != undefined)props.onBlur(inputValue.value);}}
+                onBlur={() => {if(props.onBlur != undefined)props.onBlur(inputValue.value); setLoginFields()}}
                 onFocus={props.onFocus}
                 onMouseEnter={props.onMouseEnter}
                 onMouseLeave={props.onMouseLeave}
-                onChange={onChangeHandler}/>
+                onChange={onChangeHandler}
+                name={props.name}/>
     );
 }
 
