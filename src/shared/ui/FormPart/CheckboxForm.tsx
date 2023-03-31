@@ -1,7 +1,7 @@
 import styles from "./css/InputForm.module.css"
 import ActiveChecbox from "../../../assets/icons/icon_checkbox-active.svg"
 import NotActiveCheckbox from "../../../assets/icons/icon-checkbox-not-active.svg"
-import { IFormRegUser } from "../../../widgets/FormRegistUser"; 
+import { IFormRegUser } from "./FormVersionTwo";
 import { useState } from "react";
 
 interface ICheckboxFormProps {
@@ -39,7 +39,7 @@ const CheckboxForm = (props : ICheckboxFormProps) => {
         <div className={styles.CheckboxDiv}>
             <div className={styles.CheckboxDivWrap}>
                 {
-                    stateChecked.check
+                    props.ischecked
                     ?
                     <div className={styles.CheckBoxWrapImg}>
                         <img className={styles.CheckBoxImg} src={ActiveChecbox} alt="active-checkbox" onClick={onClickHandler}></img>

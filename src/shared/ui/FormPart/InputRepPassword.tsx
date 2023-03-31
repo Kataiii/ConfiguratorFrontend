@@ -2,6 +2,7 @@ import { useState } from "react";
 import styles from "./css/InputForm.module.css"
 import ErrorForm from "./ErrorForm";
 import { ValidationHelper, INVALID_REP_PASSWORD_MESSAGE } from "../../common/ValidationHelper";
+import { IFormRegUser } from "../../../widgets/FormRegistUser"; 
 
 
 
@@ -9,6 +10,8 @@ export interface PasFormProps{
     type : string,
     placeholder : string,
     inputMain : string,
+    state : IFormRegUser,
+    setState : React.Dispatch<React.SetStateAction<IFormRegUser>>
 }
 
 const InputRepPassword = (props : PasFormProps) => {
@@ -20,9 +23,11 @@ const InputRepPassword = (props : PasFormProps) => {
     );
 
     const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-        stateInputValue({
-            ...inputValue, value: e.target.value
-        });
+        props.setState({
+            ...props.state, reppassword : e.target.value
+        })
+        console.log("props",props.state)
+        console.log('e', e.target.value)
     }
 
     const onFocus = () => {
@@ -33,8 +38,9 @@ const InputRepPassword = (props : PasFormProps) => {
         if(ValidationHelper.repPasswordValidate(props.inputMain, inputValue.value) != true){
             validate(true);
         }
-        console.log(props.inputMain);
-        console.log(inputValue.value);
+        props.setState({
+            ...props.state, reppassword:inputValue.value
+        })
     }
 
     const validate = (value:boolean) => {

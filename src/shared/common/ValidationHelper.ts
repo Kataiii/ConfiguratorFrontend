@@ -21,11 +21,14 @@ export class ValidationHelper{
         return INVALID_PASSWORD_MESSAGE;
     }
 
-    static repPasswordValidate(value : string, valueInput :string) : string | boolean {
-        if(value.length != valueInput.length) return INVALID_REP_PASSWORD_MESSAGE;
-        for(let i : number = 0; i < value.length; i++){
-            if(value[i] != valueInput[i]) return INVALID_REP_PASSWORD_MESSAGE;
+    static repPasswordValidate(value : string | undefined, valueInput :string) : string | boolean {
+        if(typeof value == "string"){
+            if(value.length != valueInput.length) return INVALID_REP_PASSWORD_MESSAGE;
+            for(let i : number = 0; i < value.length; i++){
+                if(value[i] != valueInput[i]) return INVALID_REP_PASSWORD_MESSAGE;
+            }
+            return true;
         }
-        return true;
+        return INVALID_REP_PASSWORD_MESSAGE
     }
 }
