@@ -1,4 +1,4 @@
-.FormInput{
+.FormInput {
     display: block;
     width: 65%;
     background: #FCFCFC;
@@ -14,15 +14,15 @@
     margin: 0 auto 5%;
 }
 
-.FormInput::placeholder{
+.FormInput::placeholder {
     color: rgba(49, 49, 49, 0.5);
 }
 
-.FormInputEr::placeholder{
+.FormInputEr::placeholder {
     color: #E73C3C;
 }
 
-.FormInputEr{
+.FormInputEr {
     display: block;
     width: 65%;
     background: #FCFCFC;
@@ -38,11 +38,11 @@
     margin: 0 auto 5%;
 }
 
-.FormDivWrapError{
+.FormDivWrapError {
     position: relative;
 }
 
-.FormErrorWrap{
+.FormErrorWrap {
     width: 400px;
     position: absolute;
     top: 20px;
@@ -51,7 +51,7 @@
     justify-content: left;
 }
 
-.FormError{
+.FormError {
     display: flex;
     background: #313131;
     border-radius: 0px 11px 11px 11px;
@@ -59,12 +59,12 @@
     z-index: 100;
 }
 
-.FormErrorImg{
+.FormErrorImg {
     display: block;
     margin-right: 7px;
 }
 
-.FormErrorContent{
+.FormErrorContent {
     display: block;
     font-family: 'Ubuntu';
     font-style: normal;
@@ -73,17 +73,18 @@
     color: #FFFFFF;
 }
 
-.CheckboxDiv{
+.CheckboxDiv {
     width: 325px;
     margin: 0 auto;
+    display: flex;
 }
 
-.CheckboxDivWrap{
+.CheckboxDivWrap {
     display: flex;
     justify-content: start;
 }
 
-.CheckboxContent{
+.CheckboxContent {
     display: block;
     text-align: start;
     font-family: 'Ubuntu';
@@ -94,19 +95,62 @@
     color: #FCFCFC;
 }
 
-.CheckBoxWrapImg{
+.CheckBoxWrapImg {
     display: flex;
     flex-direction: column;
     justify-content: center;
     margin-right: 15px;
 }
 
-.CheckBoxImg{
+.CheckBoxImg {
     display: block;
     width: 15px;
     height: 15px;
 }
 
-.DivWrapCheckbox{
+.DivWrapCheckbox {
     margin-bottom: 15px;
+}
+
+.FormCheckbox {
+    height: 15px;
+    width: 15px;
+    position: relative;
+    cursor: pointer;
+    margin-right: 13px;
+    display: block;
+}
+
+.FormCheckbox:before {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    top: 0;
+    left: 0;
+    border: none;
+    border-radius: 3px;
+    background-color: white;
+}
+.FormCheckbox:checked:after {
+    content: "";
+    display: block;
+    width: 3px;
+    height: 6px;
+    border: 1.5px solid #E73C3C;
+    /*border-radius: 10%;*/
+    border-width: 0 2px 2px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg) translateY(-50%) translateX(-50%);
+    position: absolute;
+    top: 8px;
+    left: 4.5px;
+}
+
+.CheckboxWrapper{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }

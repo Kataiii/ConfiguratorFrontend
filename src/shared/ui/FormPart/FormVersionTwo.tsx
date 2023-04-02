@@ -1,12 +1,11 @@
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import { object, string, boolean } from "yup";
 import { ValidationHelper } from "../../common/ValidationHelper";
 import styles from "./css/InputForm.module.css"
 import styleBtn from "../../../app/App.module.css"
 import ErrorForm from "./ErrorForm";
 import CheckboxForm from "./CheckboxForm";
-import { useState } from "react";
 
 type FormValues = {
     firstName: string;
@@ -46,30 +45,23 @@ const schema = object().shape({
     })
 });
 
-export interface IFormRegUser {
-    isCheckedMailing: boolean,
-    isCheckedUserAgreement: boolean
-    failAuth: boolean
-}
-
 export default function FormVersionTwo() {
-    const [registState, setLoginState] = useState<IFormRegUser>({
-        isCheckedMailing: true,
-        isCheckedUserAgreement: false,
-        failAuth: true
-    })
-
-    const {
-        register,
-        handleSubmit,
-        formState: { errors }
-    } = useForm<FormValues>({
+    const formApi = useForm<FormValues>({
+        mode: 'onChange',
         resolver: yupResolver(schema)
     });
+
+    const {
+        handleSubmit,
+        formState: { errors },
+        control,
+        clearErrors,
+        register
+    } = formApi;
+
     const onSubmit = handleSubmit(
         (data) => {
             console.log(JSON.stringify(data));
-            console.log(registState)
         }
     );
 
@@ -77,19 +69,6 @@ export default function FormVersionTwo() {
     const styleEmail = errors?.email ? styles.FormInputEr : styles.FormInput;
     const stylePassword = errors?.password ? styles.FormInputEr : styles.FormInput;
     const styleRepPassword = errors?.repeatPassword ? styles.FormInputEr : styles.FormInput;
-
-    const onClickMailHandler = () => {
-        setLoginState({
-            ...registState, isCheckedMailing: !registState.isCheckedMailing
-        })
-    }
-
-    const onClickAgreementHandler = () => {
-        setLoginState({
-            ...registState, isCheckedUserAgreement: !registState.isCheckedUserAgreement
-        })
-    }
-
 
     return (
         <div className="App">
@@ -114,7 +93,7 @@ export default function FormVersionTwo() {
                     <input className={stylePassword}
                         type="password"
                         {...register("password")}
-                        placeholder="Пароль......"
+                        placeholder="Пароль..."
                     />
                     {errors?.password &&
                         <ErrorForm errorcontent={(typeof errors.password.message == 'string') ? errors.password.message : ""}></ErrorForm>
@@ -132,28 +111,29 @@ export default function FormVersionTwo() {
                     }
                 </div>
 
-
-
                 <div className={styles.DivWrapCheckbox}>
                     <div className={styles.FormDivWrapError}>
-                        <input type="checkbox" {...register("isCheckedMailing")} onClick={onClickMailHandler} checked={registState.isCheckedMailing} />
-
-                        <CheckboxForm ischecked={registState.isCheckedMailing}
-                            content="Я даю согласие на получение новостной рассылки </br> и другой маркетинговой информации"
-                            state={registState}
-                            setState={setLoginState}
-                            name="isCheckedMailing" />
+                        <div className={styles.CheckboxDiv}>
+                            <div className={styles.CheckboxWrapper}>
+                                <input type='checkbox' className={styles.FormCheckbox} {...register('isCheckedMailing')}></input>
+                            </div>
+                            <CheckboxForm
+                                content="Я даю согласие на получение новостной рассылки </br> и другой маркетинговой информации"
+                            />
+                        </div>
                     </div>
                     <div className={styles.FormDivWrapError}>
-                        <input type="checkbox" {...register("isCheckedUserAgreement")} onClick={onClickAgreementHandler} checked={registState.isCheckedUserAgreement} />
-                        <CheckboxForm {...register("isCheckedUserAgreement")} ischecked={registState.isCheckedUserAgreement}
-                            content="Я принимаю условия пользовательского соглашения </br> и даю согласие на обработку персональных данных"
-                            state={registState}
-                            setState={setLoginState}
-                            name="isCheckedUserAgreement" />
-                        {errors?.isCheckedUserAgreement &&
-                            <ErrorForm errorcontent={(typeof errors.isCheckedUserAgreement.message == 'string') ? errors.isCheckedUserAgreement.message : ""}></ErrorForm>
-                        }
+                        <div className={styles.CheckboxDiv}>
+                            <div className={styles.CheckboxWrapper}>
+                                <input type='checkbox' className={styles.FormCheckbox} {...register('isCheckedUserAgreement')}></input>
+                            </div>
+                            <CheckboxForm
+                                content="Я принимаю условия пользовательского соглашения </br> и даю согласие на обработку персональных данных"
+                            />
+                            {errors?.isCheckedUserAgreement &&
+                                <ErrorForm errorcontent={(typeof errors.isCheckedUserAgreement.message == 'string') ? errors.isCheckedUserAgreement.message : ""}></ErrorForm>
+                            }
+                        </div>
                     </div>
                 </div>
 
