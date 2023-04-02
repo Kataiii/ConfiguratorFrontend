@@ -2,6 +2,7 @@ export const INVALID_PASSWORD_MESSAGE = 'Пароль должен содерж�
 export const INVALID_NAME_MESSAGE = 'Пустое поле';
 export const INVALID_EMAIL_MESSAGE = 'Неверный формат email';
 export const INVALID_REP_PASSWORD_MESSAGE = 'Пароли не совпадают';
+export const HELPER_PASSWORD_MESSAGE = 'Пароль должен содержать минимум 8 знаков, среди которых есть </br> прописные и строчные буквы, а также специальные символы'
 
 export class ValidationHelper{
     static nameValidate(value : string) : string | boolean {

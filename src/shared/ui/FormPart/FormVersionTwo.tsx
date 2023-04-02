@@ -1,11 +1,13 @@
 import { yupResolver } from "@hookform/resolvers/yup";
-import { Controller, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { object, string, boolean } from "yup";
-import { ValidationHelper } from "../../common/ValidationHelper";
+import { ValidationHelper, HELPER_PASSWORD_MESSAGE } from "../../common/ValidationHelper";
 import styles from "./css/InputForm.module.css"
 import styleBtn from "../../../app/App.module.css"
 import ErrorForm from "./ErrorForm";
 import CheckboxForm from "./CheckboxForm";
+import HelperForm from "./HelperForm";
+import { useState } from "react";
 
 type FormValues = {
     firstName: string;
@@ -26,7 +28,7 @@ const schema = object().shape({
         .required("Поле обязательно для заполнения"),
     password: string()
         .matches(
-            /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,}$/,
+            /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*./?]).{8,}$/,
             "Пароль должен содержать минимум 8 знаков, среди которых есть </br> прописные и строчные буквы, а также специальные символы"
         )
         .required("Поле обязательно для заполнения"),
@@ -46,6 +48,10 @@ const schema = object().shape({
 });
 
 export default function FormVersionTwo() {
+    const[helperState, setHelperState] = useState({
+        visible : false,
+        checkedMail : true
+    });
     const formApi = useForm<FormValues>({
         mode: 'onChange',
         resolver: yupResolver(schema)
@@ -64,6 +70,24 @@ export default function FormVersionTwo() {
             console.log(JSON.stringify(data));
         }
     );
+
+    const onMouseEnterHandler  = () => {
+            setHelperState({
+                ...helperState, visible : true
+            })
+    }
+
+    const onMouseLeaveHandler  = () => {
+            setHelperState({
+                ...helperState, visible : false
+            })
+    }
+
+    const onClickHandler = () => {
+        setHelperState({
+            ...helperState, checkedMail : !helperState.checkedMail
+        })
+    }
 
     const styleName = errors?.firstName ? styles.FormInputEr : styles.FormInput;
     const styleEmail = errors?.email ? styles.FormInputEr : styles.FormInput;
@@ -94,9 +118,18 @@ export default function FormVersionTwo() {
                         type="password"
                         {...register("password")}
                         placeholder="Пароль..."
+                        onMouseEnter={onMouseEnterHandler}
+                        onMouseLeave={onMouseLeaveHandler}
                     />
                     {errors?.password &&
-                        <ErrorForm errorcontent={(typeof errors.password.message == 'string') ? errors.password.message : ""}></ErrorForm>
+                        <ErrorForm errorcontent={(typeof errors.password.message == 'string') && !helperState.visible ? errors.password.message : ""}></ErrorForm>
+                    }
+                    {
+                        helperState.visible == true
+                            ?
+                                <HelperForm content={HELPER_PASSWORD_MESSAGE}/>
+                            :
+                                null
                     }
                 </div>
 
@@ -115,7 +148,11 @@ export default function FormVersionTwo() {
                     <div className={styles.FormDivWrapError}>
                         <div className={styles.CheckboxDiv}>
                             <div className={styles.CheckboxWrapper}>
-                                <input type='checkbox' className={styles.FormCheckbox} {...register('isCheckedMailing')}></input>
+                                <input type='checkbox' 
+                                        className={styles.FormCheckbox} 
+                                        {...register('isCheckedMailing')} 
+                                        checked={helperState.checkedMail}
+                                        onClick={onClickHandler}/>
                             </div>
                             <CheckboxForm
                                 content="Я даю согласие на получение новостной рассылки </br> и другой маркетинговой информации"
@@ -125,7 +162,9 @@ export default function FormVersionTwo() {
                     <div className={styles.FormDivWrapError}>
                         <div className={styles.CheckboxDiv}>
                             <div className={styles.CheckboxWrapper}>
-                                <input type='checkbox' className={styles.FormCheckbox} {...register('isCheckedUserAgreement')}></input>
+                                <input type='checkbox' 
+                                        className={styles.FormCheckbox} 
+                                        {...register('isCheckedUserAgreement')}/>
                             </div>
                             <CheckboxForm
                                 content="Я принимаю условия пользовательского соглашения </br> и даю согласие на обработку персональных данных"
