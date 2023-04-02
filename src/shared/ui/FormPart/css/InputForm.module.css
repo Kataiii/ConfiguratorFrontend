@@ -139,7 +139,6 @@
     width: 3px;
     height: 6px;
     border: 1.5px solid #E73C3C;
-    /*border-radius: 10%;*/
     border-width: 0 2px 2px 0;
     -webkit-transform: rotate(45deg);
     -ms-transform: rotate(45deg);
@@ -153,4 +152,30 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+}
+
+.LinksDiv{
+    text-align: center;
+    width: 330px;
+    margin: 0 auto;
+}
+
+.LinksContext{
+    font-family: 'Ubuntu';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 11px;
+    text-align: center;
+    color: #313131;
+}
+
+.LinksLinks{
+    font-family: 'Ubuntu';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 11px;
+    text-align: center;
+    color: #313131;
+    text-decoration: none;
+    border-bottom: #313131 1px solid;
 }
