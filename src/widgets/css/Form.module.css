@@ -16,6 +16,15 @@
     text-align: center;
 }
 
+.FormDivRegCom{
+    background: #4A4A4A;
+    border-radius: 20px;
+    width: 60%;
+    margin: 1.5% auto 0;
+    padding: 1% 1% 2%;
+    text-align: center;
+}
+
 .FormTitle{
     font-family: 'Ubuntu';
     font-style: normal;
@@ -29,6 +38,12 @@
     display: flex;
     justify-content: center;
     margin: 1% 0 3%;
+}
+
+.FormDivWrapLinkCompany{
+    display: flex;
+    justify-content: center;
+    margin: 1% 0 1%;
 }
 
 .FormContent{

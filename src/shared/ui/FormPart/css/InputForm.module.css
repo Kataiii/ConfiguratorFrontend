@@ -45,7 +45,7 @@
 .FormErrorWrap {
     width: 400px;
     position: absolute;
-    top: 20px;
+    top: 30px;
     right: -300px;
     display: flex;
     justify-content: left;
@@ -178,4 +178,17 @@
     color: #313131;
     text-decoration: none;
     border-bottom: #313131 1px solid;
+}
+
+.FormContent{
+    font-family: 'Ubuntu';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 13px;
+    color: #FCFCFC;
+}
+
+.FormContentDiv{
+    text-align: start;
+    padding: 0 58px;
 }

@@ -5,6 +5,7 @@ import stylesInput from "../shared/ui/FormPart/css/InputForm.module.css"
 import { useState } from "react";
 import axios from "axios";
 import ErrorForm from "../shared/ui/FormPart/ErrorForm";
+import { HeaderForm } from "../shared/ui/FormPart/HeaderForm";
 
 
 export interface IFormLogin {
@@ -85,12 +86,10 @@ const FormLogin = () => {
   return (
     <div className={styles.FormDiv}>
       <h1 className={styles.FormTitle}>Вход</h1>
-      <div className={styles.FormDivWrapLink}>
-        <p className={styles.FormContent}>У вас нет аккаунта?</p>
-        <Link to={'/login/register'} className={styles.FormLinkWrap}>
-          <p className={styles.FormLink}>Регистрация</p>
-        </Link>
-      </div>
+      <HeaderForm formContent="У вас нет аккаунта?"
+                  linkTo="/login/register"
+                  linkTitle="Регистрация"
+                  wrapperLink="styles.FormDivWrapLink"/>
       <div className={stylesInput.FormDivWrapError}>
         <input className={style}
           type="text"

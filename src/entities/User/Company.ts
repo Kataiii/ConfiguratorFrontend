@@ -1,32 +1,37 @@
-import { object, string, boolean } from "yup";
+import { object, string, boolean, mixed } from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useForm } from "react-hook-form";
 import { ValidationHelper } from "../../shared/common/ValidationHelper";
 
-export class formRegistUserContext{
-    name : string = '';
-    email : string = '';
-    password : string = '';
-    repeatPasswprd : string = '';
-    isCheckedMailing : boolean = true;
-    isCheckedUserAgreement : boolean = false;
+export const REQUIRED_FIELD_MESSAGE = 'Поле обязательно для заполнения';
+
+export type FormCompanyValues = {
+    firstname: string,
+    surname: string,
+    patronymic: string,
+    phone: string,
+    email: string,
+    password: string,
+    repeatPassword: string,
+    typeOrganization: string,
+    letterCompanyRepresentatives: File,
+    TINCertificate: File,
+    isCheckedMailing: boolean,
+    isCheckedUserAgreement: boolean
 }
 
-export type FormValues = {
-    firstName: string;
-    email: string;
-    password: string;
-    repeatPassword: string;
-    isCheckedMailing: boolean;
-    isCheckedUserAgreement: boolean;
-};
-
-export const schemaPersonRegist = object().shape({
-    firstName: string().required("Поле обязательно для заполнения"),
+export const schemaCompanyRegist = object().shape({
+    firstname: string().required(REQUIRED_FIELD_MESSAGE),
+    surname: string().required(REQUIRED_FIELD_MESSAGE),
+    phone: string().matches(/^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/).required(REQUIRED_FIELD_MESSAGE),
     email: string()
         .matches(
             /(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/,
             "Неверный формат email"
         )
-        .required("Поле обязательно для заполнения"),
+        .required(REQUIRED_FIELD_MESSAGE),
+    letterCompanyRepresentatives: mixed().required('Файл обязателен для прикрепления'),
+    TINCertificate: mixed().required('Файл обязателен для прикрепления'),
     password: string()
         .matches(
             /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*./?]).{8,}$/,
@@ -46,4 +51,4 @@ export const schemaPersonRegist = object().shape({
     ): boolean {
         return isCheckedUserAgreement == true;
     })
-});
+})

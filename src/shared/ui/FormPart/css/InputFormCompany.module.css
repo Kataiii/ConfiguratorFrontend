@@ -1,0 +1,26 @@
+.PersonalDataDiv{
+    display: flex;
+}
+
+#InputFirstName{
+    width: 160px;
+    margin: 0 15px 3% 0;
+}
+
+#InputSurName{
+    width: 210px;
+    margin: 0 15px 3% 0;
+}
+
+#InputPatronymic{
+    width: 230px;
+    margin: 0 15px 3% 0;
+}
+
+.ContactDataDiv{
+    width: 50%;
+}
+
+#InputPhone{
+    margin: 0 15px 3% 0;
+}

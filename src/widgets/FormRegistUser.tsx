@@ -2,6 +2,7 @@ import styles from "./css/Form.module.css"
 import { Link } from "react-router-dom";
 import FormVersionTwo from "../shared/ui/FormPart/FormVersionTwo";
 import LinksConditionsPolicy from "../shared/ui/FormPart/LinksConditionsPolicy";
+import { HeaderForm } from "../shared/ui/FormPart/HeaderForm";
 
 
 const FormRegistUser = () => {
@@ -10,12 +11,10 @@ const FormRegistUser = () => {
         <div>
             <div className={styles.FormDivReg}>
                 <h1 className={styles.FormTitle}>Регистрация</h1>
-                <div className={styles.FormDivWrapLink}>
-                    <p className={styles.FormContent}>У вас уже есть аккаунт?  </p>
-                    <Link to={'/login'} className={styles.FormLinkWrap}>
-                        <p className={styles.FormLink}>Войти</p>
-                    </Link>
-                </div>
+                <HeaderForm formContent="У вас уже есть аккаунт?"
+                            linkTo="/login"
+                            linkTitle="Войти"
+                            wrapperLink="styles.FormDivWrapLink"/>
                 <FormVersionTwo></FormVersionTwo>
             </div>
             <LinksConditionsPolicy/>

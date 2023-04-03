@@ -1,51 +1,14 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
-import { object, string, boolean } from "yup";
-import { ValidationHelper, HELPER_PASSWORD_MESSAGE } from "../../common/ValidationHelper";
+import { HELPER_PASSWORD_MESSAGE } from "../../common/ValidationHelper";
 import styles from "./css/InputForm.module.css"
 import styleBtn from "../../../app/App.module.css"
 import ErrorForm from "./ErrorForm";
 import CheckboxForm from "./CheckboxForm";
 import HelperForm from "./HelperForm";
 import { useState } from "react";
+import { schemaPersonRegist, FormValues } from "../../../entities/User/User";
 
-type FormValues = {
-    firstName: string;
-    email: string;
-    password: string;
-    repeatPassword: string;
-    isCheckedMailing: boolean;
-    isCheckedUserAgreement: boolean;
-};
-
-const schema = object().shape({
-    firstName: string().required("Поле обязательно для заполнения"),
-    email: string()
-        .matches(
-            /(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/,
-            "Неверный формат email"
-        )
-        .required("Поле обязательно для заполнения"),
-    password: string()
-        .matches(
-            /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*./?]).{8,}$/,
-            "Пароль должен содержать минимум 8 знаков, среди которых есть </br> прописные и строчные буквы, а также специальные символы"
-        )
-        .required("Поле обязательно для заполнения"),
-    repeatPassword: string()
-        .test("password_compare", `Пароли не совпадают`, function (
-            repeatPassword: string | undefined
-        ): boolean {
-            return (typeof ValidationHelper.repPasswordValidate(repeatPassword, this.parent.password) == "boolean") ? true : false;
-        })
-        .required("Поле обязательно для заполнения"),
-    isCheckedMailing: boolean(),
-    isCheckedUserAgreement: boolean().test('check_compare', "Обязательно для заполнения", function (
-        isCheckedUserAgreement: boolean | undefined
-    ): boolean {
-        return isCheckedUserAgreement == true;
-    })
-});
 
 export default function FormVersionTwo() {
     const[helperState, setHelperState] = useState({
@@ -54,7 +17,7 @@ export default function FormVersionTwo() {
     });
     const formApi = useForm<FormValues>({
         mode: 'onChange',
-        resolver: yupResolver(schema)
+        resolver: yupResolver(schemaPersonRegist)
     });
 
     const {
@@ -176,7 +139,7 @@ export default function FormVersionTwo() {
                     </div>
                 </div>
 
-                <input className={styleBtn.BtnStyle} type="submit" />
+                <input className={styleBtn.BtnStyle} type="submit" value='Готово'/>
             </form>
         </div>
     );
