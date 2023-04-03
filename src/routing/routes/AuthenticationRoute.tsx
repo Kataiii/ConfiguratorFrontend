@@ -10,6 +10,7 @@ import {
   import RegistrationPage from "../../pages/RegistrationPage";
   import UserRegistPage from "../../pages/UserRegistrationPage";
   import CompanyRegistPage from "../../pages/CompanyRegistrationPage";
+  import PDFPage from "../../pages/PDFPage";
 
 
 const AuthenticationRoutes = {data: [

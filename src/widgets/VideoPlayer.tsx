@@ -18,7 +18,7 @@ const VideoPlayer = () => {
     const navigate = useNavigate();
     const [video, setVideo] = useState<IVideo>({
         playing : false,
-        volume : 50
+        volume : 0
     })
 
     const handlePlay = () => {

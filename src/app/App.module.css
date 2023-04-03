@@ -190,3 +190,8 @@
   transition: transform 0.5s ease-in-out;
   width: 645px;
 }
+
+.IFrameDiv{
+  height: 98vh;
+  width: 99.8%;
+}

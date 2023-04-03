@@ -3,6 +3,7 @@ import Root from './layouts/root';
 import ErrorPage from './layouts/error-page';
 import Landing from "../pages/Landing";
 import AuthenticationRoutes from "./routes/AuthenticationRoute";
+import DocumentsRoutes from "./routes/DocumentsRoute";
 
 
 const router = createBrowserRouter([
@@ -17,7 +18,8 @@ const router = createBrowserRouter([
         }
     ]
   },
-  AuthenticationRoutes.data[0]
+  AuthenticationRoutes.data[0],
+  DocumentsRoutes.data[0]
 ]);
 
 export default router;
