@@ -1,6 +1,6 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
-import { ValidationHelper, HELPER_PASSWORD_MESSAGE } from "../../common/ValidationHelper";
+import { HELPER_PASSWORD_MESSAGE } from "../../common/ValidationHelper";
 import styles from "./css/InputForm.module.css"
 import stylesInput from "./css/InputFormCompany.module.css"
 import styleBtn from "../../../app/App.module.css"
@@ -12,7 +12,9 @@ import { schemaCompanyRegist, FormCompanyValues } from "../../../entities/User/C
 const FormCompany = () => {
     const [helperState, setHelperState] = useState({
         visible: false,
-        checkedMail: true
+        checkedMail: true,
+        letterCompany: false,
+        letterCompanyStatus : 'undefined'
     });
 
     const formApi = useForm<FormCompanyValues>({
@@ -36,20 +38,33 @@ const FormCompany = () => {
 
     const onMouseEnterHandler = () => {
         setHelperState({
-            ...helperState, visible: true
+            ...helperState, visible: true, letterCompanyStatus: 'uploud'
         })
     }
 
     const onMouseLeaveHandler = () => {
         setHelperState({
-            ...helperState, visible: false
+            ...helperState, visible: false, letterCompanyStatus: 'notUpload'
         })
     }
 
-    const onClickHandler = () => {
-        setHelperState({
-            ...helperState, checkedMail: !helperState.checkedMail
-        })
+    const onClickHandlerLetter = () => {
+        let inputFile : HTMLElement|null = document.getElementById('getFileLetter');
+        if(inputFile != null){
+            inputFile.click();
+            let input : HTMLInputElement = inputFile as HTMLInputElement;
+            input.addEventListener('change', function(){
+                if( this.value ){
+                    setHelperState({
+                        ...helperState, letterCompany : true
+                    })
+                } else {
+                    setHelperState({
+                        ...helperState, letterCompany : false
+                    })
+                }
+            });
+        }
     }
 
     const styleName = errors?.firstname ? styles.FormInputEr : styles.FormInput;
@@ -58,6 +73,7 @@ const FormCompany = () => {
     const styleEmail = errors?.email ? styles.FormInputEr : styles.FormInput;
     const stylePassword = errors?.password ? styles.FormInputEr : styles.FormInput;
     const styleRepPassword = errors?.repeatPassword ? styles.FormInputEr : styles.FormInput;
+    const styleBtnLetterFile = helperState.letterCompany ? stylesInput.BtnInputFileUpload : stylesInput.BtnInputFile
 
     return (
         <div className="App">
@@ -144,6 +160,32 @@ const FormCompany = () => {
                             </div>
 
                             <p className={styles.FormContent}>Тип организации</p>
+                            <select className={stylesInput.Select}  {...register("typeOrganization")}>
+                                    <option className={stylesInput.Options}>Охранный</option>
+                                    <option className={stylesInput.Options}>Еще какой-то</option>
+                                    <option className={stylesInput.Options}>И еще какой-то</option>
+                            </select>
+                        </div>
+
+                        <div className={stylesInput.ContactDataDiv}>
+                            <p className={styles.FormContent}>Документация</p>
+                            <div className={styles.FormDivWrapError}>
+                                <div className={stylesInput.InputFileWrapper}>
+                                    <p className={stylesInput.FormContentAdditionally}>Письмо представителей компании</p>
+                                    <input className={styleBtnLetterFile} 
+                                            onClick={onClickHandlerLetter}
+                                            type='text' 
+                                            readOnly 
+                                            value='Загрузить'></input>
+                                </div>
+                                <input className={stylesInput.FileInput} {...register("letterCompanyRepresentatives")} id="getFileLetter"  type='file'/>
+                                {errors?.letterCompanyRepresentatives &&
+                                        <ErrorForm errorcontent={(typeof errors.letterCompanyRepresentatives.message == 'string') ? errors.letterCompanyRepresentatives.message : ""}></ErrorForm>
+                                } 
+                                {/* {helperState.letterCompanyStatus == 'notUpload' &&
+                                        <ErrorForm errorcontent={"Файл обязателен для прикрепления"}></ErrorForm>
+                                }  */}
+                            </div>
                         </div>
                     </div>
                 </div>
