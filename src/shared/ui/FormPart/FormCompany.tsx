@@ -1,5 +1,5 @@
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useForm } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 import { HELPER_PASSWORD_MESSAGE } from "../../common/ValidationHelper";
 import styles from "./css/InputForm.module.css"
 import stylesInput from "./css/InputFormCompany.module.css"
@@ -8,13 +8,14 @@ import ErrorForm from "./ErrorForm";
 import HelperForm from "./HelperForm";
 import { useState } from "react";
 import { schemaCompanyRegist, FormCompanyValues } from "../../../entities/User/Company";
+import CheckboxForm from "./CheckboxForm";
 
 const FormCompany = () => {
     const [helperState, setHelperState] = useState({
         visible: false,
         checkedMail: true,
         letterCompany: false,
-        letterCompanyStatus : 'undefined'
+        TINCompany: false
     });
 
     const formApi = useForm<FormCompanyValues>({
@@ -32,39 +33,64 @@ const FormCompany = () => {
 
     const onSubmit = handleSubmit(
         (data) => {
-            console.log(JSON.stringify(data));
+            console.log(data);
         }
     );
 
     const onMouseEnterHandler = () => {
         setHelperState({
-            ...helperState, visible: true, letterCompanyStatus: 'uploud'
+            ...helperState, visible: true
         })
     }
 
     const onMouseLeaveHandler = () => {
         setHelperState({
-            ...helperState, visible: false, letterCompanyStatus: 'notUpload'
+            ...helperState, visible: false
         })
     }
 
     const onClickHandlerLetter = () => {
-        let inputFile : HTMLElement|null = document.getElementById('getFileLetter');
-        if(inputFile != null){
+        let inputFile: HTMLElement | null = document.getElementById('getFileLetter');
+        if (inputFile != null) {
             inputFile.click();
-            let input : HTMLInputElement = inputFile as HTMLInputElement;
-            input.addEventListener('change', function(){
-                if( this.value ){
+            let input: HTMLInputElement = inputFile as HTMLInputElement;
+            input.addEventListener('change', function () {
+                if (this.value) {
                     setHelperState({
-                        ...helperState, letterCompany : true
+                        ...helperState, letterCompany: true
                     })
                 } else {
                     setHelperState({
-                        ...helperState, letterCompany : false
+                        ...helperState, letterCompany: false
                     })
                 }
             });
         }
+    }
+
+    const onClickHandlerTIN = () => {
+        let inputFile: HTMLElement | null = document.getElementById('getFileTIN');
+        if (inputFile != null) {
+            inputFile.click();
+            let input: HTMLInputElement = inputFile as HTMLInputElement;
+            input.addEventListener('change', function () {
+                if (this.value) {
+                    setHelperState({
+                        ...helperState, TINCompany: true
+                    })
+                } else {
+                    setHelperState({
+                        ...helperState, TINCompany: false
+                    })
+                }
+            });
+        }
+    }
+
+    const onClickHandler = () => {
+        setHelperState({
+            ...helperState, checkedMail: !helperState.checkedMail
+        })
     }
 
     const styleName = errors?.firstname ? styles.FormInputEr : styles.FormInput;
@@ -74,6 +100,7 @@ const FormCompany = () => {
     const stylePassword = errors?.password ? styles.FormInputEr : styles.FormInput;
     const styleRepPassword = errors?.repeatPassword ? styles.FormInputEr : styles.FormInput;
     const styleBtnLetterFile = helperState.letterCompany ? stylesInput.BtnInputFileUpload : stylesInput.BtnInputFile
+    const styleBtnTINFile = helperState.TINCompany ? stylesInput.BtnInputFileUpload : stylesInput.BtnInputFile
 
     return (
         <div className="App">
@@ -104,7 +131,7 @@ const FormCompany = () => {
                     <div className={stylesInput.PersonalDataDiv}>
                         <div className={stylesInput.ContactDataDiv}>
                             <p className={styles.FormContent}>Телефон</p>
-                            <div className={styles.FormDivWrapError}>
+                            <div id={stylesInput.FormDivWrapErrorPhone} className={styles.FormDivWrapError}>
                                 <input className={stylePhone} id={stylesInput.InputPhone} {...register("phone")} placeholder="Телефон..." />
                                 {errors?.phone &&
                                     <ErrorForm errorcontent={(typeof errors.phone.message == 'string') ? errors.phone.message : ""}></ErrorForm>
@@ -113,7 +140,7 @@ const FormCompany = () => {
                         </div>
                         <div className={stylesInput.ContactDataDiv}>
                             <p className={styles.FormContent}>Email</p>
-                            <div className={styles.FormDivWrapError}>
+                            <div id={stylesInput.FormDivWrapErrorEmail} className={styles.FormDivWrapError}>
                                 <input className={styleEmail} id={stylesInput.InputPhone} {...register("email")} placeholder="Email..." />
                                 {errors?.email &&
                                     <ErrorForm errorcontent={(typeof errors.email.message == 'string') ? errors.email.message : ""}></ErrorForm>
@@ -126,7 +153,7 @@ const FormCompany = () => {
                         <div className={stylesInput.ContactDataDiv}>
                             <p className={styles.FormContent}>Пароль</p>
 
-                            <div className={styles.FormDivWrapError}>
+                            <div id={stylesInput.FormDivWrapErrorEmail} className={styles.FormDivWrapError}>
                                 <input className={stylePassword}
                                     id={stylesInput.InputPhone}
                                     type="password"
@@ -147,7 +174,7 @@ const FormCompany = () => {
                                 }
                             </div>
 
-                            <div className={styles.FormDivWrapError}>
+                            <div id={stylesInput.FormDivWrapErrorEmail} className={styles.FormDivWrapError}>
                                 <input className={styleRepPassword}
                                     id={stylesInput.InputPhone}
                                     type="password"
@@ -161,35 +188,88 @@ const FormCompany = () => {
 
                             <p className={styles.FormContent}>Тип организации</p>
                             <select className={stylesInput.Select}  {...register("typeOrganization")}>
-                                    <option className={stylesInput.Options}>Охранный</option>
-                                    <option className={stylesInput.Options}>Еще какой-то</option>
-                                    <option className={stylesInput.Options}>И еще какой-то</option>
+                                <option className={stylesInput.Options}>Охранный</option>
+                                <option className={stylesInput.Options}>Еще какой-то</option>
+                                <option className={stylesInput.Options}>И еще какой-то</option>
                             </select>
                         </div>
 
                         <div className={stylesInput.ContactDataDiv}>
                             <p className={styles.FormContent}>Документация</p>
+
                             <div className={styles.FormDivWrapError}>
                                 <div className={stylesInput.InputFileWrapper}>
                                     <p className={stylesInput.FormContentAdditionally}>Письмо представителей компании</p>
-                                    <input className={styleBtnLetterFile} 
+                                    <div className={stylesInput.WrapstyleBtnLetterFile}>
+                                        <input className={styleBtnLetterFile}
                                             onClick={onClickHandlerLetter}
-                                            type='text' 
-                                            readOnly 
-                                            value='Загрузить'></input>
+                                            type='text'
+                                            readOnly
+                                            value={helperState.letterCompany ? 'Загружено' : 'Загрузить'} />
+                                    </div>
                                 </div>
-                                <input className={stylesInput.FileInput} {...register("letterCompanyRepresentatives")} id="getFileLetter"  type='file'/>
+
+                                <input className={stylesInput.FileInput} {...register("letterCompanyRepresentatives")} id="getFileLetter" name="letterCompanyRepresentatives" type='file' />
                                 {errors?.letterCompanyRepresentatives &&
-                                        <ErrorForm errorcontent={(typeof errors.letterCompanyRepresentatives.message == 'string') ? errors.letterCompanyRepresentatives.message : ""}></ErrorForm>
-                                } 
-                                {/* {helperState.letterCompanyStatus == 'notUpload' &&
-                                        <ErrorForm errorcontent={"Файл обязателен для прикрепления"}></ErrorForm>
-                                }  */}
+                                    <ErrorForm errorcontent={(typeof errors.letterCompanyRepresentatives.message == 'string') ? errors.letterCompanyRepresentatives.message : ""}></ErrorForm>
+                                }
+                            </div>
+
+                            <div className={styles.FormDivWrapError}>
+                                <div className={stylesInput.InputFileWrapper}>
+                                    <p className={stylesInput.FormContentAdditionally}>Свидетельство ИНН</p>
+                                    <div className={stylesInput.WrapstyleBtnLetterFile}>
+                                        <input className={styleBtnTINFile}
+                                            onClick={onClickHandlerTIN}
+                                            type='text'
+                                            readOnly
+                                            value={helperState.TINCompany ? 'Загружено' : 'Загрузить'} />
+                                    </div>
+                                </div>
+
+                                <input className={stylesInput.FileInput} {...register("TINCertificate")} id="getFileTIN" name="TINCertificate" type='file' />
+                                {errors?.TINCertificate &&
+                                    <ErrorForm errorcontent={(typeof errors.TINCertificate.message == 'string') ? errors.TINCertificate.message : ""}></ErrorForm>
+                                }
+                            </div>
+
+                            <div className={styles.DivWrapCheckbox}>
+                                <div className={styles.FormDivWrapError}>
+                                    <div className={styles.CheckboxDiv} id={stylesInput.CheckBoxWrap}>
+                                        <div className={styles.CheckboxWrapper}>
+                                            <input type='checkbox'
+                                                className={styles.FormCheckbox}
+                                                {...register('isCheckedMailing')}
+                                                checked={helperState.checkedMail}
+                                                onClick={onClickHandler} />
+                                        </div>
+                                        <CheckboxForm
+                                            content="Я даю согласие на получение новостной рассылки </br> и другой маркетинговой информации"
+                                        />
+                                    </div>
+                                </div>
+                                <div id={stylesInput.FormDivWrapErrorUserAgreement} className={styles.FormDivWrapError}>
+                                    <div className={styles.CheckboxDiv} id={stylesInput.CheckBoxWrap}>
+                                        <div className={styles.CheckboxWrapper}>
+                                            <input type='checkbox'
+                                                className={styles.FormCheckbox}
+                                                {...register('isCheckedUserAgreement')} />
+                                        </div>
+                                        <CheckboxForm
+                                            content="Я принимаю условия пользовательского соглашения </br> и даю согласие на обработку персональных данных"
+                                        />
+                                        {errors?.isCheckedUserAgreement &&
+                                            <ErrorForm errorcontent={(typeof errors.isCheckedUserAgreement.message == 'string') ? errors.isCheckedUserAgreement.message : ""}></ErrorForm>
+                                        }
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
+                    <div className={stylesInput.BtnSubmitWrap}>
+                        <input className={styleBtn.BtnStyle} type="submit" value='Готово'/>
+                    </div>
                 </div>
-                <input className={styleBtn.BtnStyle} type="submit" value='Готово'></input>
             </form>
         </div>
     )

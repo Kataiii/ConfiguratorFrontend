@@ -22,6 +22,7 @@
 }
 
 #InputPhone{
+    width: 100%;
     margin: 0 15px 3% 0;
 }
 
@@ -75,6 +76,7 @@
 
 .FileInput{
     visibility: hidden;
+    display: none;
 }
 
 .InputFileWrapper{
@@ -91,6 +93,8 @@
     background: #FCFCFC;
     border-radius: 30px;
     width: 155px;
+    height: 32px;
+    display: block;
     border: none;
     text-align: center;
     cursor: pointer;
@@ -105,6 +109,8 @@
     background: #20BD57;
     border-radius: 30px;
     width: 155px;
+    height: 32px;
+    display: block;
     border: none;
     text-align: center;
     cursor: pointer;
@@ -114,6 +120,37 @@
     outline: none;
 }
 
+.BtnInputFileUpload:focus{
+    outline: none;
+}
+
 .BtnInputFile:hover{
     background: #cecece;
+}
+
+.WrapstyleBtnLetterFile{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.BtnSubmitWrap{
+    display: flex;
+    justify-content: end;
+}
+
+#CheckBoxWrap{
+    margin: 0;
+}
+
+#FormDivWrapErrorPhone{
+    width: 70%;
+}
+
+#FormDivWrapErrorEmail{
+    width: 70%;
+}
+
+#FormDivWrapErrorUserAgreement{
+    width: 85%;
 }

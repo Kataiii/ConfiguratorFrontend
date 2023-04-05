@@ -1,4 +1,4 @@
-import { object, string, boolean, mixed } from "yup";
+import { object, string, boolean, mixed, array } from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import { ValidationHelper } from "../../shared/common/ValidationHelper";
@@ -14,7 +14,7 @@ export type FormCompanyValues = {
     password: string,
     repeatPassword: string,
     typeOrganization: string,
-    letterCompanyRepresentatives: File,
+    letterCompanyRepresentatives: FileList,
     TINCertificate: File,
     isCheckedMailing: boolean,
     isCheckedUserAgreement: boolean
@@ -30,12 +30,30 @@ export const schemaCompanyRegist = object().shape({
             "Неверный формат email"
         )
         .required(REQUIRED_FIELD_MESSAGE),
-    letterCompanyRepresentatives: mixed().test(
-        "fileSize",
-        "Файл обязателен для прикрепления",
-        value => !value 
-      ),//.required('Файл обязателен для прикрепления'),
-    TINCertificate: mixed().required('Файл обязателен для прикрепления'),
+    letterCompanyRepresentatives: mixed<FileList>()
+        .test('required', "Файл обязателен для прикрепления", (value : any) =>{
+        return value && value.length
+        } )
+        .test("fileSize", "Размер файла превышает 2 Мб", (value, context) => {
+        return value && value[0] && value[0].size <= 2100000;
+        })
+        .test("type", "Файл поддерживается только в формате jpeg, png, pdf", function (value) {
+        return value && value[0] && (value[0].type === "image/jpeg" || 
+                                    value[0].type === "image/png"  || 
+                                    value[0].type === "application/pdf");
+        }),
+    TINCertificate: mixed<FileList>()
+        .test('required', "Файл обязателен для прикрепления", (value : any) =>{
+        return value && value.length
+        } )
+        .test("fileSize", "Размер файла превышает 2 Мб", (value, context) => {
+        return value && value[0] && value[0].size <= 2100000;
+        })
+        .test("type", "Файл поддерживается только в формате jpeg, png, pdf", function (value) {
+        return value && value[0] && (value[0].type === "image/jpeg" || 
+                                    value[0].type === "image/png"  || 
+                                    value[0].type === "application/pdf");
+        }),
     password: string()
         .matches(
             /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*./?]).{8,}$/,
@@ -56,3 +74,5 @@ export const schemaCompanyRegist = object().shape({
         return isCheckedUserAgreement == true;
     })
 })
+
+
