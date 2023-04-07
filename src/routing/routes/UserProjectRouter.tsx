@@ -25,11 +25,11 @@ const UserProjectRouter = {
                             element: <UnsortedProjectPage/>
                         },
                         {
-                            path: "/project/:name_folder",
+                            path: "/projects/folders/:name_folder",
                             element: <FolderProjectPage/>
                         },
                         {
-                            path: "/project/:name_folder/:id",
+                            path: "/projects/project/:id",
                             element: <ConfiguratorPage/>
                         }
                     ]

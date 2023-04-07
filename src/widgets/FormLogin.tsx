@@ -1,87 +1,30 @@
-import { Link } from "react-router-dom";
 import Button from "../shared/ui/ButtonPrim";
 import styles from "./css/Form.module.css"
 import stylesInput from "../shared/ui/FormPart/css/InputForm.module.css"
-import { useState } from "react";
-import axios from "axios";
 import ErrorForm from "../shared/ui/FormPart/ErrorForm";
 import { HeaderForm } from "../shared/ui/FormPart/HeaderForm";
+import auth from "../store/auth";
+import { observer } from "mobx-react-lite"
+import { useNavigate } from "react-router"
 
 
 export interface IFormLogin {
   email: string,
   password: string,
   failEmail: boolean,
-  failPassword: boolean
+  failPassword: boolean,
+  isAuthorised : boolean
 }
 
-const FormLogin = () => {
-  const [loginState, setLoginState] = useState<IFormLogin>({
-    email: '',
-    password: '',
-    failEmail: false,
-    failPassword: false
-  })
+const FormLogin = observer( () => {
+  const navigate = useNavigate()
 
-  const apiLogin = () => {
-    const apiLoginUrl = 'http://127.0.0.1:9000/api/login';
-    axios.post(apiLoginUrl,
-      {
-        email: loginState.email,
-        password: loginState.password
-      },
-      {
-        headers: {
-          'Content-Type': 'application/json',
-          'Access-Control-Allow-Origin': '*'
-        },
-        withCredentials: true
-      })
-      .then((response) => {
-        visibleError(false);
-        console.log("Урааа");
-      }
-      )
-      .catch(function (error) {
-        if (error.response) {
-          visibleError(true);
-        }
-      });
+  const style = auth.formLogin.failEmail ? stylesInput.FormInputEr : stylesInput.FormInput;
+
+  const onClickBtnHandler = async () =>{
+      const res = await auth.apiLogin();
+      auth.formLogin.isAuthorised ? navigate('/home') : navigate('/login');
   }
-
-  const onBlurEmail = (e: React.ChangeEvent<HTMLInputElement> | string) => {
-    if (typeof e != 'string')
-      setLoginState({
-        ...loginState, email: e.target.value
-      });
-  }
-
-  const onBlurPassword = (e: React.ChangeEvent<HTMLInputElement> | string) => {
-    if (typeof e != 'string')
-      setLoginState({
-        ...loginState, password: e.target.value
-      });
-  }
-
-  const visibleError = (isVisible: boolean) => {
-    setLoginState({
-      ...loginState, failEmail: isVisible, failPassword: isVisible
-    })
-  }
-
-  const onFocusEmail = () => {
-    setLoginState({
-      ...loginState, failEmail: false
-    });
-  }
-
-  const onFocusPassword = () => {
-    setLoginState({
-      ...loginState, failPassword: false
-    });
-  }
-
-  const style = loginState.failEmail ? stylesInput.FormInputEr : stylesInput.FormInput;
 
   return (
     <div className={styles.FormDiv}>
@@ -94,10 +37,10 @@ const FormLogin = () => {
         <input className={style}
           type="text"
           placeholder="Логин или email..."
-          onFocus={onFocusEmail}
-          onChange={onBlurEmail} />
+          onFocus={auth.onFocusEmail}
+          onChange={auth.onBlurEmail} />
         {
-          loginState.failEmail
+          auth.formLogin.failEmail
             ?
             <ErrorForm errorcontent="Неверный формат" />
             :
@@ -108,10 +51,10 @@ const FormLogin = () => {
         <input className={style}
           type="password"
           placeholder="Пароль..."
-          onFocus={onFocusPassword}
-          onChange={onBlurPassword} />
+          onFocus={auth.onFocusPassword}
+          onChange={auth.onBlurPassword} />
         {
-          loginState.failPassword
+          auth.formLogin.failPassword
             ?
             <ErrorForm errorcontent="Неверный пароль" />
             :
@@ -119,10 +62,10 @@ const FormLogin = () => {
         }
       </div>
       <div className={styles.FormDivWrapButton}>
-        <Button isDisabled={false} title="Вход" onClick={apiLogin}></Button>
+        <Button isDisabled={false} title="Вход" onClick={onClickBtnHandler}></Button>
       </div>
     </div>
   )
-}
+})
 
 export default FormLogin;
