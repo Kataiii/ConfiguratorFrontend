@@ -4,7 +4,6 @@ import CardRegist, {cardRegistProps} from "../shared/ui/CardRegist";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import styles from "./css/BlockCard.module.css"
-import styleTitle from "../app/App.module.css"
 
 
 const BlockRegistration = () => {

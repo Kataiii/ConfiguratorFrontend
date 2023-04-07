@@ -54,6 +54,7 @@ class Auth {
           .then((response) => {
             this.visibleError(false);
             this.formLogin.isAuthorised = true;
+            localStorage.setItem('token', response.data.token);
           }
           )
           .catch((error) => {

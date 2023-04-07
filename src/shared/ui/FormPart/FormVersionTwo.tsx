@@ -8,14 +8,16 @@ import CheckboxForm from "./CheckboxForm";
 import HelperForm from "./HelperForm";
 import { useState } from "react";
 import { schemaPersonRegist, FormValues } from "../../../entities/User/User";
+import RegistUser from "../../../store/registUser";
+import { observer } from "mobx-react-lite"
 
 
-export default function FormVersionTwo() {
+const FormVersionTwo = observer(() => {
     const[helperState, setHelperState] = useState({
         visible : false,
         checkedMail : true
     });
-    const formApi = useForm<FormValues>({
+    const formApi = useForm<RegistUser>({
         mode: 'onChange',
         resolver: yupResolver(schemaPersonRegist)
     });
@@ -52,40 +54,51 @@ export default function FormVersionTwo() {
         })
     }
 
-    const styleName = errors?.firstName ? styles.FormInputEr : styles.FormInput;
-    const styleEmail = errors?.email ? styles.FormInputEr : styles.FormInput;
-    const stylePassword = errors?.password ? styles.FormInputEr : styles.FormInput;
-    const styleRepPassword = errors?.repeatPassword ? styles.FormInputEr : styles.FormInput;
+    const styleName = errors?.formRegist?.login ? styles.FormInputEr : styles.FormInput;
+    const styleEmail = errors?.formRegist?.email ? styles.FormInputEr : styles.FormInput;
+    const stylePassword = errors?.formRegist?.password ? styles.FormInputEr : styles.FormInput;
+    const styleRepPassword = errors?.formRegist?.repeatPassword ? styles.FormInputEr : styles.FormInput;
 
     return (
         <div className="App">
             <form onSubmit={onSubmit}>
 
                 <div className={styles.FormDivWrapError}>
-                    <input className={styleName} {...register("firstName")} placeholder="Ваше имя..." />
-                    {errors?.firstName
+                    <input className={styleName} {...register("formRegist.login")} placeholder="Ваше имя..." />
+                    {errors?.formRegist?.login
                         &&
-                        <ErrorForm errorcontent={(typeof errors.firstName.message == 'string') ? errors.firstName.message : ""}></ErrorForm>
+                        <ErrorForm errorcontent={(typeof errors.formRegist.login.message == 'string') 
+                        ?
+                         errors.formRegist.login.message 
+                         :
+                          ""}></ErrorForm>
                     }
                 </div>
 
                 <div className={styles.FormDivWrapError}>
-                    <input className={styleEmail} {...register("email")} placeholder="Email..." />
-                    {errors?.email &&
-                        <ErrorForm errorcontent={(typeof errors.email.message == 'string') ? errors.email.message : ""}></ErrorForm>
+                    <input className={styleEmail} {...register("formRegist.email")} placeholder="Email..." />
+                    {errors?.formRegist?.email &&
+                        <ErrorForm errorcontent={(typeof errors.formRegist.email.message == 'string') 
+                        ? 
+                        errors.formRegist.email.message 
+                        : 
+                        ""}></ErrorForm>
                     }
                 </div>
 
                 <div className={styles.FormDivWrapError}>
                     <input className={stylePassword}
                         type="password"
-                        {...register("password")}
+                        {...register("formRegist.password")}
                         placeholder="Пароль..."
                         onMouseEnter={onMouseEnterHandler}
                         onMouseLeave={onMouseLeaveHandler}
                     />
-                    {errors?.password &&
-                        <ErrorForm errorcontent={(typeof errors.password.message == 'string') && !helperState.visible ? errors.password.message : ""}></ErrorForm>
+                    {errors?.formRegist?.password &&
+                        <ErrorForm errorcontent={(typeof errors.formRegist.password.message == 'string') 
+                        && !helperState.visible 
+                        ?
+                         errors.formRegist.password.message : ""}></ErrorForm>
                     }
                     {
                         helperState.visible == true
@@ -99,11 +112,15 @@ export default function FormVersionTwo() {
                 <div className={styles.FormDivWrapError}>
                     <input className={styleRepPassword}
                         type="password"
-                        {...register("repeatPassword")}
+                        {...register("formRegist.repeatPassword")}
                         placeholder="Подтверждение пароля..."
                     />
-                    {errors?.repeatPassword &&
-                        <ErrorForm errorcontent={(typeof errors.repeatPassword.message == 'string') ? errors.repeatPassword.message : ""}></ErrorForm>
+                    {errors?.formRegist?.repeatPassword &&
+                        <ErrorForm errorcontent={(typeof errors.formRegist.repeatPassword.message == 'string') 
+                        ?
+                         errors.formRegist.repeatPassword.message 
+                         :
+                          ""}></ErrorForm>
                     }
                 </div>
 
@@ -113,7 +130,7 @@ export default function FormVersionTwo() {
                             <div className={styles.CheckboxWrapper}>
                                 <input type='checkbox' 
                                         className={styles.FormCheckbox} 
-                                        {...register('isCheckedMailing')} 
+                                        {...register('formRegist.isCheckedMailing')} 
                                         checked={helperState.checkedMail}
                                         onClick={onClickHandler}/>
                             </div>
@@ -127,13 +144,17 @@ export default function FormVersionTwo() {
                             <div className={styles.CheckboxWrapper}>
                                 <input type='checkbox' 
                                         className={styles.FormCheckbox} 
-                                        {...register('isCheckedUserAgreement')}/>
+                                        {...register('formRegist.isCheckedUserAgreement')}/>
                             </div>
                             <CheckboxForm
                                 content="Я принимаю условия пользовательского соглашения </br> и даю согласие на обработку персональных данных"
                             />
-                            {errors?.isCheckedUserAgreement &&
-                                <ErrorForm errorcontent={(typeof errors.isCheckedUserAgreement.message == 'string') ? errors.isCheckedUserAgreement.message : ""}></ErrorForm>
+                            {errors?.formRegist?.isCheckedUserAgreement &&
+                                <ErrorForm errorcontent={(typeof errors.formRegist.isCheckedUserAgreement.message == 'string') 
+                                ?
+                                 errors.formRegist.isCheckedUserAgreement.message 
+                                 :
+                                  ""}></ErrorForm>
                             }
                         </div>
                     </div>
@@ -143,4 +164,6 @@ export default function FormVersionTwo() {
             </form>
         </div>
     );
-}
+})
+
+export default FormVersionTwo;
