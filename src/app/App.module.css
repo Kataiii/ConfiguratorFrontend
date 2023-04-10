@@ -46,6 +46,13 @@
     background-color: #FCFCFC;
 }
 
+.AppDev{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color:  #F2F2F2;;
+}
+
 .Header{
   width: 100%;
   padding: 1% 0%;
@@ -54,6 +61,14 @@
   background-color: #fcfcfc00;
   position: absolute;
   top: 0;
+}
+
+.AuthHeader{
+  width: 100%;
+  padding: 1% 0%;
+  display: flex;
+  justify-content: space-between;
+  background-color: #FCFCFC;
 }
 
 .RegHeader{

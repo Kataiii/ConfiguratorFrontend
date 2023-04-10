@@ -9,7 +9,7 @@ import MyProject from "../../assets/icons/icon-my-projects.svg"
 
 
 const AuthorisedHeader = () => {
-    const className : string = styles.Header;
+    const className : string = styles.AuthHeader;
 
     const navigate = useNavigate();
 
@@ -20,7 +20,7 @@ const AuthorisedHeader = () => {
       },
       {
         label: 'Профиль',
-        action: () => navigate('/login')
+        action: () => navigate('/home/profile')
       }
       ,
       {

@@ -12,7 +12,8 @@ export default function Root(){
             <div className={stylesSidePanel.MainDiv}>
                 <div className={stylesSidePanel.SidePanelWrap}>
                     <div>
-                        <Link to={'/home'}>Все проекты</Link>
+                        <Link to={'/home/profile'}>Персональные данные</Link>
+                        <Link to={'/home/profile/licence'}>Подписка</Link>
                     </div>
                 </div>
                 <div>

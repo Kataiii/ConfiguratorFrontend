@@ -1,0 +1,8 @@
+.MainDiv{
+    display: flex;
+}
+
+.SidePanelWrap{
+    width: 225px;
+    height: 100%;
+}
