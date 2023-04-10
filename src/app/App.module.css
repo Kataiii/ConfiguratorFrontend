@@ -195,3 +195,9 @@
   height: 98vh;
   width: 99.8%;
 }
+
+.BtnLinkWrap{
+  width: 50%;
+  display: flex;
+  justify-content: space-around;
+}

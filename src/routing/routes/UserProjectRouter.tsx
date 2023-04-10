@@ -5,37 +5,29 @@ import UnsortedProjectPage from "../../pages/projects/UnsortedProjectPage";
 import FolderProjectPage from "../../pages/projects/FolderProjectPage";
 import ConfiguratorPage from "../../pages/projects/ConfiguratorPage";
 
-
 const UserProjectRouter = {
-    data : [
+    data: [
         {
-            /*Development Area */
-            path : '/projects',
-            element : <Root/>,
+            /*Projects */
+            path: '/home',
+            element: <Root />,
             errorElement: <ErrorPage />,
-            children : [
+            children: [
                 {
-                    /*Projects */
-                    path: '/projects',
-                    element: <ProjectPage/>,
-                    errorElement: <ErrorPage />,
-                    children : [
-                        {
-                            path: "/projects/unsorted",
-                            element: <UnsortedProjectPage/>
-                        },
-                        {
-                            path: "/projects/folders/:name_folder",
-                            element: <FolderProjectPage/>
-                        },
-                        {
-                            path: "/projects/project/:id",
-                            element: <ConfiguratorPage/>
-                        }
-                    ]
+                    path: '',
+                    element: <ProjectPage />,
                 },
                 {
-                    /*Renders */
+                    path: "/home/projects/unsorted",
+                    element: <UnsortedProjectPage />
+                },
+                {
+                    path: "/home/projects/folders/:name_folder",
+                    element: <FolderProjectPage />
+                },
+                {
+                    path: "/home/projects/project/:id",
+                    element: <ConfiguratorPage />
                 }
             ]
         }

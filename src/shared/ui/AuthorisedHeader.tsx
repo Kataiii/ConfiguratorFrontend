@@ -3,7 +3,9 @@ import LinkLanding from "./LinkLanding";
 import styles from "../../app/App.module.css"
 import { useMemo } from "react";
 import { useNavigate } from "react-router";
-
+import ButtonLink from "./ButtonLink";
+import Chat from "../../assets/icons/icon-chat.svg"
+import MyProject from "../../assets/icons/icon-my-projects.svg"
 
 
 const AuthorisedHeader = () => {
@@ -14,7 +16,7 @@ const AuthorisedHeader = () => {
     const authorisedmenuItems = useMemo<DropdownButtonItem[]>(() =>  [
       {
         label: 'Мои проекты',
-        action: () => navigate('/')
+        action: () => navigate('/home')
       },
       {
         label: 'Профиль',
@@ -23,14 +25,18 @@ const AuthorisedHeader = () => {
       ,
       {
         label: 'Выйти',
-        action: () => navigate('/login')
+        action: () => navigate('/')
       }
     ], [])
 
     return(
         <div className={className}>
             <LinkLanding></LinkLanding>
-            <DropdownMenu links={authorisedmenuItems}></DropdownMenu>
+            <div className={styles.BtnLinkWrap}>
+              <ButtonLink img={MyProject} imgAlt="мои проекты" content="Мои проекты" action={() => navigate('/home')}></ButtonLink>
+              <ButtonLink img={Chat} imgAlt="чаты" content="Чат" action={() => navigate('/')}></ButtonLink>
+              <DropdownMenu links={authorisedmenuItems}></DropdownMenu>
+            </div>
         </div>
     );
 }

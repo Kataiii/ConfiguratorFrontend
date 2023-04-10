@@ -1,0 +1,19 @@
+.BtnLinlWrap{
+    display: flex;
+    cursor: pointer;
+}
+
+.BtnLinlImg{
+    display: block;
+    margin-right: 9px;
+    width: 24px;
+}
+
+.BtnLinlContent{
+    font-family: 'Ubuntu';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 13px;
+    color: #313131;
+    width: 100px;
+}

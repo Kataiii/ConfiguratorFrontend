@@ -1,6 +1,7 @@
 import { Outlet } from "react-router-dom";
 import AuthGuard from "../guards/AuthGuard";
 import ErrorPage from "../layouts/error-page";
+import UserProjectRouter from "./UserProjectRouter";
 
 
 const HomeRouter = {
@@ -12,7 +13,7 @@ const HomeRouter = {
                     <Outlet context={[]}/>
                 </AuthGuard>,
             children : [
-                
+                UserProjectRouter.data[0]
             ]
         },
         // {
