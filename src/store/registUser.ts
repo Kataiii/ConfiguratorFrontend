@@ -51,4 +51,4 @@ class RegistUser {
     }
 }
 
-export default RegistUser;
+export default new RegistUser();

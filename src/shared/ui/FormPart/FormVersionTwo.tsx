@@ -17,7 +17,7 @@ const FormVersionTwo = observer(() => {
         visible : false,
         checkedMail : true
     });
-    const formApi = useForm<RegistUser>({
+    const formApi = useForm<typeof RegistUser>({
         mode: 'onChange',
         resolver: yupResolver(schemaPersonRegist)
     });
@@ -30,9 +30,15 @@ const FormVersionTwo = observer(() => {
         register
     } = formApi;
 
+    const onClickBtnHandler = async () =>{
+        //const res = await RegistUser.apiRegistUser();
+        console.log(RegistUser.formRegist);
+        //auth.formLogin.isAuthorised ? navigate('/home') : navigate('/login');
+    }
+    
     const onSubmit = handleSubmit(
-        (data) => {
-            console.log(JSON.stringify(data));
+        () => {
+            console.log(JSON.stringify(RegistUser.formRegist));
         }
     );
 
