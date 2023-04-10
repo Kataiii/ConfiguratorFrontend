@@ -9,7 +9,8 @@ class RegistUser {
         password: '',
         repeatPassword: '',
         isCheckedMailing: true,
-        isCheckedUserAgreement: false
+        isCheckedUserAgreement: false,
+        isRegist : false
     }
 
     constructor() {
@@ -36,15 +37,15 @@ class RegistUser {
             .then((response) => {
                 console.log(response);
                 // this.visibleError(false);
-                // this.formLogin.isAuthorised = true;
-                // localStorage.setItem('token', response.data.token);
+                 this.formRegist.isRegist = true;
+                 localStorage.setItem('token', response.data.token);
             }
             )
             .catch((error) => {
                 if (error.response) {
                     console.log(error.response);
                     // this.visibleError(true);
-                    // this.formLogin.isAuthorised = false;
+                    this.formRegist.isRegist = false;
                 }
             });
         return this.formRegist;

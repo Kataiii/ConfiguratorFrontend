@@ -15,10 +15,10 @@ const HomeRouter = {
                 
             ]
         },
-        {
-            path: '*',
-            element: <ErrorPage/>
-        }
+        // {
+        //     path: '*',
+        //     element: <ErrorPage/>
+        // }
     ]
 }
 

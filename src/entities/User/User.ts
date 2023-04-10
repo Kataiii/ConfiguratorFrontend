@@ -17,6 +17,7 @@ export type FormValues = {
     repeatPassword: string;
     isCheckedMailing: boolean;
     isCheckedUserAgreement: boolean;
+    isRegist : boolean;
 };
 
 export const schemaPersonRegist = object().shape({
