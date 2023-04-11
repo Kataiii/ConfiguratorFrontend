@@ -3,6 +3,40 @@
 }
 
 .SidePanelWrap{
-    width: 225px;
+    width: 230px;
     height: 100%;
+}
+
+.SidePanel{
+    display: flex;
+    flex-direction: column;
+    background: #4A4A4A;
+    border-radius: 0px 20px 20px 0px;
+    padding: 36px;
+}
+
+.LinkPersonal{
+    display: block;
+    font-family: 'Ubuntu'; 
+    font-style: normal;
+    font-weight: 300;
+    font-size: 13px;
+    color: #FCFCFC;
+    text-decoration: none;
+    margin: 12.5px 10px 12.5px 0;
+}
+
+.LinkPersonalActive{
+    display: block;
+    font-family: 'Ubuntu', sans-serif;
+    font-style: normal;
+    font-size: 13px;
+    color: #fcfcfc;
+    text-decoration: none;
+    margin: 12.5px 10px 12.5px 0;
+    font-weight: 500;
+}
+
+.DivsWrap{
+    margin-top: 8%;
 }

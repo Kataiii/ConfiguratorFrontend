@@ -49,6 +49,7 @@
 .AppDev{
   margin: 0;
   padding: 0;
+  height: 100vh;
   box-sizing: border-box;
   background-color:  #F2F2F2;;
 }
@@ -69,6 +70,8 @@
   display: flex;
   justify-content: space-between;
   background-color: #FCFCFC;
+  position: absolute;
+  top: 0;
 }
 
 .RegHeader{
