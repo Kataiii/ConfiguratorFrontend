@@ -1,7 +1,19 @@
+import { Link } from "react-router-dom";
+import App from "../../shared/ui/Breadcrumb";
+
+
+
 const ProjectPage = () => {
-    return(
+    const title = {
+        title: <Link to="/home">{">"} Все проекты</Link>,
+        key: "all_projects"
+      }
+
+    return (
         <div>
-            <p>ProjectPage</p>
+            <div>
+                <App title={title}/>
+            </div>
         </div>
     )
 }

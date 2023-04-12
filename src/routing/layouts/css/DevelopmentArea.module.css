@@ -1,5 +1,6 @@
 .MainDiv{
     display: flex;
+    width: 100%;
 }
 
 .SidePanelWrap{
@@ -39,4 +40,10 @@
 
 .DivsWrap{
     margin-top: 8%;
+    width: 100%;
+    display: flex;
+}
+
+.DivWrapPageContent{
+    margin-left: 34px;
 }

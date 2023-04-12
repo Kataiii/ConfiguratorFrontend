@@ -4,19 +4,22 @@ import { Outlet } from "react-router-dom";
 import stylesSidePanel from "./css/DevelopmentArea.module.css"
 import { Link } from "react-router-dom";
 
-
 export default function Root(){
     return(
         <div className={styles.AppDev}>
             <AuthorisedHeader></AuthorisedHeader>
             <div className={stylesSidePanel.MainDiv}>
-                <div className={stylesSidePanel.SidePanelWrap}>
-                    <div>
-                        <Link to={'/home'}>Все проекты</Link>
+                <div className={stylesSidePanel.DivsWrap}>
+                    <div className={stylesSidePanel.SidePanelWrap}>
+                        <div className={stylesSidePanel.SidePanel}>
+                            <Link className={stylesSidePanel.LinkPersonal} to={'/home'}>Все проекты</Link>
+                        </div>
                     </div>
-                </div>
-                <div>
-                    <Outlet></Outlet>
+                    <div className={stylesSidePanel.DivWrapPageContent}>
+                        <div>
+                            <Outlet></Outlet>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
