@@ -3,6 +3,7 @@ import AuthorisedHeader from "../../shared/ui/AuthorisedHeader";
 import { Outlet } from "react-router-dom";
 import stylesSidePanel from "./css/DevelopmentArea.module.css"
 import { Link } from "react-router-dom";
+import App from "../../shared/ui/Menu";
 
 export default function Root(){
     return(
@@ -13,6 +14,7 @@ export default function Root(){
                     <div className={stylesSidePanel.SidePanelWrap}>
                         <div className={stylesSidePanel.SidePanel}>
                             <Link className={stylesSidePanel.LinkPersonal} to={'/home'}>Все проекты</Link>
+                            <App/>
                         </div>
                     </div>
                     <div className={stylesSidePanel.DivWrapPageContent}>
