@@ -11,6 +11,7 @@ interface AuthGuardProps{
 
 const AuthGuard : React.FC<AuthGuardProps> = ({children}) => {
     let isAuthorized : boolean = auth.formLogin.isAuthorised || registUser.formRegist.isRegist;
+    //let isAuthorized : boolean = true;
 
     return(
         isAuthorized

@@ -9,13 +9,16 @@ import { useEffect, useState } from "react";
 export default function Root(){
     const location = useLocation();
     const [styleState, setStyleState] = useState({
-        styleLinkProfile : stylesSidePanel.LinkPersonal,
+        styleLinkProfile : stylesSidePanel.LinkPersonalActive,
         styleLinkLicence : stylesSidePanel.LinkPersonal
     });
 
     useEffect(() => {
-        '/home/profile' == location.pathname ? setStyleState({...styleState, styleLinkProfile : stylesSidePanel.LinkPersonalActive}) : setStyleState({...styleState, styleLinkProfile : stylesSidePanel.LinkPersonal})
-        //'/home/profile/licence' == location.pathname ? setStyleState({...styleState, styleLinkLicence : stylesSidePanel.LinkPersonalActive}) : null
+        '/home/profile' == location.pathname 
+            ? 
+                setStyleState({styleLinkProfile : stylesSidePanel.LinkPersonalActive, styleLinkLicence : stylesSidePanel.LinkPersonal}) 
+            : 
+                setStyleState({styleLinkProfile : stylesSidePanel.LinkPersonal, styleLinkLicence : stylesSidePanel.LinkPersonalActive});
     }, [location])
 
     return(
@@ -25,8 +28,8 @@ export default function Root(){
                 <div className={stylesSidePanel.DivsWrap}>
                     <div className={stylesSidePanel.SidePanelWrap}>
                         <div className={stylesSidePanel.SidePanel}>
-                            <Link className={styleState.styleLinkProfile} to={'/home/profile'}>Персональные данные</Link>
-                            <Link className={styleState.styleLinkLicence} to={'/home/profile/licence'}>Подписка</Link>
+                            <Link className={styleState.styleLinkProfile}  to={'/home/profile'}>Персональные данные</Link>
+                            <Link className={styleState.styleLinkLicence}  to={'/home/profile/licence'}>Подписка</Link>
                         </div>
                     </div>
                     <div>
