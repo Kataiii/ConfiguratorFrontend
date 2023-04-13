@@ -5,7 +5,7 @@
 
 .SidePanelWrap{
     width: 230px;
-    height: 100%;
+    max-height: 476px;
 }
 
 .SidePanel{

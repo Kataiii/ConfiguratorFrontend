@@ -6,34 +6,22 @@ import { title } from "process";
 
 //Тут должен будет быть запрос на бек для получения папок и ссылки на них
 
-const Apps = () => (
-  <ul className="app-list">
-    <li>
-      <Link to="/apps/1">Дом</Link>：<Link to="/apps/1/detail">Detail</Link>
-    </li>
-    <li>
-      <Link to="/apps/2">Офис</Link>：<Link to="/apps/2/detail">Detail</Link>
-    </li>
-  </ul>
-);
 
-const breadcrumbNameMap: Record<string, string> = {
-  "/apps": "Дом",
-  "/apps/1": "Офис",
-  "/apps/2": "Application2",
-  "/apps/1/detail": "Detail",
-  "/apps/2/detail": "Detail"
+const breadcrumbNameMap: Record<string, string | null> = {
+  "/house": "Дом",
+  "/office": "Офис"
 };
 
 const Home = (props : {title : {title : JSX.Element, key : string}}) => {
   const location = useLocation();
-  const pathSnippets = location.pathname.split("/").filter((i) => i);
-
+  let pathSnippets = location.pathname.split("/").filter((i) => i);
+  pathSnippets = pathSnippets.filter(item => (item != 'home' && item != 'projects' && item != 'folders'));
   const extraBreadcrumbItems = pathSnippets.map((_, index) => {
     const url = `/${pathSnippets.slice(0, index + 1).join("/")}`;
+    const urlForLink = '/home/projects/folders'+url;
     return {
       key: url,
-      title: <Link to={url}>{breadcrumbNameMap[url]}</Link>
+      title: <Link to={urlForLink}>{breadcrumbNameMap[url]}</Link>
     };
   });
 
@@ -43,17 +31,14 @@ const Home = (props : {title : {title : JSX.Element, key : string}}) => {
 
   return (
     <div className="demo">
-      <Routes>
-        <Route path="/apps" element={<Apps />} />
-      </Routes>
       <Breadcrumb items={breadcrumbItems} />
     </div>
   );
 };
 
-const App = (props :{title:{title : JSX.Element, key : string}}) => (
+const BreadApp = (props :{title:{title : JSX.Element, key : string}}) => (
     <Home title={props.title}/>
 );
 
-export default App;
+export default BreadApp;
 
