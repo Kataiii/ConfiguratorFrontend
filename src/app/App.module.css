@@ -219,3 +219,13 @@
   display: flex;
   justify-content: space-around;
 }
+
+.LinkFolder{
+  font-family: 'Ubuntu';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 13px;
+  color: #FCFCFC;
+  text-decoration: none;
+  margin-left: 20px;
+}

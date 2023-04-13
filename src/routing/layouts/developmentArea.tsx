@@ -3,15 +3,17 @@ import AuthorisedHeader from "../../shared/ui/AuthorisedHeader";
 import { Outlet } from "react-router-dom";
 import stylesSidePanel from "./css/DevelopmentArea.module.css"
 import { Link } from "react-router-dom";
-import App from "../../shared/ui/Menu";
 import BreadApp from "../../shared/ui/Breadcrumb";
 import MyMenu from "../../shared/ui/MyMenu";
+import { useState } from "react";
 
 export default function Root(){
-    const title = {
-        title: <Link to="/home">{">"} Все проекты</Link>,
-        key: "all_projects"
-    }
+    const [stateFolder, setStateFolder] = useState(
+        {
+            title: <Link to="/home">{">"} Все проекты</Link>,
+            key: "all_projects"
+        }
+    )
 
     return(
         <div className={styles.AppDev}>
@@ -21,14 +23,14 @@ export default function Root(){
                     <div className={stylesSidePanel.SidePanelWrap}>
                         <div className={stylesSidePanel.SidePanel}>
                             <Link className={stylesSidePanel.LinkPersonal} to={'/home'}>Все проекты</Link>
-                            {/* <App/> */}
+                            <Link className={styles.LinkFolder} to={'/home/projects/folders/unsorted'}>Неотсортированные</Link>
                             <MyMenu titleMy="Папки"/>
                         </div>
                     </div>
                     <div className={stylesSidePanel.DivWrapPageContent}>
                         <div>
                             <div>
-                                <BreadApp title={title}/>
+                                <BreadApp title={stateFolder}/>
                             </div>
                             <Outlet></Outlet>
                         </div>

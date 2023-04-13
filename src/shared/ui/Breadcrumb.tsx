@@ -9,7 +9,8 @@ import { title } from "process";
 
 const breadcrumbNameMap: Record<string, string | null> = {
   "/house": "Дом",
-  "/office": "Офис"
+  "/office": "Офис",
+  "/unsorted": "Неотсортированные"
 };
 
 const Home = (props : {title : {title : JSX.Element, key : string}}) => {
