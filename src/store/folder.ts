@@ -25,6 +25,16 @@ class Folders{
         //Запрос на изменение 
         this.folders = folders;
     }
+
+    splitForBreadcrumd = () : Record<string, string | null> => {
+        let mapRoutes : Record<string, string | null> = {};
+        let tmp : string = '';
+        this.folders.map(item =>{
+            tmp = item.url.slice(item.url.lastIndexOf('/'));
+            mapRoutes[tmp] = item.name
+        })
+        return mapRoutes;
+    }
 }
 
 export default new Folders()
