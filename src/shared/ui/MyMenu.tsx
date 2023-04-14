@@ -4,6 +4,7 @@ import { DragEvent, useState } from "react"
 import folder from "../../store/folder"
 import { Folder } from "../../entities/Folder/folder"
 import { useNavigate } from "react-router-dom"
+import AddFilderImage from '../../assets/icons/icon-add-folder.svg'
 
 interface MyMenuProps {
     isOpenMenu: boolean
@@ -72,11 +73,21 @@ const MyMenu = (props: { titleMy: string, typeFolders : string }) => {
         }
     }
 
+    const onClickBtnHandler = () => {
+        console.log("add folder");
+    }
+
     return (
         <div className={styles.DivWrapMenu}>
-            <div className={styles.DivTitle} onClick={onClickHandler}>
-                <p className={styles.TitleMenu}>{props.titleMy}</p>
-                <img className={styleArrow} src={Arrow}></img>
+            <div className={styles.DivTitleWrap}>
+                <div className={styles.DivTitle} onClick={onClickHandler}>
+                    <p className={styles.TitleMenu}>{props.titleMy}</p>
+                    <img className={styleArrow} src={Arrow}></img>
+                </div>
+                <img className={styles.TitleImage}
+                     src={AddFilderImage} 
+                     alt='add-folder'
+                     onClick={onClickBtnHandler}></img>
             </div>
             <div className={styleWrap}>
                 <div className={styleDropDown}>

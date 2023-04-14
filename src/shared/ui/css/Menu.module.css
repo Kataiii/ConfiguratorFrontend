@@ -18,7 +18,7 @@ MenuDiv{
 }
 
 .DivWrapMenu{
-    width: 110px;
+    /* width: 110px; */
     color: #FCFCFC;
     margin-left: 20px;
 }
@@ -49,6 +49,7 @@ MenuDiv{
 }
 
 .DivDropDownOpen{
+    width: 110px;
     background: #313131;
     border-radius: 0px 11px 11px 11px;
     font-family: 'Ubuntu';
@@ -63,6 +64,7 @@ MenuDiv{
 }
 
 .DivDropDownClose{
+    width: 110px;
     background: #313131;
     border-radius: 0px 11px 11px 11px;
     font-family: 'Ubuntu';
@@ -133,4 +135,13 @@ MenuDiv{
     0% {transform: translateY(-150%);}
     100% {transform: translateY(0);}
 }
+
+.DivTitleWrap{
+    display: flex;
+    justify-content: space-between;
+}
   
+.TitleImage{
+    display: block;
+    cursor: pointer;
+}

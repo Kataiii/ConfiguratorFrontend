@@ -15,6 +15,22 @@
     background: #4A4A4A;
     border-radius: 0px 20px 20px 0px;
     padding: 36px;
+    overflow: auto;
+}
+
+.SidePanel::-webkit-scrollbar{
+    width: 8px;
+}
+
+.SidePanel::-webkit-scrollbar-track{
+    background-color: #313131;
+    border-radius: 100px;
+    margin: 40px 5px;
+}
+
+.SidePanel::-webkit-scrollbar-thumb {
+    background-color: #E73C3C;
+    border-radius: 100px;
 }
 
 .LinkPersonal{
