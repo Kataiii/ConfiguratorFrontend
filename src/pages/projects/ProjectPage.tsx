@@ -1,20 +1,11 @@
-import { Link } from "react-router-dom";
-import BreadApp from "../../shared/ui/Breadcrumb";
-
+import BlockAddProjects from "../../shared/ui/BlockAddProjects";
+import styles from "../../app/App.module.css"
 
 
 const ProjectPage = () => {
-    const title = {
-        title: <Link to="/home">{">"} Все проекты</Link>,
-        key: "all_projects"
-    }
-
     return (
-        <div>
-            <p>Project Page</p>
-            {/* <div>
-                <BreadApp title={title}/>
-            </div> */}
+        <div className={styles.DivProjectPage}>
+            <BlockAddProjects/>
         </div>
     )
 }

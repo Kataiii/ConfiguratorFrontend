@@ -28,10 +28,6 @@ const UserProjectRouter = {
                         {
                             path: "/home/projects/folders/:name_folder",
                             element: <FolderProjectPage />
-                        },
-                        {
-                            path: "/home/projects/project/:id",
-                            element: <ConfiguratorPage />
                         }
                     ]
                 },
