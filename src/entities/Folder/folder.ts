@@ -1,9 +1,15 @@
 export class Folder{
-    name : string = '';
-    url : string = '';
+    id : number;
+    name : string;
+    url : string;
+    order : number;
+    //translateName ...
 
-    constructor(name : string, url : string){
+
+    constructor(id : number, name : string, url : string, order : number){
+        this.id = id;
         this.name = name;
         this.url = url;
+        this.order = order;
     }
 }
