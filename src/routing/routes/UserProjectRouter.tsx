@@ -34,6 +34,24 @@ const UserProjectRouter = {
                             element: <ConfiguratorPage />
                         }
                     ]
+                },
+                {
+                    path: '/home/renders',
+                    element: <ProjectPage />,
+                    children:[
+                        {
+                            path: "/home/renders/unsorted",
+                            element: <UnsortedProjectPage />
+                        },
+                        {
+                            path: "/home/renders/folders/:name_folder",
+                            element: <FolderProjectPage />
+                        },
+                        {
+                            path: "/home/renders/project/:id",
+                            element: <ConfiguratorPage />
+                        }
+                    ]
                 }
             ]
         }

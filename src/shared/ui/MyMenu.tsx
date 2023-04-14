@@ -9,7 +9,7 @@ interface MyMenuProps {
     isOpenMenu: boolean
 }
 
-const MyMenu = (props: { titleMy: string }) => {
+const MyMenu = (props: { titleMy: string, typeFolders : string }) => {
     const navigate = useNavigate();
     const [folderList, setFolderList] = useState(folder.apiGetFolders());
     const [currentFolder, setCurrentFolder] = useState<Folder>(folderList[0]);
@@ -81,7 +81,7 @@ const MyMenu = (props: { titleMy: string }) => {
             <div className={styleWrap}>
                 <div className={styleDropDown}>
                     {
-                        folderList.sort(sortCards).map((item, index) => (
+                        folderList.filter(item => item.type === props.typeFolders).sort(sortCards).map((item, index) => (
                                 <p  className={styles.TitleDropDown}
                                     draggable={true}
                                     onDragStart={(e : DragEvent<HTMLDivElement>) => dragStartHandler(e, item)}

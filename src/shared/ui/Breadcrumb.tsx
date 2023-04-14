@@ -16,7 +16,7 @@ const breadcrumbNameMap: Record<string, string | null> = {
 const Home = (props : {title : {title : JSX.Element, key : string}}) => {
   const location = useLocation();
   let pathSnippets = location.pathname.split("/").filter((i) => i);
-  pathSnippets = pathSnippets.filter(item => (item != 'home' && item != 'projects' && item != 'folders'));
+  pathSnippets = pathSnippets.filter(item => (item != 'home' && item != 'projects' && item != 'folders' && item != 'renders'));
   const extraBreadcrumbItems = pathSnippets.map((_, index) => {
     const url = `/${pathSnippets.slice(0, index + 1).join("/")}`;
     const urlForLink = '/home/projects/folders'+url;
