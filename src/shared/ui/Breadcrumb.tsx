@@ -8,11 +8,17 @@ import folder from "../../store/folder";
 //Тут должен будет быть запрос на бек для получения папок и ссылки на них
 
 
-let breadcrumbNameMap: Record<string, string | null> = {};
+let breadcrumbNameMap: Record<string, string | null> = {
+  '/unsorted' : 'Неотсортированные',
+  '/incoming' : 'Входящие',
+  '/sent' : 'Отправленные',
+  '/archive' : 'Архив',
+  '/basket' : 'Корзина'
+};
 
 const Home = (props : {title : {title : JSX.Element, key : string}}) => {
   const location = useLocation();
-  breadcrumbNameMap = folder.splitForBreadcrumd();
+  breadcrumbNameMap = folder.splitForBreadcrumd(breadcrumbNameMap);
   let pathSnippets = location.pathname.split("/").filter((i) => i);
   pathSnippets = pathSnippets.filter(item => (item != 'home' && item != 'projects' && item != 'folders' && item != 'renders'));
   const extraBreadcrumbItems = pathSnippets.map((_, index) => {

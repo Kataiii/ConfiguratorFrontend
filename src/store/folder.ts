@@ -23,11 +23,12 @@ class Folders{
 
     apiSetFolders = (folders : Folder[]) => {
         //Запрос на изменение 
+        //Скорее не запрос, а положить в localStorage, чтобы не перегружать бек
         this.folders = folders;
     }
 
-    splitForBreadcrumd = () : Record<string, string | null> => {
-        let mapRoutes : Record<string, string | null> = {};
+    splitForBreadcrumd = (defaultFolders : Record<string, string | null>) : Record<string, string | null> => {
+        let mapRoutes : Record<string, string | null> = defaultFolders;
         let tmp : string = '';
         this.folders.map(item =>{
             tmp = item.url.slice(item.url.lastIndexOf('/'));

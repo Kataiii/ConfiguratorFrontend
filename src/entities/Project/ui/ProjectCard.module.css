@@ -1,0 +1,72 @@
+.ProjectCardDiv{
+    width: 287px;
+    height: 220px;
+    background: #FCFCFC;
+    border-radius: 30px;
+    margin: 18px 9px 0;
+    position: relative;
+}
+
+.ProjectCardImg{
+    display: block;
+    height: 142px;
+}
+
+.ProjectCardTitle{
+    margin: 0;
+    font-family: 'Ubuntu', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 13px;
+    color: #313131;
+}
+
+.ProjectCardTitleDiv{
+    margin: 18px;
+}
+
+.ProjectCardContentDiv{   
+    display: flex;
+    justify-content: space-between;
+}
+
+.ProjectCardContent{
+    display: block;
+    margin: auto 0;
+    font-family: 'Ubuntu', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 8px;
+    color: rgba(49, 49, 49, 0.7);
+}
+
+.ProjectCardContentImg{
+    cursor: pointer;
+    display: block;
+}
+
+.ProjectCardStatusDiv{
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    margin: 0;
+    background-color: #E73C3C;
+    border-radius: 30px;
+    padding: 3px 25px;
+}
+
+.ProjectCardStatusContent{
+    font-family: 'Ubuntu';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 13px;
+    color: #FCFCFC;
+    text-align: center;
+    margin: 0;
+}
+
+.SimpleMenuDiv{
+    position: absolute;
+    bottom: -160px;
+    right: -70px;
+}

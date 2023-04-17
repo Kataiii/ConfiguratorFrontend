@@ -18,13 +18,14 @@ const UserProjectRouter = {
                 //     element: <ProjectPage />,
                 // },
                 {
-                    path: '/home/projects',
+                    // path: '/home/projects',
+                    path: '/home/',
                     element: <ProjectPage />,
                     children:[
-                        {
-                            path: "/home/projects/unsorted",
-                            element: <UnsortedProjectPage />
-                        },
+                        // {
+                        //     path: "/home/projects/unsorted",
+                        //     element: <UnsortedProjectPage />
+                        // },
                         {
                             path: "/home/projects/folders/:name_folder",
                             element: <FolderProjectPage />
@@ -35,10 +36,10 @@ const UserProjectRouter = {
                     path: '/home/renders',
                     element: <ProjectPage />,
                     children:[
-                        {
-                            path: "/home/renders/unsorted",
-                            element: <UnsortedProjectPage />
-                        },
+                        // {
+                        //     path: "/home/renders/unsorted",
+                        //     element: <UnsortedProjectPage />
+                        // },
                         {
                             path: "/home/renders/folders/:name_folder",
                             element: <FolderProjectPage />

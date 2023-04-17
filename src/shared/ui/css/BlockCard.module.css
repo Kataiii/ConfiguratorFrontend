@@ -1,11 +1,12 @@
 .DivBlockCard{
     width: 287px;
-    height: 221px;
+    height: 220px;
     display: flex;
     justify-content: center;
     background: #FCFCFC;
     border-radius: 30px;
     cursor: pointer;
+    margin: 18px 9px 0px 0px;
 }
 
 .ImgBlockCard{
