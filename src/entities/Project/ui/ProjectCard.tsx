@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { ConvertionDate } from '../../../shared/common/ConvertionDate'
 import IconMenu from '../../../assets/icons/icon-dropdown menu.svg'
 import SimpleDropDownMenu from '../../../shared/ui/SimpleDropDownMenu'
+import { useNavigate } from 'react-router-dom'
 
 interface ProjectCardProps{
     project : Project,
@@ -11,6 +12,7 @@ interface ProjectCardProps{
 }
 
 const ProjectCard = (props : {project : Project}) => {
+    const navigate = useNavigate();
     const [project, setProject] = useState<ProjectCardProps>({
         project : props.project,
         isActiveMenu : false
@@ -28,14 +30,18 @@ const ProjectCard = (props : {project : Project}) => {
         })
     }
 
+    const onClickHandler = () => {
+        navigate('/home/configurator/project/' + project.project.name_translate)
+    }
+
     return(
         <div className={styles.ProjectCardDiv}>
             {
-                project.project.preview === null 
+                project.project.preview === null || project.project.preview === undefined 
                 ?
-                    <div className={styles.ProjectCardImg}></div>
+                    <div className={styles.ProjectCardImg} onClick={onClickHandler}></div>
                 :
-                    <img className={styles.ProjectCardImg} src={project.project.preview}/>
+                    <img className={styles.ProjectCardImg} src={project.project.preview} onClick={onClickHandler}/>
             }
             <div className={styles.ProjectCardTitleDiv}>
                 <h1 className={styles.ProjectCardTitle}>{project.project.name}</h1>

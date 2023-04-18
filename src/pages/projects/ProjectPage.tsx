@@ -20,7 +20,7 @@ const ProjectPage = () => {
             <>
                 {
                     projectsList.sort(sortProject).map((item, index) => {
-                        return <ProjectCard project={item}/>
+                        return <ProjectCard key={index} project={item}/>
                     })
                 }
             </>

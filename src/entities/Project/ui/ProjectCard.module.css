@@ -10,6 +10,7 @@
 .ProjectCardImg{
     display: block;
     height: 142px;
+    cursor: pointer;
 }
 
 .ProjectCardTitle{

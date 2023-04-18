@@ -101,7 +101,7 @@ const MyMenu = (props: { titleMy: string, typeFolders : string }) => {
                                     onDragOver={(e : DragEvent<HTMLDivElement>) => dragOverHandler(e, item)}
                                     onDrop={(e : DragEvent<HTMLDivElement>) => dropHandler(e, item)}
                                     onClick={() => navigate(item.url)}
-                                    key={item.id}>{item.name}</p>
+                                    key={index}>{item.name}</p>
                         ))
                     }
                 </div>
