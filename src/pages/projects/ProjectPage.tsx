@@ -19,12 +19,11 @@ const ProjectPage = () => {
             <BlockAddProjects/>
             <>
                 {
-                    Projects.apiGetAllProjectsForUser().sort(sortProject).map((item, index) => {
+                    projectsList.sort(sortProject).map((item, index) => {
                         return <ProjectCard project={item}/>
                     })
                 }
             </>
-            {/* <ProjectCard project={new Project(1, 'Дом', 1, 1, 'house')}/> */}
         </div>
     )
 }

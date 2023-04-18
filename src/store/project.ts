@@ -1,4 +1,5 @@
 import { makeAutoObservable } from "mobx"
+import { Folder } from "../entities/Folder/folder";
 import { Project } from "../entities/Project/project"
 
 class Projects {
@@ -15,13 +16,13 @@ class Projects {
         makeAutoObservable(this)
     }
 
-    apiGetAllProjectsForUser = () => {
+    apiGetAllProjectsForUser = () : Project[] => {
         //Запрос на получение всех проектов
         return this.projects;
     }
 
-    apiGetProjectInFolder = async(idFolder : number) => {
-
+    apiGetProjectInFolder = (idFolder : number) : Project[] => {
+        return this.projects.filter(item => item.id_folder === idFolder);
     }
 }
 
