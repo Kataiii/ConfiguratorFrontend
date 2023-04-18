@@ -36,6 +36,10 @@ class Folders{
         })
         return mapRoutes;
     }
+
+    findIdFolderByName = async(nameFolder : string) => {
+        
+    }
 }
 
 export default new Folders()

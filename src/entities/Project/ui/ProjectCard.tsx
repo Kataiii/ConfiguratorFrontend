@@ -60,7 +60,8 @@ const ProjectCard = (props : {project : Project}) => {
                         onMouseLeave={onMouseLeaveHandler}>
                     <SimpleDropDownMenu buttons={[
                             {content : 'Открыть', color : 'white', action : () => {console.log('Открыть')}},
-                            {content : 'Отправить', color : 'white', action : () => {console.log('Отправить')}},
+                            //Сделать просмотр роли, чтобы менять "Отправить на просчет" или "Отправить"
+                            {content : 'Отправить на просчет', color : 'white', action : () => {console.log('Отправить')}},
                             {content : 'Переименовать', color : 'white', action : () => {console.log('Переименовать')}},
                             {content : 'Создать копию', color : 'white', action : () => {console.log('Создать копию')}},
                             {content : 'Переместить', color : 'white', action : () => {console.log('Переместить')}},

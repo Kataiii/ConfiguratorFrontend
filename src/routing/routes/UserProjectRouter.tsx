@@ -13,24 +13,13 @@ const UserProjectRouter = {
             element: <Root />,
             errorElement: <ErrorPage />,
             children: [
-                // {
-                //     path: '/',
-                //     element: <ProjectPage />,
-                // },
                 {
-                    // path: '/home/projects',
                     path: '/home/',
                     element: <ProjectPage />,
-                    children:[
-                        // {
-                        //     path: "/home/projects/unsorted",
-                        //     element: <UnsortedProjectPage />
-                        // },
-                        {
-                            path: "/home/projects/folders/:name_folder",
-                            element: <FolderProjectPage />
-                        }
-                    ]
+                },
+                {
+                    path: "/home/projects/folders/:name_folder",
+                    element: <FolderProjectPage />
                 },
                 {
                     path: '/home/renders',

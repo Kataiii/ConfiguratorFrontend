@@ -43,7 +43,7 @@ export default function Root(){
                     <div className={stylesSidePanel.SidePanelWrap}>
                         <div className={stylesSidePanel.SidePanel}>
                             <Link className={stylesSidePanel.LinkPersonal} 
-                                    to={'/home/projects'}>Все проекты</Link>
+                                    to={'/home'}>Все проекты</Link>
                             <Link className={styles.LinkFolder} to={'/home/projects/folders/unsorted'}>Неотсортированные</Link>
                             <MyMenu titleMy="Папки" typeFolders="projects"/>
                             <Link className={stylesSidePanel.LinkPersonal} 
