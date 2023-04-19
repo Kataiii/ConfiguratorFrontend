@@ -39,7 +39,6 @@ const FormVersionTwo = () => {
             RegistUser.formRegist.repeatPassword = data.repeatPassword;
             RegistUser.formRegist.isCheckedMailing = data.isCheckedMailing;
             RegistUser.formRegist.isCheckedUserAgreement = data.isCheckedUserAgreement;
-            console.log(RegistUser.formRegist);
             const res = await RegistUser.apiRegistUser();
             RegistUser.formRegist.isRegist ? navigate('/home') : navigate('/login/register/user');
         }

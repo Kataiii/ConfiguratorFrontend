@@ -13,8 +13,7 @@ const FolderProjectPage = () => {
     const [projectsList, setProjectsList] = useState(Projects.apiGetProjectInFolder(folder.findIdFolderByUrl(location.pathname)));
     
     useEffect(() => {
-       setProjectsList(Projects.apiGetProjectInFolder(folder.findIdFolderByUrl(location.pathname))) 
-       console.log(projectsList); 
+       setProjectsList(Projects.apiGetProjectInFolder(folder.findIdFolderByUrl(location.pathname)))  
     }, [location.pathname])
 
     const sortProject = (firstProject : Project, secondProject : Project) : number => {

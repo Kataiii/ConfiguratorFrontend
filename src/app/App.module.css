@@ -230,11 +230,7 @@
   margin-left: 20px;
 }
 
-:root {
-  --colNum: 5;
-}
-
 .DivProjectPage{
-  display: grid;
-  grid-template-columns: repeat(var(--colNum), auto);
+  display: flex;
+  flex-wrap: wrap;
 }

@@ -39,7 +39,7 @@
 }
 
 .DivDropDownOpen{
-    width: 110px;
+    /* width: 110px; */
     background: #313131;
     border-radius: 0px 11px 11px 11px;
     font-family: 'Ubuntu';
@@ -54,7 +54,7 @@
 }
 
 .DivDropDownClose{
-    width: 110px;
+    /* width: 110px; */
     background: #313131;
     border-radius: 0px 11px 11px 11px;
     font-family: 'Ubuntu';
@@ -88,8 +88,8 @@
 }
 
 .TitleDropDown{
-    padding: 10px 0 10px 13px;
-    display: block;
+    padding: 10px 5px 10px 13px;
+    display: flex;
     font-family: 'Ubuntu';
     font-style: normal;
     font-weight: 300;
@@ -99,6 +99,8 @@
     color: #FCFCFC;
     border-radius: 11px;
     margin: 0;
+    position: relative;
+    /* justify-content: space-between; */
 }
 
 .TitleDropDownShadow{
@@ -119,6 +121,9 @@
 .TitleDropDown:hover{
     background-color: #242424;
     border-radius: 11px 11px 11px 11px;
+    display: flex;
+    position: relative;
+    /* justify-content: space-between; */
 }
 
 @keyframes ani {
@@ -169,4 +174,32 @@
     font-size: 8px;
     color: #FCFCFC;
     margin: 0;
+}
+
+.TitleDropDownContent{
+    margin: 0;
+}
+
+.TitleDropDownContent :hover{
+    margin: 0;
+}
+
+.TitleDropDownImage{
+    display: none;
+    height: 15px;
+    /* height: 20px; */
+}
+
+.TitleDropDown:hover>.TitleDropDownImage{
+    display: block;
+    /* height: 20px; */
+    cursor: grab;
+    position: absolute;
+    right: 8px;
+    top: 7px;
+    height: 15px;
+} 
+
+.TitleDropDownWrapImages{
+    display: flex;
 }

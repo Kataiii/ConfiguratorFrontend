@@ -5,6 +5,8 @@ import folder from "../../store/folder"
 import { Folder } from "../../entities/Folder/folder"
 import { useNavigate } from "react-router-dom"
 import AddFilderImage from '../../assets/icons/icon-add-folder.svg'
+import IconDrag from '../../assets/icons/icon-drag.svg'
+import ImageDrag from '../../assets/images/image-drag.svg'
 
 interface MyMenuProps {
     isOpenMenu: boolean
@@ -32,6 +34,7 @@ const MyMenu = (props: { titleMy: string, typeFolders : string }) => {
 
     const dragStartHandler = (e: DragEvent<HTMLDivElement>, item: Folder): void => {
         setCurrentFolder(item);
+        (e.currentTarget as Element)
     }
 
     const dragLeaveHandler = (e: DragEvent<HTMLDivElement>): void => {
@@ -60,7 +63,7 @@ const MyMenu = (props: { titleMy: string, typeFolders : string }) => {
             }
             return folder
         }));
-        //Запрос с сохранением orders
+        //Запрос с сохранением orders или помещением в localStorage
         (e.target as Element).className = styles.TitleDropDown;
     }
 
@@ -75,6 +78,15 @@ const MyMenu = (props: { titleMy: string, typeFolders : string }) => {
 
     const onClickBtnHandler = () => {
         console.log("add folder");
+    }
+
+    const onDragChildrenStart = (e: DragEvent<HTMLDivElement>) => {
+        let parrent : HTMLElement | null = e.currentTarget.parentElement;
+        let str : string = '';
+        str = (parrent != null ?  parrent.getAttribute("id") : '') + '';
+        e.dataTransfer.setData('id', str);
+        e.dataTransfer.setDragImage( parrent as Element, 0, 0);
+        e.currentTarget.className = styles.TitleDropDownImage;
     }
 
     return (
@@ -101,7 +113,14 @@ const MyMenu = (props: { titleMy: string, typeFolders : string }) => {
                                     onDragOver={(e : DragEvent<HTMLDivElement>) => dragOverHandler(e, item)}
                                     onDrop={(e : DragEvent<HTMLDivElement>) => dropHandler(e, item)}
                                     onClick={() => navigate(item.url)}
-                                    key={index}>{item.name}</p>
+                                    key={index+Math.random()}
+                                    id='ParrentId'>
+                                        {item.name}
+                                        {/* <div className={styles.TitleDropDownWrapImages}> */}
+                                            {/* <SettingOutlined className={styles.TitleDropDownImage}/> */}
+                                            <img src={IconDrag} className={styles.TitleDropDownImage} onDragStart={onDragChildrenStart}/>
+                                        {/* </div> */}
+                                </p>
                         ))
                     }
                 </div>

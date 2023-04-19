@@ -17,9 +17,9 @@ const SimpleDropDownMenu = (props : {buttons : SimpleDropDownMenuProps[]}) => {
                             {
                                 item.color === 'red'
                                 ?
-                                    <p className={styles.SimpleDropItemContentRed} onClick={item.action}>{item.content}</p>
+                                    <p key={item.content} className={styles.SimpleDropItemContentRed} onClick={item.action}>{item.content}</p>
                                 :
-                                    <p className={styles.SimpleDropItemContent} onClick={item.action}>{item.content}</p> 
+                                    <p key={item.content} className={styles.SimpleDropItemContent} onClick={item.action}>{item.content}</p> 
                             }
                         </div>
                     )
