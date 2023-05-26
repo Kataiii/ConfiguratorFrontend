@@ -1,8 +1,9 @@
 import { Navigate } from "react-router-dom";
 import auth from "../../store/auth";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import registUser from "../../store/registUser";
 import { useNavigate } from "react-router-dom";
+import { Context } from "../..";
 
 
 interface AuthGuardProps{
@@ -10,8 +11,8 @@ interface AuthGuardProps{
 }
 
 const AuthGuard : React.FC<AuthGuardProps> = ({children}) => {
-    let isAuthorized : boolean = auth.formLogin.isAuthorised || registUser.formRegist.isRegist;
-    //let isAuthorized : boolean = true;
+    const {store} = useContext(Context);
+    let isAuthorized : boolean = store.isAuth;
 
     return(
         isAuthorized

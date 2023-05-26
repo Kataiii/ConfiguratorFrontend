@@ -1,6 +1,15 @@
 import { object, string, boolean } from "yup";
 import { ValidationHelper } from "../../shared/common/ValidationHelper";
 
+export interface ICreateUser{
+    name: string;
+    email: string;
+    password: string;
+    isCheckedMailing: boolean;
+    isCheckedUserAgreement: boolean;
+}
+
+
 export class formRegistUserContext{
     name : string = '';
     email : string = '';

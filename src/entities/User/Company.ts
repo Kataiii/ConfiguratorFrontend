@@ -5,6 +5,20 @@ import { ValidationHelper } from "../../shared/common/ValidationHelper";
 
 export const REQUIRED_FIELD_MESSAGE = 'Поле обязательно для заполнения';
 
+export interface ICreateCompany{
+    nameOrganisation: string;
+    firstname: string;
+    surname: string;
+    pathronomyc?: string;
+    phone: string;
+    email: string;
+    password: string;
+    typeOrganization: string;
+    isCheckedMailing: boolean;
+    isCheckedUserAgreement: boolean;
+    files: FileList;
+}
+
 export type FormCompanyValues = {
     firstname: string,
     surname: string,
@@ -14,7 +28,7 @@ export type FormCompanyValues = {
     password: string,
     repeatPassword: string,
     typeOrganization: string,
-    letterCompanyRepresentatives: FileList,
+    letterCompanyRepresentatives: File,
     TINCertificate: File,
     isCheckedMailing: boolean,
     isCheckedUserAgreement: boolean

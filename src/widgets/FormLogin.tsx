@@ -6,24 +6,21 @@ import { HeaderForm } from "../shared/ui/FormPart/HeaderForm";
 import auth from "../store/auth";
 import { observer } from "mobx-react-lite"
 import { useNavigate } from "react-router"
+import { useContext, useState } from "react";
+import { Context } from "..";
 
-
-export interface IFormLogin {
-  email: string,
-  password: string,
-  failEmail: boolean,
-  failPassword: boolean,
-  isAuthorised : boolean
-}
 
 const FormLogin = observer( () => {
   const navigate = useNavigate()
+  const {store} = useContext(Context);
+  const [email, setEmailState] = useState('');
+  const [password, setPasswordState] = useState('');
 
   const style = auth.formLogin.failEmail ? stylesInput.FormInputEr : stylesInput.FormInput;
 
   const onClickBtnHandler = async () =>{
-      const res = await auth.apiLogin();
-      auth.formLogin.isAuthorised ? navigate('/home') : navigate('/login');
+      const res = store.login(email,password);
+      store.isAuth ? navigate('/home') : navigate('/login');
   }
 
   return (
@@ -36,9 +33,10 @@ const FormLogin = observer( () => {
       <div className={stylesInput.FormDivWrapError}>
         <input className={style}
           type="text"
-          placeholder="Логин или email..."
+          value={email}
+          placeholder="Email..."
           onFocus={auth.onFocusEmail}
-          onChange={auth.onBlurEmail} />
+          onChange={e => setEmailState(e.target.value)} />
         {
           auth.formLogin.failEmail
             ?
@@ -51,8 +49,9 @@ const FormLogin = observer( () => {
         <input className={style}
           type="password"
           placeholder="Пароль..."
+          value={password}
           onFocus={auth.onFocusPassword}
-          onChange={auth.onBlurPassword} />
+          onChange={e => setPasswordState(e.target.value)} />
         {
           auth.formLogin.failPassword
             ?

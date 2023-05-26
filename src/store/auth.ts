@@ -1,6 +1,14 @@
 import { makeAutoObservable } from "mobx"
-import { IFormLogin } from "../widgets/FormLogin"
 import axios from "axios"
+
+
+export interface IFormLogin {
+  email: string,
+  password: string,
+  failEmail: boolean,
+  failPassword: boolean,
+  isAuthorised : boolean
+}
 
 class Auth {
     
