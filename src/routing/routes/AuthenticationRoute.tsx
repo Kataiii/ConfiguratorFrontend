@@ -4,6 +4,8 @@
   import RegistrationPage from "../../pages/RegistrationPage";
   import UserRegistPage from "../../pages/UserRegistrationPage";
   import CompanyRegistPage from "../../pages/CompanyRegistrationPage";
+import RecoveryPasPage from '../../pages/RecoveryPasPage';
+import ResetPasPage from '../../pages/ResetPasPage';
 
 
 const AuthenticationRoutes = {data: [
@@ -27,6 +29,14 @@ const AuthenticationRoutes = {data: [
           {
             path: '/login/register/company',
             element: <CompanyRegistPage/>
+          },
+          {
+            path: '/login/recovery',
+            element: <RecoveryPasPage/>
+          },
+          {
+            path: '/login/reset/:link',
+            element: <ResetPasPage/>
           }
         ]
       }

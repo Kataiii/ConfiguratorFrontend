@@ -8,6 +8,7 @@ import { observer } from "mobx-react-lite"
 import { useNavigate } from "react-router"
 import { useContext, useState, useEffect } from "react";
 import { Context } from "..";
+import { Link } from "react-router-dom";
 
 
 const FormLogin = observer( () => {
@@ -67,6 +68,9 @@ const FormLogin = observer( () => {
             :
             null
         }
+      </div>
+      <div className={styles.LinkForgotWrap}>
+        <Link className={styles.LinkForgot} to={'/login/recovery'}>Забыли пароль?</Link>
       </div>
       <div className={styles.FormDivWrapButton}>
         <Button isDisabled={false} title="Вход" onClick={onClickBtnHandler}></Button>
