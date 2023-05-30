@@ -6,10 +6,12 @@ import styleBtn from "../../../app/App.module.css"
 import ErrorForm from "./ErrorForm";
 import CheckboxForm from "./CheckboxForm";
 import HelperForm from "./HelperForm";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { schemaPersonRegist, FormValues } from "../../../entities/User/User";
 import RegistUser from "../../../store/registUser";
 import { useNavigate } from "react-router-dom";
+import { Context } from "../../..";
+import DefaultModal from "../Modals/DefaultModal";
 
 
 const FormVersionTwo = () => {
@@ -22,6 +24,7 @@ const FormVersionTwo = () => {
         mode: 'onChange',
         resolver: yupResolver(schemaPersonRegist)
     });
+    const {store} = useContext(Context);
 
     const {
         handleSubmit,
@@ -33,14 +36,18 @@ const FormVersionTwo = () => {
 
     const onSubmit = handleSubmit(
         async (data) => {
-            RegistUser.formRegist.login = data.login;
-            RegistUser.formRegist.email = data.email;
-            RegistUser.formRegist.password = data.password;
-            RegistUser.formRegist.repeatPassword = data.repeatPassword;
-            RegistUser.formRegist.isCheckedMailing = data.isCheckedMailing;
-            RegistUser.formRegist.isCheckedUserAgreement = data.isCheckedUserAgreement;
-            const res = await RegistUser.apiRegistUser();
-            RegistUser.formRegist.isRegist ? navigate('/home') : navigate('/login/register/user');
+            const res = await store.registUser(
+                {
+                    login: data.login,
+                    email: data.email,
+                    password: data.password,
+                    is_spam: data.isCheckedMailing
+                }
+            )
+            if(res === 400){
+                store.setFailAuth(true);
+            }
+            store.isAuth ? navigate('/home') : navigate('/login/register/user');
         }
     );
 

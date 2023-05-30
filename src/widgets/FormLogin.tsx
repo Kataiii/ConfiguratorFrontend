@@ -6,7 +6,7 @@ import { HeaderForm } from "../shared/ui/FormPart/HeaderForm";
 import auth from "../store/auth";
 import { observer } from "mobx-react-lite"
 import { useNavigate } from "react-router"
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import { Context } from "..";
 
 
@@ -16,10 +16,18 @@ const FormLogin = observer( () => {
   const [email, setEmailState] = useState('');
   const [password, setPasswordState] = useState('');
 
+  useEffect(() => {
+    store.isAuth ? navigate('/home') : navigate('/login');
+  }, []);
+
   const style = auth.formLogin.failEmail ? stylesInput.FormInputEr : stylesInput.FormInput;
 
   const onClickBtnHandler = async () =>{
-      const res = store.login(email,password);
+      const res = await store.login(email,password);
+      if(!store.isAuth){
+        auth.formLogin.failEmail = true;
+        auth.formLogin.failPassword = true;
+      }
       store.isAuth ? navigate('/home') : navigate('/login');
   }
 

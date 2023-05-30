@@ -13,10 +13,10 @@ export const HeaderForm = (props : IHeaderFormProps) => {
 
     return(
         <div className={className}>
-        <p className={styles.FormContent}>{props.formContent}</p>
-        <Link to={props.linkTo} className={styles.FormLinkWrap}>
-          <p className={styles.FormLink}>{props.linkTitle}</p>
-        </Link>
+          <p className={styles.FormContent}>{props.formContent}</p>
+          <Link to={props.linkTo} className={styles.FormLinkWrap}>
+            <p className={styles.FormLink}>{props.linkTitle}</p>
+          </Link>
       </div>
     )
 }

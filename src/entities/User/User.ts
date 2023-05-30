@@ -2,11 +2,10 @@ import { object, string, boolean } from "yup";
 import { ValidationHelper } from "../../shared/common/ValidationHelper";
 
 export interface ICreateUser{
-    name: string;
+    login: string;
     email: string;
     password: string;
-    isCheckedMailing: boolean;
-    isCheckedUserAgreement: boolean;
+    is_spam: boolean;
 }
 
 

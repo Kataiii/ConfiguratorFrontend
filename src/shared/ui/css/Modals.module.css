@@ -1,0 +1,41 @@
+.ModalDivWrap{
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #FCFCFCcb;
+    min-width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.ModalDiv{
+    width: 40%;
+    background: #4A4A4A;
+    border-radius: 20px;
+    margin: 0 auto;
+    padding: 2% 1% 2%;
+    text-align: center;
+}
+
+.ModalDivContent{
+    margin: 0 0 5%;
+}
+
+.ModalTitle{
+    font-family: 'Ubuntu';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    color: #FCFCFC;
+    margin: 0;
+}
+
+.ModalContent{
+    font-family: 'Ubuntu';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 11px;
+    color: #FCFCFC;
+}

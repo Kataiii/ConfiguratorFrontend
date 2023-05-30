@@ -16,6 +16,15 @@
     text-align: center;
 }
 
+.FormDivRegCom{
+    background: #4A4A4A;
+    border-radius: 20px;
+    width: 60%;
+    margin: 1.5% auto 0;
+    padding: 1% 1% 2%;
+    text-align: center;
+}
+
 .FormTitle{
     font-family: 'Ubuntu';
     font-style: normal;
@@ -31,6 +40,12 @@
     margin: 1% 0 3%;
 }
 
+.FormDivWrapLinkCompany{
+    display: flex;
+    justify-content: center;
+    margin: 1% 0 1%;
+}
+
 .FormContent{
     display: block;
     font-family: 'Ubuntu';
@@ -40,4 +55,38 @@
     color: #FCFCFC;
     margin: 0 5px 0 0;
     
+}
+
+.FormLink{
+    display: block;
+    font-family: 'Ubuntu';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 13px;
+    color: #FCFCFC;
+    text-decoration: none;
+    border-bottom: solid 1px #FCFCFC;
+    margin-top: 0;
+}
+
+.FormDivWrapInput{
+    width: 70%;
+    margin: 0 auto;
+}
+
+.FormLinkWrap{
+    text-decoration: none;
+}
+
+
+.FormDivWrapButton{
+    margin: 6% 0;
+}
+
+.FormDivWrapError{
+    position: relative;
+}
+
+.DivWrapCheckbox{
+    margin-bottom: 15px;
 }

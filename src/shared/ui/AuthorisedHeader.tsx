@@ -1,17 +1,19 @@
 import DropdownMenu, { DropdownButtonItem } from "./DropDownMenu";
 import LinkLanding from "./LinkLanding";
 import styles from "../../app/App.module.css"
-import { useMemo } from "react";
-import { useNavigate } from "react-router";
+import { useContext, useMemo } from "react";
+import { useNavigate, useLocation } from "react-router";
 import ButtonLink from "./ButtonLink";
-import Chat from "../../assets/icons/icon-chat.svg"
-import MyProject from "../../assets/icons/icon-my-projects.svg"
+import Chat from "../../assets/icons/icon-chat.svg";
+import MyProject from "../../assets/icons/icon-my-projects.svg";
+import { Context } from "../..";
 
 
 const AuthorisedHeader = () => {
-    const className : string = styles.AuthHeader;
-
     const navigate = useNavigate();
+    const locate = useLocation();
+    let className = locate.pathname == '/'? styles.AuthHeaderLanding : styles.AuthHeader;
+    const {store} = useContext(Context);
 
     const authorisedmenuItems = useMemo<DropdownButtonItem[]>(() =>  [
       {
@@ -25,7 +27,11 @@ const AuthorisedHeader = () => {
       ,
       {
         label: 'Выйти',
-        action: () => navigate('/')
+        action: async () => 
+        { 
+          await store.logout();
+          navigate('/');
+        }
       }
     ], [])
 

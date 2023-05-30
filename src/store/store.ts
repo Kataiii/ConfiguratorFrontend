@@ -7,6 +7,8 @@ import AuthService from "../services/AuthService";
 export default class Store{
     acount = {} as IAccount;
     isAuth = false;
+    accessToken = '';
+    isFailAuth = false;
 
     constructor(){
         makeAutoObservable(this);
@@ -20,10 +22,19 @@ export default class Store{
         this.acount = account;
     }
 
+    setAccessToken(accessToken: string){
+        this.accessToken = accessToken;
+    }
+
+    setFailAuth(isFail: boolean){
+        this.isFailAuth = isFail;
+    }
+
     async login(email: string, password: string){
         try{
             const response = await AuthService.login(email, password);
-            localStorage.setItem('token', response.data.accessToken);
+            this.setAccessToken(response.data.accessToken);
+            localStorage.setItem('token', this.accessToken);
             this.setAuth(true);
             this.setAccount(response.data.account);
         }catch(e: any){
@@ -34,18 +45,21 @@ export default class Store{
     async registUser(createUserDto: ICreateUser){
         try{
             const response = await AuthService.registUser(createUserDto);
-            localStorage.setItem('token', response.data.accessToken);
+            this.setAccessToken(response.data.accessToken);
+            localStorage.setItem('token', this.accessToken);
             this.setAuth(true);
             this.setAccount(response.data.account);
         } catch(e: any){
             console.log(e.response?.data?.message);
+            return e.response?.status;
         }
     }
 
     async registCompany(createCompanyDto: ICreateCompany){
         try{
             const response = await AuthService.registCompany(createCompanyDto);
-            localStorage.setItem('token', response.data.accessToken);
+            this.setAccessToken(response.data.accessToken);
+            localStorage.setItem('token', this.accessToken);
             this.setAuth(true);
             this.setAccount(response.data.account);
         } catch(e: any){
@@ -57,6 +71,7 @@ export default class Store{
         try{
             const  response = await AuthService.logout();
             localStorage.removeItem('token');
+            this.setAccessToken('');
             this.setAuth(false);
             this.setAccount({} as IAccount);
         }catch(e: any){
