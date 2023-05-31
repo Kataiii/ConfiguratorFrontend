@@ -1,14 +1,16 @@
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { object, string } from "yup";
 import { HELPER_PASSWORD_MESSAGE, ValidationHelper } from "../../common/ValidationHelper";
-import Button from "../ButtonPrim";
 import styles from '../css/Modals.module.css';
 import styleBtn from "../../../app/App.module.css"
 import stylesInput from '../FormPart/css/InputForm.module.css';
 import ErrorForm from "../FormPart/ErrorForm";
 import HelperForm from "../FormPart/HelperForm";
+import { Context } from "../../..";
+import { useLocation, useNavigate } from "react-router-dom";
+import DefaultModal from "./DefaultModal";
 
 type FormPasswords = {
     password: string;
@@ -37,6 +39,11 @@ const ResetPasswordModal = () => {
         checkedMail : true
     });
 
+    const {store} = useContext(Context);
+    const locate = useLocation();
+    const navigate = useNavigate();
+    const [visibleModal, setVisibleModalState] = useState(false);
+
     const formApi = useForm<FormPasswords>({
         mode: 'onChange',
         resolver: yupResolver(schemaPasswordReset)
@@ -52,19 +59,13 @@ const ResetPasswordModal = () => {
 
     const onSubmit = handleSubmit(
         async (data) => {
-            console.log(data);
-            // const res = await store.registUser(
-            //     {
-            //         login: data.login,
-            //         email: data.email,
-            //         password: data.password,
-            //         is_spam: data.isCheckedMailing
-            //     }
-            // )
-            // if(res === 400){
-            //     store.setFailAuth(true);
-            // }
-            // store.isAuth ? navigate('/home') : navigate('/login/register/user');
+            const link = locate.pathname.slice(locate.pathname.lastIndexOf('/') + 1, locate.pathname.length);
+            const res = await store.resetPassword(data.password, link);
+            if(res === 400){
+                setVisibleModalState(true);
+                return;
+            }
+            navigate('/');
         }
     );
 
@@ -128,17 +129,21 @@ const ResetPasswordModal = () => {
                             <ErrorForm errorcontent={(typeof errors.repeatPassword.message == 'string') ? errors.repeatPassword.message : ""}></ErrorForm>
                         }
                     </div>
-                
-                {/* <div className={styles.ModalDivContent}>
-                    <input className={stylesInput.FormInput} type='password' placeholder='Новый пароль...'></input>
-                </div>
-
-                <div className={styles.ModalDivContent}>
-                    <input className={stylesInput.FormInput} type='password' placeholder='Подтвердите пароль...'></input>
-                </div> */}
                 <input className={styleBtn.BtnStyle} type="submit" />
-                {/* <Button title="Сохранить" isDisabled={false} onClick={() => {console.log('Сохранить')}}/> */}
             </div>
+            {
+                visibleModal
+                ?
+                    <DefaultModal title="Некорректная ссылка смены пароля"
+                        message="Произошла ошибка во время сброса пароля. Некорректная ссылка для смены пароля. Проверьте корректность данных и попробуйте еще раз"
+                        titleBtn="Восстановить пароль"
+                        actionBtn={() => {
+                            setVisibleModalState(false);
+                            navigate('/login/recovery');
+                        }}/>
+                :
+                    null
+            }
         </form>
     )
 }

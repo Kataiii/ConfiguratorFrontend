@@ -90,4 +90,15 @@ export default class Store{
             return e.response?.status;
         }
     }
+
+    async resetPassword(password: string, link: string){
+        try{
+            const responce = await axios.post<AuthResponse>(`${API_URL}/recovery-links/recovery/${link}`,
+                { password: password},
+                {withCredentials: true});
+            return responce;
+        } catch(e: any) {
+            return e.response?.status;
+        }
+    }
 }
