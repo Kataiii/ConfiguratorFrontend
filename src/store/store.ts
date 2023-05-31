@@ -3,6 +3,9 @@ import { IAccount } from "../entities/Account/IAccount";
 import { ICreateCompany } from "../entities/User/Company";
 import { ICreateUser } from "../entities/User/User";
 import AuthService from "../services/AuthService";
+import axios from "axios";
+import { AuthResponse } from "../entities/Response/AuthResponse";
+import { API_URL } from "../http";
 
 export default class Store{
     acount = {} as IAccount;
@@ -76,6 +79,15 @@ export default class Store{
             this.setAccount({} as IAccount);
         }catch(e: any){
             console.log(e.response?.data?.message);
+        }
+    }
+
+    async recoveryPassword(email: string){
+        try{
+            const responce = await axios.post<AuthResponse>(`${API_URL}/auth/recovery`, { email: email }, {withCredentials: true})
+            return responce;
+        } catch(e: any) {
+            return e.response?.status;
         }
     }
 }
