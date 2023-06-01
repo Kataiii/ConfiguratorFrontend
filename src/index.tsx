@@ -18,6 +18,7 @@ export const Context = createContext<State>({
   store
 })
 
+
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );

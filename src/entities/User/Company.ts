@@ -6,20 +6,20 @@ import { ValidationHelper } from "../../shared/common/ValidationHelper";
 export const REQUIRED_FIELD_MESSAGE = 'Поле обязательно для заполнения';
 
 export interface ICreateCompany{
-    nameOrganisation: string;
-    firstname: string;
+    company_name: string;
+    name: string;
     surname: string;
     pathronomyc?: string;
-    phone: string;
+    phone_number: string;
     email: string;
     password: string;
-    typeOrganization: string;
-    isCheckedMailing: boolean;
-    isCheckedUserAgreement: boolean;
-    files: FileList;
+    company_type_id: number;
+    is_spam: boolean;
+    files: any;
 }
 
 export type FormCompanyValues = {
+    nameOrganisation: string;
     firstname: string,
     surname: string,
     patronymic: string,
@@ -35,6 +35,7 @@ export type FormCompanyValues = {
 }
 
 export const schemaCompanyRegist = object().shape({
+    nameOrganisation: string().required(REQUIRED_FIELD_MESSAGE),
     firstname: string().required(REQUIRED_FIELD_MESSAGE),
     surname: string().required(REQUIRED_FIELD_MESSAGE),
     phone: string().matches(/^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/, "Неверный формат телефона").required(REQUIRED_FIELD_MESSAGE),

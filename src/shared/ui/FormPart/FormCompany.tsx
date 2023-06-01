@@ -6,9 +6,15 @@ import stylesInput from "./css/InputFormCompany.module.css"
 import styleBtn from "../../../app/App.module.css"
 import ErrorForm from "./ErrorForm";
 import HelperForm from "./HelperForm";
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { schemaCompanyRegist, FormCompanyValues } from "../../../entities/User/Company";
 import CheckboxForm from "./CheckboxForm";
+import Select from "../MySelect";
+import { Context } from "../../..";
+import { ICompanyType } from "../../../entities/Company/CompanyTypes";
+import CompanyTypesService from "../../../services/CompanyTypeService";
+import { date } from "yup";
+
 
 const FormCompany = () => {
     const [helperState, setHelperState] = useState({
@@ -17,6 +23,7 @@ const FormCompany = () => {
         letterCompany: false,
         TINCompany: false
     });
+    const {store} = useContext(Context);
 
     const formApi = useForm<FormCompanyValues>({
         mode: 'onChange',
@@ -32,8 +39,30 @@ const FormCompany = () => {
     } = formApi;
 
     const onSubmit = handleSubmit(
-        (data) => {
-            console.log(data);
+        async(data) => {
+            const idTypeOrganisation = options.find(item => item.name === data.typeOrganization)?.id;
+
+            // var dt = new DataTransfer();
+            // dt.items.add(data.TINCertificate);
+            // dt.items.add(data.letterCompanyRepresentatives);
+            // var file_list = dt.files;
+            const files = new FormData();
+            await files.append('files', data.TINCertificate);
+            await files.append('files',data.letterCompanyRepresentatives);
+
+            await store.registCompany({
+                company_name: data.nameOrganisation,
+                name: data.firstname,
+                surname: data.surname,
+                pathronomyc: data.patronymic,
+                phone_number: data.phone,
+                email: data.email,
+                password: data.password,
+                company_type_id: idTypeOrganisation || 1,
+                is_spam: data.isCheckedMailing,
+                files: files
+            });
+            console.log(files);
         }
     );
 
@@ -93,6 +122,28 @@ const FormCompany = () => {
         })
     }
 
+    const [month, setMonthValue] = useState(1);
+    const handleMonthSelect = (id: number) => {
+      setMonthValue(id);
+    };
+
+    const getCompanyTypes = async() => {
+        try{
+            const response = await CompanyTypesService.getAllTypes();
+            setOptionsState(response.data);
+        } catch(e){
+            console.log(e);
+        }
+    }
+
+    useEffect(() => {
+        getCompanyTypes();
+    }, [])
+
+    const [options, setOptionsState] = useState<ICompanyType[]>([]);
+    const selectedMonth = options.find((item) => item.id === month);
+
+    const styleOrganisation = errors?.nameOrganisation ? styles.FormInputEr : styles.FormInput;
     const styleName = errors?.firstname ? styles.FormInputEr : styles.FormInput;
     const styleSurName = errors?.surname ? styles.FormInputEr : styles.FormInput;
     const stylePhone = errors?.phone ? styles.FormInputEr : styles.FormInput;
@@ -128,6 +179,30 @@ const FormCompany = () => {
                             <input className={styles.FormInput} id={stylesInput.InputPatronymic} {...register("patronymic")} placeholder="Отчество" />
                         </div>
                     </div>
+
+                    <div className={stylesInput.PersonalDataDiv}>
+                        <div className={stylesInput.ContactDataDiv}>
+                            <p className={styles.FormContent}>Название организации</p>
+                            <div id={stylesInput.FormDivWrapErrorPhone} className={styles.FormDivWrapError}>
+                                <input className={styleOrganisation} id={stylesInput.InputPhone} {...register("nameOrganisation")} placeholder="Название организации..." />
+                                {errors?.nameOrganisation &&
+                                    <ErrorForm errorcontent={(typeof errors.nameOrganisation.message == 'string') ? errors.nameOrganisation.message : ""}></ErrorForm>
+                                }
+                            </div>
+                        </div>
+                        <div id={styles.SelectStyle} className={stylesInput.ContactDataDiv}>
+                            <p className={styles.FormContent}>Тип организации</p>
+                            <div className="Select" style={{width: '80%', height: '45px', borderRadius: '23px'}}>
+                                <Select
+                                options={options}
+                                selected={selectedMonth || null}
+                                onChange={handleMonthSelect}
+                                placeholder="Выберите тип организации"
+                                />
+                            </div>
+                        </div>
+                    </div>
+
                     <div className={stylesInput.PersonalDataDiv}>
                         <div className={stylesInput.ContactDataDiv}>
                             <p className={styles.FormContent}>Телефон</p>
@@ -185,13 +260,6 @@ const FormCompany = () => {
                                     <ErrorForm errorcontent={(typeof errors.repeatPassword.message == 'string') ? errors.repeatPassword.message : ""}></ErrorForm>
                                 }
                             </div>
-
-                            <p className={styles.FormContent}>Тип организации</p>
-                            <select className={stylesInput.Select}  {...register("typeOrganization")}>
-                                <option className={stylesInput.Options}>Охранный</option>
-                                <option className={stylesInput.Options}>Еще какой-то</option>
-                                <option className={stylesInput.Options}>И еще какой-то</option>
-                            </select>
                         </div>
 
                         <div className={stylesInput.ContactDataDiv}>
