@@ -13,7 +13,7 @@ import Select from "../MySelect";
 import { Context } from "../../..";
 import { ICompanyType } from "../../../entities/Company/CompanyTypes";
 import CompanyTypesService from "../../../services/CompanyTypeService";
-import { date } from "yup";
+import { useNavigate } from "react-router-dom";
 
 
 const FormCompany = () => {
@@ -24,6 +24,7 @@ const FormCompany = () => {
         TINCompany: false
     });
     const {store} = useContext(Context);
+    const navigate = useNavigate();
 
     const formApi = useForm<FormCompanyValues>({
         mode: 'onChange',
@@ -41,16 +42,7 @@ const FormCompany = () => {
     const onSubmit = handleSubmit(
         async(data) => {
             const idTypeOrganisation = options.find(item => item.name === data.typeOrganization)?.id;
-
-            // var dt = new DataTransfer();
-            // dt.items.add(data.TINCertificate);
-            // dt.items.add(data.letterCompanyRepresentatives);
-            // var file_list = dt.files;
-            const files = new FormData();
-            await files.append('files', data.TINCertificate);
-            await files.append('files',data.letterCompanyRepresentatives);
-
-            await store.registCompany({
+            const res = await store.registCompany({
                 company_name: data.nameOrganisation,
                 name: data.firstname,
                 surname: data.surname,
@@ -60,9 +52,13 @@ const FormCompany = () => {
                 password: data.password,
                 company_type_id: idTypeOrganisation || 1,
                 is_spam: data.isCheckedMailing,
-                files: files
+                files: [data.letterCompanyRepresentatives[0], data.TINCertificate[0]]
             });
-            console.log(files);
+            if(res == 400){
+                //TODO окно
+                return;
+            }
+            navigate('/home');
         }
     );
 

@@ -15,7 +15,7 @@ export interface ICreateCompany{
     password: string;
     company_type_id: number;
     is_spam: boolean;
-    files: any;
+    files: File[];
 }
 
 export type FormCompanyValues = {
@@ -28,8 +28,8 @@ export type FormCompanyValues = {
     password: string,
     repeatPassword: string,
     typeOrganization: string,
-    letterCompanyRepresentatives: File,
-    TINCertificate: File,
+    letterCompanyRepresentatives: FileList,
+    TINCertificate: FileList,
     isCheckedMailing: boolean,
     isCheckedUserAgreement: boolean
 }

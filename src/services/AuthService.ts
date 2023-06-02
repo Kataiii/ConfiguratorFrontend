@@ -16,13 +16,25 @@ export default class AuthService{
     }
 
     static async registCompany(createCompanyDto: ICreateCompany): Promise<AxiosResponse<AuthResponse>>{
-        return axios.post<AuthResponse>(`${API_URL}/auth/register/company`, createCompanyDto, {
+        const formData = new FormData();
+        formData.append('email', createCompanyDto.email);
+        formData.append('password', createCompanyDto.password);
+        formData.append('company_name', createCompanyDto.company_name);
+        formData.append('surname', createCompanyDto.surname);
+        formData.append('name', createCompanyDto.name);
+        formData.append('company_type_id', createCompanyDto.company_type_id.toString());
+        formData.append('letter', createCompanyDto.files[0]);
+        formData.append('inn', createCompanyDto.files[1]);
+        formData.append('phone_number', createCompanyDto.phone_number);
+        formData.append('is_spam', String(createCompanyDto.is_spam));
+
+        console.log(formData.get('letter'));
+        return axios.post<AuthResponse>(`${API_URL}/auth/register/company`, formData, {
             headers: {
               'Content-Type': 'multipart/form-data'
             },
             withCredentials: true
-        })
-        // return $api.post<AuthResponse>('/auth/register/company', createCompanyDto);
+        });
     }
 
     static async logout(): Promise<void>{
