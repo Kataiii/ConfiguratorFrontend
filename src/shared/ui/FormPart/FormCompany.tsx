@@ -55,10 +55,9 @@ const FormCompany = () => {
                 files: [data.letterCompanyRepresentatives[0], data.TINCertificate[0]]
             });
             if(res == 400){
-                //TODO окно
-                return;
+                store.setFailAuth(true);
             }
-            navigate('/home');
+            store.isAuth ? navigate('/home') : navigate('/login/register/company');
         }
     );
 

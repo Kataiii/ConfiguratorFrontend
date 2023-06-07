@@ -17,6 +17,8 @@ $api.interceptors.request.use((config) => {
     return config;
 });
 
+//Может не работать
+//TODO проверить работоспособность
 $api.interceptors.response.use((config) => {
     return config;
 }, (async error => {

@@ -40,7 +40,7 @@ const AuthorisedHeader = () => {
             <LinkLanding></LinkLanding>
             <div className={styles.BtnLinkWrap}>
               <ButtonLink img={MyProject} imgAlt="мои проекты" content="Мои проекты" action={() => navigate('/home')}></ButtonLink>
-              <ButtonLink img={Chat} imgAlt="чаты" content="Чат" action={() => navigate('/')}></ButtonLink>
+              <ButtonLink img={Chat} imgAlt="чаты" content="Чат" action={() => navigate('/chats')}></ButtonLink>
               <DropdownMenu links={authorisedmenuItems}></DropdownMenu>
             </div>
         </div>

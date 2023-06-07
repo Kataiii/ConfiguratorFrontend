@@ -1,6 +1,8 @@
 const UserLicence = () => {
     return(
-        <div></div>
+        <div>
+            <h1>Страница подписок на ходится в разработке</h1>
+        </div>
     )
 }
 

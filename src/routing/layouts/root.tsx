@@ -1,4 +1,3 @@
-import Landing from "../../pages/Landing";
 import styles from "../../app/App.module.css"
 import UnauthorisedHeader from "../../shared/ui/UnauthorisedHeader";
 import { Outlet } from "react-router-dom";
@@ -6,13 +5,18 @@ import { useContext } from "react";
 import { Context } from "../..";
 import AuthorisedHeader from "../../shared/ui/AuthorisedHeader";
 import { useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { observer } from "mobx-react-lite";
 
 
-export default function Root(){
+const Root = observer(() => {
     const className : string = styles.App;
     const {store} = useContext(Context);
-    const locate = useLocation();
+
+
+    useEffect(() => {
+        store.refresh();
+    }, [])
+
 
     if(store.isAuth){
         return(
@@ -33,4 +37,6 @@ export default function Root(){
             </div>
         </div>
     );
-}
+})
+
+export default Root;

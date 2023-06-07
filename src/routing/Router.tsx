@@ -5,6 +5,7 @@ import Landing from "../pages/Landing";
 import AuthenticationRoutes from "./routes/AuthenticationRoute";
 import DocumentsRoutes from "./routes/DocumentsRoute";
 import HomeRouter from "./routes/HomeRouter";
+import ChatsRoute from "./routes/ChatsRoute";
 
 
 const router = createBrowserRouter([
@@ -19,9 +20,10 @@ const router = createBrowserRouter([
         }
     ]
   },
-  AuthenticationRoutes.data[0],
-  DocumentsRoutes.data[0],
-  HomeRouter.data[0]
+  AuthenticationRoutes,
+  DocumentsRoutes,
+  HomeRouter,
+  ChatsRoute
 ]);
 
 export default router;

@@ -85,8 +85,8 @@ export default class Store{
 
     async recoveryPassword(email: string){
         try{
-            const responce = await axios.post<AuthResponse>(`${API_URL}/auth/recovery`, { email: email }, {withCredentials: true})
-            return responce;
+            const response = await axios.post<AuthResponse>(`${API_URL}/auth/recovery`, { email: email }, {withCredentials: true})
+            return response;
         } catch(e: any) {
             return e.response?.status;
         }
@@ -94,12 +94,19 @@ export default class Store{
 
     async resetPassword(password: string, link: string){
         try{
-            const responce = await axios.post<AuthResponse>(`${API_URL}/recovery-links/recovery/${link}`,
+            const response = await axios.post<AuthResponse>(`${API_URL}/recovery-links/recovery/${link}`,
                 { password: password},
                 {withCredentials: true});
-            return responce;
+            return response;
         } catch(e: any) {
             return e.response?.status;
         }
+    }
+
+    async refresh(){
+        const response = await axios.get<AuthResponse>(`${API_URL}/auth/refresh`, {withCredentials: true});
+        this.setAccessToken(response.data.accessToken);
+        localStorage.setItem('token', response.data.accessToken);
+        this.setAuth(true);
     }
 }

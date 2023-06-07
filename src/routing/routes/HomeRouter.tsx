@@ -7,26 +7,18 @@ import ConfiguratorPage from "../../pages/projects/ConfiguratorPage";
 
 
 const HomeRouter = {
-    data : [
+    path: '/home',
+    element:
+        <AuthGuard>
+            <Outlet context={[]} />
+        </AuthGuard>,
+    children: [
+        UserProjectRouter.data[0],
+        UserProfileRouter.data[0],
         {
-            path : '/home',
-            element :
-                <AuthGuard>
-                    <Outlet context={[]}/>
-                </AuthGuard>,
-            children : [
-                UserProjectRouter.data[0],
-                UserProfileRouter.data[0],
-                {
-                    path: "/home/configurator/project/:id",
-                    element: <ConfiguratorPage />
-                },
-            ]
+            path: "/home/configurator/project/:id",
+            element: <ConfiguratorPage />
         },
-        // {
-        //     path: '*',
-        //     element: <ErrorPage/>
-        // }
     ]
 }
 

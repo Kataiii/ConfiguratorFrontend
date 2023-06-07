@@ -65,6 +65,9 @@ export default function Root(){
                             <div>
                                 <BreadApp title={stateFolder}/>
                             </div>
+                            <div>
+                                <h1>Search</h1>
+                            </div>
                             <Outlet></Outlet>
                         </div>
                     </div>
