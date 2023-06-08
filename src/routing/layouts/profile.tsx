@@ -6,6 +6,7 @@ import { Link, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 
+
 export default function Root(){
     const location = useLocation();
     const [styleState, setStyleState] = useState({
@@ -32,7 +33,7 @@ export default function Root(){
                             <Link className={styleState.styleLinkLicence}  to={'/home/profile/licence'}>Подписка</Link>
                         </div>
                     </div>
-                    <div>
+                    <div className={stylesSidePanel.DivWrapPageContent}>
                         <Outlet></Outlet>
                     </div>
                 </div>

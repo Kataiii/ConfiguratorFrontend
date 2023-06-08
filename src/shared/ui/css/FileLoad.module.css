@@ -1,0 +1,34 @@
+.LoadBtn{
+    width: 155px;
+    background: #20BD57;
+    border-radius: 30px;
+    font-family: 'Ubuntu';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 13px;
+    color: #FCFCFC;
+    margin: 0;
+    padding: 8px 24px;
+    text-align: center;
+    border: none;
+}
+
+.NotLoadBtn{
+    width: 155px;
+    background: #FCFCFC;
+    border-radius: 30px;
+    font-family: 'Ubuntu';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 13px;
+    color: #313131;
+    margin: 0;
+    padding: 8px 24px;
+    text-align: center;
+    border: none;
+}
+
+.getFile{
+    visibility: hidden;
+    display: none;
+}

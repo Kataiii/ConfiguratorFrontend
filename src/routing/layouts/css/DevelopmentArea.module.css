@@ -63,4 +63,9 @@
 
 .DivWrapPageContent{
     margin-left: 34px;
+    width: calc(100% - 268px);
+}
+
+.SearchInputWrap{
+    width: 50%;
 }

@@ -1,7 +1,12 @@
+import FileUploader from "../../shared/ui/ProfilePart/FileUploader";
+import TitlePart from "../../shared/ui/ProfilePart/TitlePart";
+
 const UserProfile = () => {
     return(
         <div>
-            <h1>Страница профиля находится в разработке</h1>
+            {/* TODO разделение по ролям */}
+            <TitlePart login="Логин" cityName="Саратов" created={new Date()} endingLicence={new Date()}/>
+            <FileUploader/>
         </div>
     )
 }

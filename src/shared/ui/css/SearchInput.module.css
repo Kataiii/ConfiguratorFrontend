@@ -1,0 +1,40 @@
+.Input{
+    width: 100%;
+    padding: 10px 0 10px 25px;
+    height: 35px;
+    background: #FCFCFC;
+    border-radius: 23px;
+    font-family: 'Ubuntu';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 13px;
+    line-height: 15px;
+    color: #4A4A4A;
+    border: none;
+    box-sizing: border-box;
+}
+
+::-webkit-input-placeholder {font-family: 'Ubuntu';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 13px;
+    line-height: 15px;
+    color: rgba(49, 49, 49, 0.5);}
+::-moz-placeholder          {font-family: 'Ubuntu';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 13px;
+    line-height: 15px;
+    color: rgba(49, 49, 49, 0.5);}/* Firefox 19+ */
+:-moz-placeholder           {font-family: 'Ubuntu';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 13px;
+    line-height: 15px;
+    color: rgba(49, 49, 49, 0.5);}/* Firefox 18- */
+:-ms-input-placeholder      {font-family: 'Ubuntu';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 13px;
+    line-height: 15px;
+    color: rgba(49, 49, 49, 0.5);}

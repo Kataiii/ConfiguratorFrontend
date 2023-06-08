@@ -1,12 +1,13 @@
 import styles from "../../app/App.module.css";
 import AuthorisedHeader from "../../shared/ui/AuthorisedHeader";
 import { Outlet, useLocation } from "react-router-dom";
-import stylesSidePanel from "./css/DevelopmentArea.module.css"
+import stylesSidePanel from "./css/DevelopmentArea.module.css";
 import { Link } from "react-router-dom";
 import BreadApp from "../../shared/ui/Breadcrumb";
 import MyMenu from "../../shared/ui/MyMenu";
 import { useState } from "react";
 import { useEffect } from "react";
+import SearchInput from "../../shared/ui/SearchInput";
 
 export default function Root(){
     const [stateFolder, setStateFolder] = useState(
@@ -18,9 +19,6 @@ export default function Root(){
     const location = useLocation();
 
     useEffect(() => {
-        // console.log(location);
-        // if(location.pathname.indexOf('/home/renders') == 0) console.log(true);
-        // else console.log(false);
         if(location.pathname.indexOf('/home/renders') == 0){
             setStateFolder({
                 title: <Link to="/home/renders">{">"} Все рендеры</Link>,
@@ -66,8 +64,11 @@ export default function Root(){
                                 <BreadApp title={stateFolder}/>
                             </div>
                             <div>
-                                <h1>Search</h1>
+                                <div className={stylesSidePanel.SearchInputWrap}>
+                                    <SearchInput/>
+                                </div>
                             </div>
+                            
                             <Outlet></Outlet>
                         </div>
                     </div>
