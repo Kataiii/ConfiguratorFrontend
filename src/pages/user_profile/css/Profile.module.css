@@ -2,3 +2,9 @@
     margin-left: 34px;
     width: calc(100% - 268px);
 }
+
+.Wrap{
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}

@@ -1,0 +1,12 @@
+.WrapMain{
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.Wrap{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}

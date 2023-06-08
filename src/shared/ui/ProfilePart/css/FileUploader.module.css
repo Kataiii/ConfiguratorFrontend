@@ -1,0 +1,16 @@
+.MainWrap{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.WrapLoader{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.WrapBtn{
+    display: flex;
+    gap: 20px;
+}

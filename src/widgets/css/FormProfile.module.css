@@ -1,0 +1,10 @@
+.MainWrap{
+    width: 85%;
+    gap: 30px;
+}
+
+.Wrap{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
