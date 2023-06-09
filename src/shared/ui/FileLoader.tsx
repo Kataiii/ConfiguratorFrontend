@@ -1,8 +1,9 @@
 import styles from './css/FileLoad.module.css';
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { LoaderContext } from './ProfilePart/FileUploader';
 
 const FileLoader = () => {
-    const [isLoad, setIsLoadState] = useState(false);
+    let {isLoad, setIsLoadState} = useContext(LoaderContext);
     const styleBtn = isLoad ? styles.LoadBtn : styles.NotLoadBtn;
 
     const onClickHandler = () => {
@@ -12,9 +13,9 @@ const FileLoader = () => {
             let input: HTMLInputElement = inputFile as HTMLInputElement;
             input.addEventListener('change', function () {
                 if (this.value) {
-                    setIsLoadState(true)
+                    setIsLoadState(true);
                 } else {
-                    setIsLoadState(false)
+                    setIsLoadState(false);
                 }
             });
         }

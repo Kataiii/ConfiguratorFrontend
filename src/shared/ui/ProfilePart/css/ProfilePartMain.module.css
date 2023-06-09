@@ -20,6 +20,14 @@
     border: none;
 }
 
+.Button:hover{
+    background: #292929;
+}
+
+.Button:active{
+    background: #1e1e1e;
+}
+
 .Hint{
     font-family: 'Ubuntu';
     font-style: normal;

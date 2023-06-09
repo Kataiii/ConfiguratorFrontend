@@ -11,6 +11,19 @@
     padding: 8px 0;
     text-align: center;
     border: none;
+    cursor: pointer;
+}
+
+.LoadBtn:hover{
+    background: #1a9946;
+}
+
+.LoadBtn:active{
+    background: #11652e;
+}
+
+.LoadBtn:focus{
+    outline: none;
 }
 
 .NotLoadBtn{
@@ -26,6 +39,19 @@
     padding: 8px 0;
     text-align: center;
     border: none;
+    cursor: pointer;
+}
+
+.NotLoadBtn:hover{
+    background: #dfdfdf;
+}
+
+.NotLoadBtn:active{
+    background: #b5b5b5;
+}
+
+.NotLoadBtn:focus{
+    outline: none;
 }
 
 .getFile{

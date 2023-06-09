@@ -1,0 +1,93 @@
+.Wrap{
+    position: relative;
+}
+
+.Select{
+    width: 212px;
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 20px;
+    background: #FCFCFC;
+    border-radius: 30px;
+}
+
+.SelectTitle{
+    font-family: 'Ubuntu';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 13px;
+    color: #313131;
+    margin: 0;
+}
+
+.SelectImageDown{
+    animation: rotateUp 0.4s ease-in-out;
+}
+
+.SelectImageUp{
+    transform: rotate(180deg);
+    animation: rotateDown 0.4s ease-in-out;
+}
+
+
+@keyframes rotateUp{
+    0% {transform: rotate(180deg)}
+    100% {transform: rotate(0deg)}
+}
+
+@keyframes rotateDown{
+    0% {transform: rotate(0deg)}
+    100% {transform: rotate(180deg)}
+}
+
+.DropDownVisible{
+    position: absolute;
+    width: 201px;
+    left: 17px;
+    top: 115%;
+    background-color: #313131;
+    border-radius: 11px 0px 11px 11px;
+    padding: 9px 10px 20px;
+    animation: setVisible 0.2s ease-in-out;
+}
+
+.DropDownNotVisible{
+    animation: setNotVisible 0.2s ease-in-out;
+}
+
+.DropDownVisible *{
+    animation: setVisible 0.2s ease-in-out;
+}
+
+.DropDownNotVisible *{
+    display: none;
+    overflow: hidden;
+}
+
+@keyframes setNotVisible {
+    0% {
+        opacity: 100%;
+        top: 115%;
+        display: block;
+    }
+    100% {
+        opacity: 0%;
+        top: 50%;
+        visibility: hidden;
+        display: none;
+    }
+}
+
+@keyframes setVisible {
+    0% {
+        opacity: 0%;
+        top: 50%;
+        visibility: hidden;
+        display: none;
+    }
+    100% {
+        opacity: 100%;
+        top: 115%;
+        display: block;
+    }
+}
