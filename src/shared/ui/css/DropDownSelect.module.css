@@ -91,3 +91,26 @@
         display: block;
     }
 }
+
+.DropDownContent{
+    font-family: 'Ubuntu';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 13px;
+    color: #FCFCFC;
+    cursor: pointer;
+    background-color: #313131;
+    border: none;
+    text-align: start;
+    padding: 5px 0;
+}
+
+.DropDownContent:hover{
+    font-weight: 500;
+}
+
+.WrapItems{
+    display: flex;
+    flex-direction: column;
+    margin-top: 5px;
+}

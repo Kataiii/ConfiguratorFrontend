@@ -12,7 +12,7 @@ const FormProfile = () => {
                 <LocationPart/>
                 <Notifications/>
             </div>
-            <FormProfilePart/>
+            <FormProfilePart is_checked={true}/>
         </div>
     )
 }

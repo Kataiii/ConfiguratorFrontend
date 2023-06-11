@@ -36,3 +36,57 @@
     color: #E73C3C;
     margin: 0;
 }
+
+.Input{
+    font-family: 'Ubuntu';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 13px;
+    color: #313131;
+    background: #FCFCFC;
+    border-radius: 23px;
+    margin: 0;
+    padding: 7px 0 7px 25px;
+    border: none;
+}
+
+.Input::placeholder{
+    font-family: 'Ubuntu';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 13px;
+    color: rgba(49, 49, 49, 0.5);
+    margin: 0;
+}
+
+.PrimaryButton{
+    background: #E73C3C;
+    border-radius: 30px;
+    font-family: 'Ubuntu';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 13px;
+    color: #FCFCFC;
+    padding: 8px 48px;
+    border: none;
+}
+
+.PrimaryButton:hover{
+    background: #ce3636;
+}
+
+.PrimaryButton:active{
+    background: #a72c2c;
+}
+
+.LinkButton{
+    font-family: 'Ubuntu';
+    font-style: italic;
+    font-weight: 300;
+    font-size: 13px;
+    color: #E73C3C;
+    border: none;
+    background-color: #fcfcfc00;
+    width: fit-content;
+    cursor: pointer;
+}
