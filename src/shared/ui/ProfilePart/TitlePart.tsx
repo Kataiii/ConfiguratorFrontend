@@ -8,7 +8,7 @@ import { useEffect, useState } from 'react';
 interface TitlePartProps{
     srcImg?: string;
     login: string;
-    cityName: string;
+    cityName?: string;
     created: Date;
     endingLicence: Date;
 }
@@ -68,10 +68,16 @@ const TitlePart: React.FC<TitlePartProps> = ({srcImg, login, cityName, created, 
                     </div>
                 </div>
                 <div className={styles.TitleWrap}>
-                    <div className={styles.TitleWrapMin}>
-                        <img src={Location} alt='location'></img>
-                        <p className={styles.TitleContent}>{cityName}</p>
-                    </div>
+                    {
+                        cityName != undefined
+                        ?
+                            <div className={styles.TitleWrapMin}>
+                                <img src={Location} alt='location'></img>
+                                <p className={styles.TitleContent}>{cityName}</p>
+                            </div>
+                        :
+                            null
+                    }
                     <div className={styles.TitleWrapMin}>
                         <img src={Calendar} alt='calendar'></img>
                         <p className={styles.TitleContent}>Дата регистрации: {created.toLocaleString('ru', optionsCreated)}</p>

@@ -1,3 +1,5 @@
+import { IRole } from "../Role/IRole";
+
 export interface IAccount{
     id: number;
     email: string;
@@ -5,4 +7,6 @@ export interface IAccount{
     city_id: number;
     is_spam: number;
     profile_picture: string;
+    createdAt: Date;
+    roles: IRole[];
 }

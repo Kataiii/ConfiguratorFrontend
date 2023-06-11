@@ -18,6 +18,21 @@ export interface ICreateCompany{
     files: File[];
 }
 
+export interface ICompany{
+    id: number;
+    company_name: string;
+    surname: string;
+    name: string;
+    pathronomyc: string | null;
+    phone_number: string;
+    company_type_id: number;
+    inn_file: string;
+    is_checked_inn: boolean;
+    official_letter: string;
+    is_checked_official_letter: boolean;
+    about_company: Text | null;
+}
+
 export type FormCompanyValues = {
     nameOrganisation: string;
     firstname: string,

@@ -2,12 +2,12 @@ import DropDownArrow from '../../assets/icons/icon-dropdown select.svg';
 import SearchInput from './SearchInput';
 import styles from './css/DropDownSelect.module.css';
 import { useState } from 'react';
-import { City } from '../../entities/City/City';
+import { ICity } from '../../entities/City/City';
 
 
 
 interface DropDownSelectProps{
-    cities: City[];
+    cities: ICity[];
     accountCity: string;
 }
 

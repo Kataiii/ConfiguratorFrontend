@@ -9,11 +9,12 @@ import { useNavigate } from "react-router"
 import { useContext, useState, useEffect } from "react";
 import { Context } from "..";
 import { Link } from "react-router-dom";
+import { IAccount } from "../entities/Account/IAccount";
 
 
 const FormLogin = observer( () => {
   const navigate = useNavigate()
-  const {store} = useContext(Context);
+  const {store, activeUser} = useContext(Context);
   const [email, setEmailState] = useState('');
   const [password, setPasswordState] = useState('');
 
@@ -28,6 +29,17 @@ const FormLogin = observer( () => {
       if(!store.isAuth){
         auth.formLogin.failEmail = true;
         auth.formLogin.failPassword = true;
+      }
+      else{
+        const account = res as IAccount;
+        activeUser.setRoles(account.roles);
+        if(account.roles.length == 1){
+          activeUser.setActiveRole(account.roles[0]);
+        }
+        else{
+          //TODO направить на выбор аккаунта
+        }
+        activeUser.getActiveUser(account.id);
       }
       store.isAuth ? navigate('/home') : navigate('/login');
   }

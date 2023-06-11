@@ -33,39 +33,42 @@ export default class Store{
         this.isFailAuth = isFail;
     }
 
-    async login(email: string, password: string){
+    async login(email: string, password: string): Promise<IAccount | number>{
         try{
             const response = await AuthService.login(email, password);
             this.setAccessToken(response.data.accessToken);
             localStorage.setItem('token', this.accessToken);
             this.setAuth(true);
             this.setAccount(response.data.account);
+            return response.data.account;
         }catch(e: any){
             console.log(e.response?.data?.message);
+            return e.response?.status;
         }
     }
 
-    async registUser(createUserDto: ICreateUser){
+    async registUser(createUserDto: ICreateUser): Promise<IAccount | number>{
         try{
             const response = await AuthService.registUser(createUserDto);
             this.setAccessToken(response.data.accessToken);
             localStorage.setItem('token', this.accessToken);
             this.setAuth(true);
             this.setAccount(response.data.account);
+            return response.data.account;
         } catch(e: any){
             console.log(e.response?.data?.message);
             return e.response?.status;
         }
     }
 
-    async registCompany(createCompanyDto: ICreateCompany){
+    async registCompany(createCompanyDto: ICreateCompany): Promise<IAccount | number>{
         try{
             const response = await AuthService.registCompany(createCompanyDto);
             this.setAccessToken(response.data.accessToken);
             localStorage.setItem('token', this.accessToken);
             this.setAuth(true);
             this.setAccount(response.data.account);
-            return response?.status;
+            return response.data.account;
         } catch(e: any){
             return e.response?.status;
         }

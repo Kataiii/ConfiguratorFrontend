@@ -8,6 +8,16 @@ export interface ICreateUser{
     is_spam: boolean;
 }
 
+export interface IUser{
+    id: number;
+    login: string;
+    surname: string | null;
+    name: string | null;
+    pathronomyc: string | null;
+    phone_number: string | null;
+    about_me: Text | null;
+}
+
 
 export class formRegistUserContext{
     name : string = '';
