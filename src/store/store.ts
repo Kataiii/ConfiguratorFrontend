@@ -109,6 +109,7 @@ export default class Store{
     async refresh(){
         const response = await axios.get<AuthResponse>(`${API_URL}/auth/refresh`, {withCredentials: true});
         this.setAccessToken(response.data.accessToken);
+        this.setAccount(response.data.account);
         localStorage.setItem('token', response.data.accessToken);
         this.setAuth(true);
     }

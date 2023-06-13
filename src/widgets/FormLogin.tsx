@@ -31,15 +31,7 @@ const FormLogin = observer( () => {
         auth.formLogin.failPassword = true;
       }
       else{
-        const account = res as IAccount;
-        activeUser.setRoles(account.roles);
-        if(account.roles.length == 1){
-          activeUser.setActiveRole(account.roles[0]);
-        }
-        else{
-          //TODO направить на выбор аккаунта
-        }
-        activeUser.getActiveUser(account.id);
+        activeUser.refreshActiveUser(store.acount);
       }
       store.isAuth ? navigate('/home') : navigate('/login');
   }

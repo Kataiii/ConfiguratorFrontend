@@ -1,4 +1,5 @@
 import { makeAutoObservable } from "mobx";
+import { IAccount } from "../entities/Account/IAccount";
 import { IRole } from "../entities/Role/IRole";
 import { ICompany } from "../entities/User/Company";
 import { IEmployee } from "../entities/User/Employee";
@@ -28,6 +29,18 @@ export default class ActiveUserStore{
         this.activeRole = activeRole;
     }
 
+    async refreshActiveUser(res: IAccount){
+        const account = res;
+        this.setRoles(account.roles);
+        if(account.roles.length == 1){
+          this.setActiveRole(account.roles[0]);
+        }
+        else{
+          //TODO направить на выбор аккаунта
+        }
+        this.getActiveUser(account.id);
+    }
+
     async getActiveUser(id: number){
         let response;
         switch(this.activeRole.name){
@@ -44,6 +57,5 @@ export default class ActiveUserStore{
                 this.setUser(response.data);
                 break;
         }
-        console.log('user', this.user);
     }
 }

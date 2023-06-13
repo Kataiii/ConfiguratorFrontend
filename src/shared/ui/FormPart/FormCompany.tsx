@@ -23,7 +23,7 @@ const FormCompany = () => {
         letterCompany: false,
         TINCompany: false
     });
-    const {store} = useContext(Context);
+    const {store, activeUser} = useContext(Context);
     const navigate = useNavigate();
 
     const formApi = useForm<FormCompanyValues>({
@@ -56,6 +56,9 @@ const FormCompany = () => {
             });
             if(res == 400){
                 store.setFailAuth(true);
+            }
+            else{
+                await activeUser.refreshActiveUser(store.acount);
             }
             store.isAuth ? navigate('/home') : navigate('/login/register/company');
         }

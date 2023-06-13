@@ -24,7 +24,7 @@ const FormVersionTwo = () => {
         mode: 'onChange',
         resolver: yupResolver(schemaPersonRegist)
     });
-    const {store} = useContext(Context);
+    const {store, activeUser} = useContext(Context);
 
     const {
         handleSubmit,
@@ -46,6 +46,9 @@ const FormVersionTwo = () => {
             )
             if(res === 400){
                 store.setFailAuth(true);
+            }
+            else{
+                await activeUser.refreshActiveUser(store.acount);
             }
             store.isAuth ? navigate('/home') : navigate('/login/register/user');
         }

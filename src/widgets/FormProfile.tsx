@@ -1,5 +1,5 @@
 import { observer } from "mobx-react-lite";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Context } from "..";
 import FileUploader from "../shared/ui/ProfilePart/FileUploader";
 import FormProfilePart from "../shared/ui/ProfilePart/FormProfilePart";
@@ -9,10 +9,13 @@ import styles from './css/FormProfile.module.css';
 
 const FormProfile = observer(() => {
     const {store, activeUser} = useContext(Context);
+    const [about, setAboutState] = useState<Text | null>(null);
 
-    // useEffect(() => {
-    //     console.log(store.acount);
-    // }, [])
+    useEffect(() => {
+
+    }, []);
+
+    //TODO написать функцию для получения из бд about me
 
     return(
         <div className={styles.MainWrap}>
@@ -21,7 +24,13 @@ const FormProfile = observer(() => {
                 <LocationPart/>
                 <Notifications/>
             </div>
-            <FormProfilePart is_checked={store.acount.is_checked_email}/>
+            <FormProfilePart surname={activeUser.user.surname}
+                            name={activeUser.user.name}
+                            pathronomyc={activeUser.user.pathronomyc}
+                            email={store.acount.email} 
+                            is_checked={store.acount.is_checked_email}
+                            phone_number={activeUser.user.phone_number}
+                            about_me={about}/>
         </div>
     )
 })

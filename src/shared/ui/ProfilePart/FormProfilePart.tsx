@@ -3,7 +3,13 @@ import stylesInputs from './css/FormProfile.module.css';
 import React from 'react';
 
 interface FormProfilePartProps{
+    surname: string | null;
+    name: string | null;
+    pathronomyc: string | null;
+    email: string;
     is_checked: boolean;
+    phone_number: string | null;
+    about_me: Text | null;
 }
 
 const FormProfilePart: React.FC<FormProfilePartProps> = ({is_checked}) => {
