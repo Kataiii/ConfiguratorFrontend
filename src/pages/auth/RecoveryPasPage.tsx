@@ -1,4 +1,4 @@
-import RecoveryPasswordModal from "../shared/ui/Modals/RecoveryPasswordModal";
+import RecoveryPasswordModal from "../../shared/ui/Modals/RecoveryPasswordModal";
 
 const RecoveryPasPage = () => {
     return(

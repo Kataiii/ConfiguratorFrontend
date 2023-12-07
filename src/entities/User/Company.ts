@@ -30,7 +30,7 @@ export interface ICompany{
     is_checked_inn: boolean;
     official_letter: string;
     is_checked_official_letter: boolean;
-    about_company: Text | null;
+    about_company: string | null;
 }
 
 export type FormCompanyValues = {

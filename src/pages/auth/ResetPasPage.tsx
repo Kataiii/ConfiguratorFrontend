@@ -1,4 +1,4 @@
-import ResetPasswordModal from "../shared/ui/Modals/ResetPasswordModal";
+import ResetPasswordModal from "../../shared/ui/Modals/ResetPasswordModal";
 
 const ResetPasPage = () => {
     return(

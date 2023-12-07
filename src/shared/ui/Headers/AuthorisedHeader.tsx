@@ -1,12 +1,12 @@
-import DropdownMenu, { DropdownButtonItem } from "./DropDownMenu";
-import LinkLanding from "./LinkLanding";
-import styles from "../../app/App.module.css"
+import DropdownMenu, { DropdownButtonItem } from "../DropDownMenu";
+import LinkLanding from "../LinkLanding";
+import styles from "./styles/Header.module.css"
 import { useContext, useMemo } from "react";
 import { useNavigate, useLocation } from "react-router";
-import ButtonLink from "./ButtonLink";
-import Chat from "../../assets/icons/icon-chat.svg";
-import MyProject from "../../assets/icons/icon-my-projects.svg";
-import { Context } from "../..";
+import ButtonLink from "../ButtonLink";
+import Chat from "../../../assets/icons/icon-chat.svg";
+import MyProject from "../../../assets/icons/icon-my-projects.svg";
+import { Context } from "../../..";
 
 
 const AuthorisedHeader = () => {
@@ -36,14 +36,14 @@ const AuthorisedHeader = () => {
     ], [])
 
     return(
-        <div className={className}>
+        <header className={className}>
             <LinkLanding></LinkLanding>
             <div className={styles.BtnLinkWrap}>
               <ButtonLink img={MyProject} imgAlt="мои проекты" content="Мои проекты" action={() => navigate('/home')}></ButtonLink>
               <ButtonLink img={Chat} imgAlt="чаты" content="Чат" action={() => navigate('/chats')}></ButtonLink>
               <DropdownMenu links={authorisedmenuItems}></DropdownMenu>
             </div>
-        </div>
+        </header>
     );
 }
 

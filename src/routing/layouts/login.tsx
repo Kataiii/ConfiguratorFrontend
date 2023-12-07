@@ -1,5 +1,5 @@
 import styles from "../../app/App.module.css"
-import RegisterHeader from "../../shared/ui/RegisterHeader";
+import RegisterHeader from "../../shared/ui/Headers/RegisterHeader";
 import { Outlet } from "react-router-dom";
 
 

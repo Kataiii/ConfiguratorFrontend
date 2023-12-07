@@ -1,4 +1,4 @@
-import FormLogin from "../widgets/FormLogin";
+import FormLogin from "../../widgets/FormLogin";
 
 
 const LoginPage = () => {

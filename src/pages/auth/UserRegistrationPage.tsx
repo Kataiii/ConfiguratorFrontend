@@ -1,17 +1,16 @@
 import { useContext } from "react";
-import { Context } from "..";
-import DefaultModal from "../shared/ui/Modals/DefaultModal";
-import FormRegistCompany from "../widgets/FormRegistCompany";
+import { Context } from "../..";
+import FormRegistUser from "../../widgets/FormRegistUser";
 import { useNavigate } from "react-router-dom";
+import DefaultModal from "../../shared/ui/Modals/DefaultModal";
 
-
-const CompanyRegistPage = () => {
-    const navigate = useNavigate();
+const UserRegistPage = () => {
     const {store} = useContext(Context);
+    const navigate = useNavigate();
 
     return(
         <div>
-            <FormRegistCompany/>
+            <FormRegistUser/>
             {
                 store.isFailAuth
                 ?
@@ -29,4 +28,4 @@ const CompanyRegistPage = () => {
     );
 }
 
-export default CompanyRegistPage;
+export default UserRegistPage;

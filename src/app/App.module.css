@@ -54,44 +54,6 @@
   background-color:  #F2F2F2;;
 }
 
-.Header{
-  width: 100%;
-  padding: 1% 0%;
-  display: flex;
-  justify-content: space-between;
-  background-color: #fcfcfc00;
-  position: absolute;
-  top: 0;
-}
-
-.AuthHeader{
-  width: 100%;
-  padding: 1% 0%;
-  display: flex;
-  justify-content: space-between;
-  background-color: #FCFCFC;
-  position: absolute;
-  top: 0;
-}
-
-.AuthHeaderLanding{
-  width: 100%;
-  padding: 1% 0%;
-  display: flex;
-  justify-content: space-between;
-  background-color: #fcfcfc00;
-  position: absolute;
-  top: 0;
-}
-
-.RegHeader{
-  width: 100%;
-  padding: 1% 0%;
-  display: flex;
-  justify-content: space-between;
-  background-color: #fcfcfc00;
-}
-
 .BtnMenu{
   background-color: #FCFCFC;
 }
@@ -222,12 +184,6 @@
 .IFrameDiv{
   height: 98vh;
   width: 99.8%;
-}
-
-.BtnLinkWrap{
-  width: 50%;
-  display: flex;
-  justify-content: space-around;
 }
 
 .LinkFolder{

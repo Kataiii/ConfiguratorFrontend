@@ -20,7 +20,6 @@ const AuthGuard : React.FC<AuthGuardProps> = observer(({children}) => {
 
     const refreshToken = async() => {
         await store.refresh();
-        console.log(store.acount.email);
         await activeUser.refreshActiveUser(store.acount);
         setIsLoadingState(false);
     }

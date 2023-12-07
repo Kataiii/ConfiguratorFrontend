@@ -1,5 +1,5 @@
 import styles from "../../app/App.module.css";
-import AuthorisedHeader from "../../shared/ui/AuthorisedHeader";
+import AuthorisedHeader from "../../shared/ui/Headers/AuthorisedHeader";
 import { Outlet } from "react-router-dom";
 import stylesSidePanel from "./css/DevelopmentArea.module.css"
 import { Link, useLocation } from "react-router-dom";

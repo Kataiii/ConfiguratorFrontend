@@ -1,14 +1,12 @@
-import DropdownMenu, { DropdownButtonItem } from "./DropDownMenu";
-import LinkLanding from "./LinkLanding";
-import styles from "../../app/App.module.css"
+import DropdownMenu, { DropdownButtonItem } from "../DropDownMenu";
+import LinkLanding from "../LinkLanding";
+import styles from "./styles/Header.module.css"
 import { useMemo } from "react";
 import { useNavigate } from "react-router";
 
 
 
 const UnauthorisedHeader = () => {
-    const className : string = styles.Header;
-
     const navigate = useNavigate();
 
     const unauthorisedmenuItems = useMemo<DropdownButtonItem[]>(() =>  [
@@ -23,10 +21,10 @@ const UnauthorisedHeader = () => {
     ], [])
 
     return(
-        <div className={className}>
+        <header className={styles.Header}>
             <LinkLanding></LinkLanding>
             <DropdownMenu links={unauthorisedmenuItems}></DropdownMenu>
-        </div>
+        </header>
     );
 }
 

@@ -1,9 +1,9 @@
 import styles from "../../app/App.module.css"
-import UnauthorisedHeader from "../../shared/ui/UnauthorisedHeader";
+import UnauthorisedHeader from "../../shared/ui/Headers/UnauthorisedHeader";
 import { Outlet } from "react-router-dom";
 import { useContext } from "react";
 import { Context } from "../..";
-import AuthorisedHeader from "../../shared/ui/AuthorisedHeader";
+import AuthorisedHeader from "../../shared/ui/Headers/AuthorisedHeader";
 import { useEffect } from "react";
 import { observer } from "mobx-react-lite";
 

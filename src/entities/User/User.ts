@@ -15,7 +15,20 @@ export interface IUser{
     name: string | null;
     pathronomyc: string | null;
     phone_number: string | null;
-    about_me: Text | null;
+    about_me: string | null;
+}
+
+export interface IUserProfile{
+    surname: string | null;
+    name: string | null;
+    pathronomyc: string | null;
+    profile_picture: File | null;
+    city_id: number | null;
+    email: string;
+    phone_number: string | null;
+    last_password: string | null;
+    new_password: string | null;
+    about_me: string | null;
 }
 
 

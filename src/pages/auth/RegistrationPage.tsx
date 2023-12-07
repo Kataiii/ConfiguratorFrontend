@@ -1,4 +1,4 @@
-import BlockRegistration from "../widgets/BlockRegistration";
+import BlockRegistration from "../../widgets/BlockRegistration";
 
 
 const RegistrationPage = () =>{

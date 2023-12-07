@@ -1,5 +1,5 @@
 import styles from "../../app/App.module.css";
-import AuthorisedHeader from "../../shared/ui/AuthorisedHeader";
+import AuthorisedHeader from "../../shared/ui/Headers/AuthorisedHeader";
 import { Outlet, useLocation } from "react-router-dom";
 import stylesSidePanel from "./css/DevelopmentArea.module.css";
 import { Link } from "react-router-dom";
@@ -60,7 +60,7 @@ export default function Root(){
                     </div>
                     <div className={stylesSidePanel.DivWrapPageContent}>
                         <div>
-                            <div>
+                            <div className={stylesSidePanel.breadCrumpWrap}>
                                 <BreadApp title={stateFolder}/>
                             </div>
                             <div>

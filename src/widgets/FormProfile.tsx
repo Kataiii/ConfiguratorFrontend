@@ -9,7 +9,7 @@ import styles from './css/FormProfile.module.css';
 
 const FormProfile = observer(() => {
     const {store, activeUser} = useContext(Context);
-    const [about, setAboutState] = useState<Text | null>(null);
+    const [about, setAboutState] = useState<string | null>(null);
 
     useEffect(() => {
 
@@ -30,7 +30,8 @@ const FormProfile = observer(() => {
                             email={store.acount.email} 
                             is_checked={store.acount.is_checked_email}
                             phone_number={activeUser.user.phone_number}
-                            about_me={about}/>
+                            about_me={about}
+                            city_id={store.acount.city_id}/>
         </div>
     )
 })
