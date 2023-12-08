@@ -1,0 +1,40 @@
+.popUpMenu{
+    display: flex;
+    flex-direction: column;
+    background-color: #313131;
+    padding: 19px 38px 20px 16px;
+    list-style-type: none;
+    width: max-content;
+    gap: 12px;
+}
+
+.popUpLeft{
+    border-radius: 0px 11px 11px 11px;
+}
+
+.popUpRight{
+    border-radius: 11px 0px 11px 11px;
+}
+
+.popUpMenuItem{
+    font-family: Ubuntu;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    cursor: pointer;
+}
+
+.itemWhite{
+    color: #FCFCFC;
+}
+
+.itemRed{
+    color: #DE7676;
+}
+
+.personMenu{
+    width: 80%;
+    position: absolute;
+    top: -15px;
+    right: 5px;
+}

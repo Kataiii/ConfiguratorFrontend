@@ -1,4 +1,4 @@
-import DropdownMenu, { DropdownButtonItem } from "../DropDownMenu";
+import DropdownMenu, { DropdownButtonItem } from "../DropDown/DropDownMenu";
 import LinkLanding from "../LinkLanding";
 import styles from "./styles/Header.module.css"
 import { useContext, useMemo } from "react";
@@ -7,6 +7,8 @@ import ButtonLink from "../ButtonLink";
 import Chat from "../../../assets/icons/icon-chat.svg";
 import MyProject from "../../../assets/icons/icon-my-projects.svg";
 import { Context } from "../../..";
+import PopUpMenu, { PopUpMenuItem } from "../DropDown/PopUpMenu";
+import { ColorText } from "../../../entities/Enums/ColorTextPopUp";
 
 
 const AuthorisedHeader = () => {
@@ -15,23 +17,26 @@ const AuthorisedHeader = () => {
     let className = locate.pathname == '/'? styles.AuthHeaderLanding : styles.AuthHeader;
     const {store} = useContext(Context);
 
-    const authorisedmenuItems = useMemo<DropdownButtonItem[]>(() =>  [
+    const authorisedMenuItems = useMemo<PopUpMenuItem[]>(() =>  [
       {
-        label: 'Мои проекты',
-        action: () => navigate('/home')
+        content: 'Мои проекты',
+        action: () => navigate('/home'),
+        color: ColorText.White
       },
       {
-        label: 'Профиль',
-        action: () => navigate('/home/profile')
+        content: 'Профиль',
+        action: () => navigate('/home/profile'),
+        color: ColorText.White
       }
       ,
       {
-        label: 'Выйти',
+        content: 'Выйти',
         action: async () => 
         { 
           await store.logout();
           navigate('/');
-        }
+        },
+        color: ColorText.Red
       }
     ], [])
 
@@ -41,7 +46,7 @@ const AuthorisedHeader = () => {
             <div className={styles.BtnLinkWrap}>
               <ButtonLink img={MyProject} imgAlt="мои проекты" content="Мои проекты" action={() => navigate('/home')}></ButtonLink>
               <ButtonLink img={Chat} imgAlt="чаты" content="Чат" action={() => navigate('/chats')}></ButtonLink>
-              <DropdownMenu links={authorisedmenuItems}></DropdownMenu>
+              <DropdownMenu links={authorisedMenuItems}></DropdownMenu>
             </div>
         </header>
     );

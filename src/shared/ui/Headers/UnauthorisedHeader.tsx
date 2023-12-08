@@ -1,8 +1,9 @@
-import DropdownMenu, { DropdownButtonItem } from "../DropDownMenu";
+import DropdownMenu, { DropdownButtonItem } from "../DropDown/DropDownMenu";
 import LinkLanding from "../LinkLanding";
 import styles from "./styles/Header.module.css"
 import { useMemo } from "react";
 import { useNavigate } from "react-router";
+import { ColorText } from "../../../entities/Enums/ColorTextPopUp";
 
 
 
@@ -11,12 +12,14 @@ const UnauthorisedHeader = () => {
 
     const unauthorisedmenuItems = useMemo<DropdownButtonItem[]>(() =>  [
       {
-        label: 'Регистрация',
-        action: () => navigate('/login/register')
+        content: 'Регистрация',
+        action: () => navigate('/login/register'),
+        color: ColorText.White
       },
       {
-        label: 'Авторизация',
-        action: () => navigate('/login')
+        content: 'Авторизация',
+        action: () => navigate('/login'),
+        color: ColorText.White
       }
     ], [])
 

@@ -2,12 +2,48 @@ import BlockAddProjects from "../../shared/ui/BlockAddProjects";
 import styles from "../../app/App.module.css"
 import ProjectCard from "../../entities/Project/ui/ProjectCard";
 import Projects from "../../store/project";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { Project } from "../../entities/Project/project";
+import { PopUpMenuItem } from "../../shared/ui/DropDown/PopUpMenu";
+import { ColorText } from "../../entities/Enums/ColorTextPopUp";
 
 
-const ProjectPage = () => {
+const ProjectPage: React.FC = () => {
     const [projectsList, setProjectsList] = useState(Projects.apiGetAllProjectsForUser())
+
+    const itemMenuProject: PopUpMenuItem[] = useMemo<PopUpMenuItem[]>(() =>  [
+        {
+          content: 'Открыть',
+          action: () => console.log('Открыть'),
+          color: ColorText.White
+        },
+        {
+          content: 'Отправить на просчет',
+          action: () => console.log('Отправить на просчет'),
+          color: ColorText.White
+        }
+        ,
+        {
+            content: 'Переименовать',
+            action: () => console.log('Переименовать'),
+            color: ColorText.White
+        },
+        {
+            content: 'Создать копию',
+            action: () => console.log('Создать копию'),
+            color: ColorText.White
+        },
+        {
+            content: 'Переместить',
+            action: () => console.log('Переместить'),
+            color: ColorText.White
+        },
+        {
+          content: 'Удалить',
+          action: () => console.log('Удалить'),
+          color: ColorText.Red
+        }
+      ], [])
 
     const sortProject = (firstProject : Project, secondProject : Project) : number => {
         if(firstProject.update_date > secondProject.update_date) return 1;
@@ -20,7 +56,7 @@ const ProjectPage = () => {
             <>
                 {
                     projectsList.sort(sortProject).map((item, index) => {
-                        return <ProjectCard key={index} project={item}/>
+                        return <ProjectCard key={index} project={item} isActiveMenu={false} itemsMenu={itemMenuProject}/>
                     })
                 }
             </>
