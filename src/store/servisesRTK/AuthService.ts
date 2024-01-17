@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { AuthResponse } from "../../entities/Response/AuthResponse";
-import { API_URL } from "../../http";
+import { API_URL } from "../../http/Index";
 import { initialState, setState } from "../sliceRTK/AuthSlice";
 
 

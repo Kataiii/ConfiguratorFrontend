@@ -3,7 +3,8 @@ import { useContext } from "react";
 import { Context } from "..";
 import { AuthResponse } from "../entities/Response/AuthResponse";
 
-export const API_URL = 'http://localhost:5000';
+//TODO проверить работает ли
+export const API_URL = process.env.API_URL;
 
 
 const $api = axios.create({
@@ -11,12 +12,12 @@ const $api = axios.create({
     baseURL: API_URL
 });
 
+//TODO поменять на store все localStorage
 $api.interceptors.request.use((config) => {
     config.headers.Authorization = `Bearer ${localStorage.getItem('token')}`;
     config.headers.Accept = 'application/json';
     return config;
 });
-
 
 $api.interceptors.response.use((config) => {
     return config;

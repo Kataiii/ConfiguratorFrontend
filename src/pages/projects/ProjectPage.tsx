@@ -21,8 +21,7 @@ const ProjectPage: React.FC = () => {
           content: 'Отправить на просчет',
           action: () => console.log('Отправить на просчет'),
           color: ColorText.White
-        }
-        ,
+        },
         {
             content: 'Переименовать',
             action: () => console.log('Переименовать'),

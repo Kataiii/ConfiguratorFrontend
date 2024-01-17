@@ -10,7 +10,7 @@ import { ColorText } from "../../entities/Enums/ColorTextPopUp";
 import ProjectCard from "../../features/CardProject/ProjectCard";
 
 
-const FolderProjectPage = () => {
+const FolderProjectPage: React.FC = () => {
     const location = useLocation();
     const [projectsList, setProjectsList] = useState(Projects.apiGetProjectInFolder(folder.findIdFolderByUrl(location.pathname)));
     
@@ -24,8 +24,7 @@ const FolderProjectPage = () => {
           content: 'Отправить на просчет',
           action: () => console.log('Отправить на просчет'),
           color: ColorText.White
-        }
-        ,
+        },
         {
             content: 'Переименовать',
             action: () => console.log('Переименовать'),

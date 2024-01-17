@@ -1,6 +1,6 @@
 import RecoveryPasswordModal from "../../shared/ui/Modals/RecoveryPasswordModal";
 
-const RecoveryPasPage = () => {
+const RecoveryPasPage:React.FC = () => {
     return(
         <div style={{paddingTop: '10%'}}>
             <RecoveryPasswordModal/>

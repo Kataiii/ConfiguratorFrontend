@@ -1,7 +1,7 @@
 import BlockRegistration from "../../widgets/BlockRegistration";
 
 
-const RegistrationPage = () =>{
+const RegistrationPage: React.FC = () =>{
     return(
         <div>
             <BlockRegistration/>

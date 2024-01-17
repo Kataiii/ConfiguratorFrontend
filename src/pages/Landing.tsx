@@ -9,7 +9,7 @@ import BlockPartners from "../widgets/BlockPartners";
 import Footer from "../shared/ui/Footer";
 
 
-const Landing =  () =>{
+const Landing: React.FC = () =>{
 
     return(
         <div className={styles.App}>

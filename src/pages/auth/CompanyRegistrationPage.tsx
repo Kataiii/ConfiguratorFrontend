@@ -5,7 +5,7 @@ import FormRegistCompany from "../../widgets/FormRegistCompany";
 import { useNavigate } from "react-router-dom";
 
 
-const CompanyRegistPage = () => {
+const CompanyRegistPage: React.FC = () => {
     const navigate = useNavigate();
     const {store} = useContext(Context);
 
@@ -14,16 +14,14 @@ const CompanyRegistPage = () => {
             <FormRegistCompany/>
             {
                 store.isFailAuth
-                ?
-                    <DefaultModal title="Ошибка регистрации"
+                ? <DefaultModal title="Ошибка регистрации"
                                     message="Такой пользователь уже существует. Попробуйте войти в свой аккаунт"
                                     titleBtn="Войти в аккаунт"
                                     actionBtn={() => {
                                         store.setFailAuth(false);
                                         navigate('/login')
                                     }}/>
-                :
-                    null
+                : null
             }
         </div>
     );

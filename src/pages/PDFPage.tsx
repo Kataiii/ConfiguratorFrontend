@@ -3,10 +3,14 @@ import styles from "../app/App.module.css"
 
 const WEBPATHDOCUMENT = 'http://127.0.0.1:9000/'
 
-const PDFPage = (props : {name : string}) => {
+export interface PDFPageProps{
+    name: string;
+}
+
+const PDFPage: React.FC<PDFPageProps> = ({name}) => {
     return(
         <div>
-            <iframe src={WEBPATHDOCUMENT + props.name} className={styles.IFrameDiv}></iframe>
+            <iframe src={WEBPATHDOCUMENT + name} className={styles.IFrameDiv}></iframe>
         </div>
     )
 }

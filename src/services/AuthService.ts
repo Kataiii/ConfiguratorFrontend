@@ -1,4 +1,4 @@
-import $api, { API_URL } from "../http";
+import $api, { API_URL } from "../http/Index";
 import { AxiosResponse } from "axios";
 import { AuthResponse } from "../entities/Response/AuthResponse";
 import { ICreateUser } from "../entities/User/User";

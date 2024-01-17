@@ -4,7 +4,7 @@ import { ColorText } from "../../entities/Enums/ColorTextPopUp";
 import PopUpMenu, { PopUpMenuItem } from "../../shared/ui/DropDown/PopUpMenu";
 
 
-const DefaultChatPage = () => {
+const DefaultChatPage: React.FC = () => {
     const navigate = useNavigate();
     const locate = useLocation();
 
@@ -18,8 +18,7 @@ const DefaultChatPage = () => {
           content: 'Профиль',
           action: () => navigate('/home/profile'),
           color: ColorText.White
-        }
-        ,
+        },
         {
           content: 'Выйти',
           action: async () => 

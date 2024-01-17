@@ -1,7 +1,7 @@
 import UnityContainer from "../../shared/webgl/UnityContainer";
 
 
-const ConfiguratorPage = () => {
+const ConfiguratorPage: React.FC = () => {
     return(
         <div>
             {/* <p>ConfigurationPage</p> */}

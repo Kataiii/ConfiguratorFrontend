@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { ICity } from '../../entities/City/City';
-import { API_URL } from '../../http';
+import { API_URL } from '../../http/Index';
 
 
 export const cityAPI = createApi({

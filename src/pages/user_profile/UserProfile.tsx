@@ -9,7 +9,7 @@ import TitlePart from "../../shared/ui/ProfilePart/TitlePart";
 import FormProfile from "../../widgets/FormProfile";
 import styles from './css/Profile.module.css';
 
-const UserProfile = observer(() => {
+const UserProfile: React.FC = observer(() => {
     const {store, activeUser} = useContext(Context);
     const [login, setLoginState] = useState('');
     const [city, setCityState] = useState('');

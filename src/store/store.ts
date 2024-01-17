@@ -5,7 +5,7 @@ import { ICreateUser } from "../entities/User/User";
 import AuthService from "../services/AuthService";
 import axios from "axios";
 import { AuthResponse } from "../entities/Response/AuthResponse";
-import { API_URL } from "../http";
+import { API_URL } from "../http/Index";
 
 export default class Store{
     acount = {} as IAccount;

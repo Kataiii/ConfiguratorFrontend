@@ -1,6 +1,6 @@
 import ResetPasswordModal from "../../shared/ui/Modals/ResetPasswordModal";
 
-const ResetPasPage = () => {
+const ResetPasPage: React.FC = () => {
     return(
         <div style={{paddingTop: '6%'}}>
             <ResetPasswordModal/>

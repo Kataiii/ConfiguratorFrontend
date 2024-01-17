@@ -1,7 +1,7 @@
 import FormLogin from "../../widgets/FormLogin";
 
 
-const LoginPage = () => {
+const LoginPage: React.FC = () => {
     return(
         <div>
             <FormLogin/>

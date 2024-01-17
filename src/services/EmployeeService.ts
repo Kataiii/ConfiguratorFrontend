@@ -1,6 +1,6 @@
 import { AxiosResponse } from "axios";
 import { IEmployee } from "../entities/User/Employee";
-import $api from "../http";
+import $api from "../http/Index";
 
 
 export default class EmployeeService{

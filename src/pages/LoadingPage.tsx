@@ -1,6 +1,6 @@
 import { ConfigProvider, Spin } from "antd";
 
-const LoadingPage = () => {
+const LoadingPage: React.FC = () => {
     return(
         <div style={{width: '100%', minHeight: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'center'}}>
             <ConfigProvider
