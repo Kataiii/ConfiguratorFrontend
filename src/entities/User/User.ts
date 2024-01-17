@@ -1,5 +1,6 @@
 import { object, string, boolean } from "yup";
 import { ValidationHelper } from "../../shared/common/ValidationHelper";
+import { Nullable } from "../Enums/Nullable";
 
 export interface ICreateUser{
     login: string;
@@ -11,24 +12,24 @@ export interface ICreateUser{
 export interface IUser{
     id: number;
     login: string;
-    surname: string | null;
-    name: string | null;
-    pathronomyc: string | null;
-    phone_number: string | null;
-    about_me: string | null;
+    surname: Nullable<string>;
+    name: Nullable<string>;
+    pathronomyc: Nullable<string>;
+    phone_number: Nullable<string>;
+    about_me: Nullable<string>;
 }
 
 export interface IUserProfile{
-    surname: string | null;
-    name: string | null;
-    pathronomyc: string | null;
-    profile_picture: File | null;
-    city_id: number | null;
+    surname: Nullable<string>;
+    name: Nullable<string>;
+    pathronomyc: Nullable<string>;
+    profile_picture: Nullable<File>;
+    city_id: Nullable<number>;
     email: string;
-    phone_number: string | null;
-    last_password: string | null;
-    new_password: string | null;
-    about_me: string | null;
+    phone_number: Nullable<string>;
+    last_password: Nullable<string>;
+    new_password: Nullable<string>;
+    about_me: Nullable<string>;
 }
 
 

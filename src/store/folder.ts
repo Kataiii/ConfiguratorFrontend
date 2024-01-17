@@ -1,5 +1,5 @@
 import { makeAutoObservable } from "mobx"
-import { Folder } from "../entities/Folder/folder"
+import { Folder } from "../entities/Folder/Folder"
 import axios from "axios"
 
 class Folders{

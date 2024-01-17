@@ -2,7 +2,7 @@ import styles from "./css/Menu.module.css"
 import Arrow from "../../assets/icons/icon-dropdown.svg"
 import { DragEvent, useState } from "react"
 import folder from "../../store/folder"
-import { Folder } from "../../entities/Folder/folder"
+import { Folder } from "../../entities/Folder/Folder"
 import { useNavigate } from "react-router-dom"
 import AddFilderImage from '../../assets/icons/icon-add-folder.svg'
 import IconDrag from '../../assets/icons/icon-drag.svg'

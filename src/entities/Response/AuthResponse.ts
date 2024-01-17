@@ -1,4 +1,4 @@
-import { IAccount } from "../Account/IAccount";
+import { IAccount } from "../Account/Account";
 
 export interface AuthResponse{
     accessToken: string;

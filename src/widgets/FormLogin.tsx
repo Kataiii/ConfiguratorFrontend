@@ -9,7 +9,8 @@ import { useNavigate } from "react-router"
 import { useContext, useState, useEffect } from "react";
 import { Context } from "..";
 import { Link } from "react-router-dom";
-import { IAccount } from "../entities/Account/IAccount";
+import { IAccount } from "../entities/Account/Account";
+// import { useLoginUserMutation } from '../store/servisesRTK/AuthService';
 
 
 const FormLogin = observer( () => {
@@ -17,6 +18,8 @@ const FormLogin = observer( () => {
   const {store, activeUser} = useContext(Context);
   const [email, setEmailState] = useState('');
   const [password, setPasswordState] = useState('');
+
+  // const [loginUser, {}] = useLoginUserMutation();
 
   useEffect(() => {
     store.isAuth ? navigate('/home') : navigate('/login');

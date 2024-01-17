@@ -1,6 +1,6 @@
 import { makeAutoObservable } from "mobx";
-import { IAccount } from "../entities/Account/IAccount";
-import { IRole } from "../entities/Role/IRole";
+import { IAccount } from "../entities/Account/Account";
+import { IRole } from "../entities/Role/Role";
 import { ICompany } from "../entities/User/Company";
 import { IEmployee } from "../entities/User/Employee";
 import { IUser } from "../entities/User/User";

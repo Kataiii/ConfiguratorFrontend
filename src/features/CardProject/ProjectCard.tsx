@@ -1,10 +1,10 @@
-import styles from './ProjectCard.module.css'
-import { Project } from '../project'
-import { useState } from 'react'
-import { ConvertionDate } from '../../../shared/common/ConvertionDate'
-import IconMenu from '../../../assets/icons/icon-dropdown menu.svg'
-import { useNavigate } from 'react-router-dom'
-import PopUpMenu, { PopUpMenuItem } from '../../../shared/ui/DropDown/PopUpMenu'
+import styles from './ProjectCard.module.css';
+import { useState } from 'react';
+import IconMenu from '../../assets/icons/icon-dropdown menu.svg';
+import { useNavigate } from 'react-router-dom';
+import { Project } from '../../entities/Project/Project';
+import { ConvertionDate } from '../../shared/common/ConvertionDate';
+import PopUpMenu, { PopUpMenuItem } from '../../shared/ui/DropDown/PopUpMenu';
 
 interface ProjectCardProps{
     project : Project;

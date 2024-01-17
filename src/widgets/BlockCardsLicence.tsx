@@ -1,4 +1,4 @@
-import CardLicence, {CardLicenceProps} from "../entities/Licence/ui/CardLicense";
+import CardLicence, {CardLicenceProps} from "./CardLicence/CardLicense";
 import { useMemo } from "react";
 import styles from "./css/BlockCard.module.css"
 import { useNavigate } from "react-router-dom";
@@ -12,47 +12,52 @@ const BlockCardLicencce = () => {
 
     const cardLicences = useMemo<CardLicenceProps[]>(() =>  [
         {
-            title: 'Базовая',
-            altImage: 'person',
-            description: 'Пробная подписка для дальнейшего </br> оформления',
-            content: [
-                'Неограниченное количество того-то',
-                'Чуть-чуть другого',
-                'И еще вот это',
-                'И это тоже'
-            ],
+            cardInfo: {
+                title: 'Базовая',
+                altImage: 'person',
+                description: 'Пробная подписка для дальнейшего </br> оформления',
+                content: [
+                    'Неограниченное количество того-то',
+                    'Чуть-чуть другого',
+                    'И еще вот это',
+                    'И это тоже'
+                ],
+                image : Person
+            },
             buttonContent: 'Бесплатно',
-            action: () => navigate('/login'),
-            image : Person
+            action: () => navigate('/login')
         },
         {
-            title: 'Стандартная',
-            altImage: 'bag-standart',
-            description: 'Стандартная подписка со всем </br> функционалом',
-            content: [
-                'Неограниченное количество того-то',
-                'Чуть-чуть другого',
-                'И еще вот это',
-                'И это тоже'
-            ],
+            cardInfo: {
+                title: 'Стандартная',
+                altImage: 'bag-standart',
+                description: 'Стандартная подписка со всем </br> функционалом',
+                content: [
+                    'Неограниченное количество того-то',
+                    'Чуть-чуть другого',
+                    'И еще вот это',
+                    'И это тоже'
+                ],
+                image : Bag
+            },
             buttonContent: 'Оформить за 1500/мес',
-            action: () => navigate('/'),
-            image : Bag
-        }
-        ,
+            action: () => navigate('/')
+        },
         {
-            title: 'Коммерческая',
-            altImage: 'student',
-            description: 'Весь функционал и возможность </br> продавать свои услуги',
-            content: [
-                'Неограниченное количество того-то',
-                'Чуть-чуть другого',
-                'И еще вот это',
-                'И это тоже'
-            ],
+            cardInfo: {
+                title: 'Коммерческая',
+                altImage: 'student',
+                description: 'Весь функционал и возможность </br> продавать свои услуги',
+                content: [
+                    'Неограниченное количество того-то',
+                    'Чуть-чуть другого',
+                    'И еще вот это',
+                    'И это тоже'
+                ],
+                image : Student
+            },
             buttonContent: 'Оформить за 2500/мес',
-            action: () => navigate('/'),
-            image : Student
+            action: () => navigate('/')
         }
     ], []);
 
@@ -64,12 +69,8 @@ const BlockCardLicencce = () => {
                     {
                         cardLicences.map((item, index) => {
                             return(
-                                <CardLicence key={index} 
-                                            title={item.title}
-                                            description={item.description}
-                                            content={item.content}
-                                            image={item.image}
-                                            altImage={item.altImage}
+                                <CardLicence 
+                                            cardInfo={item.cardInfo}
                                             buttonContent={item.buttonContent}
                                             action={item.action}/>
                             );

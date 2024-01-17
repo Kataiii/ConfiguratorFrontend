@@ -1,5 +1,5 @@
 import { makeAutoObservable } from "mobx";
-import { IAccount } from "../entities/Account/IAccount";
+import { IAccount } from "../entities/Account/Account";
 import { ICreateCompany } from "../entities/User/Company";
 import { ICreateUser } from "../entities/User/User";
 import AuthService from "../services/AuthService";

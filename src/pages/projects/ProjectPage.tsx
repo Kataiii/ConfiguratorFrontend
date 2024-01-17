@@ -1,11 +1,11 @@
 import BlockAddProjects from "../../shared/ui/BlockAddProjects";
-import styles from "../../app/App.module.css"
-import ProjectCard from "../../entities/Project/ui/ProjectCard";
+import styles from "../../app/App.module.css";
 import Projects from "../../store/project";
 import { useMemo, useState } from "react";
-import { Project } from "../../entities/Project/project";
+import { Project } from "../../entities/Project/Project";
 import { PopUpMenuItem } from "../../shared/ui/DropDown/PopUpMenu";
 import { ColorText } from "../../entities/Enums/ColorTextPopUp";
+import ProjectCard from "../../features/CardProject/ProjectCard";
 
 
 const ProjectPage: React.FC = () => {

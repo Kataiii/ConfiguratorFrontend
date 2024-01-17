@@ -1,23 +1,40 @@
-export class Project{
+import { Nullable } from "../Enums/Nullable";
+
+export interface IProject{
     id : number;
     name : string;
-    name_translate : string | null;
+    name_translate : Nullable<string>;
     id_user : number;
     id_folder : number;
     status : string;
     create_date : Date;
     update_date : Date;
-    preview : any | null;
+    preview : Nullable<any>;
+}
 
+//TODO убрать это
+export class Project implements IProject{
+    id: number;
+    name: string;
+    name_translate: Nullable<string>;
+    id_user: number;
+    id_folder: number;
+    status: string;
+    create_date: Date;
+    update_date: Date;
+    preview: any;
+    
     constructor(id : number,
         name : string, 
         id_user : number,
         id_folder : number)
+
     constructor(id : number,
                 name : string, 
                 id_user : number,
                 id_folder : number,
                 name_translate ?: string)
+
     constructor(id : number, 
                 name : string, 
                 id_user : number,

@@ -1,3 +1,12 @@
+export interface IFolder{
+    id : number;
+    name : string;
+    url : string;
+    order : number;
+    type : string;
+}
+
+//TODO убрать это
 export class Folder{
     id : number;
     name : string;

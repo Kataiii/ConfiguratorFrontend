@@ -2,6 +2,7 @@ import { object, string, boolean, mixed, array } from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import { ValidationHelper } from "../../shared/common/ValidationHelper";
+import { Nullable } from "../Enums/Nullable";
 
 export const REQUIRED_FIELD_MESSAGE = 'Поле обязательно для заполнения';
 
@@ -23,14 +24,14 @@ export interface ICompany{
     company_name: string;
     surname: string;
     name: string;
-    pathronomyc: string | null;
+    pathronomyc: Nullable<string>;
     phone_number: string;
     company_type_id: number;
     inn_file: string;
     is_checked_inn: boolean;
     official_letter: string;
     is_checked_official_letter: boolean;
-    about_company: string | null;
+    about_company: Nullable<string>;
 }
 
 export type FormCompanyValues = {

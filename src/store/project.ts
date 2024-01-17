@@ -1,6 +1,6 @@
 import { makeAutoObservable } from "mobx"
-import { Folder } from "../entities/Folder/folder";
-import { Project } from "../entities/Project/project"
+import { Folder } from "../entities/Folder/Folder";
+import { Project } from "../entities/Project/Project"
 
 class Projects {
     projects : Project[] = [
