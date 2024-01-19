@@ -1,13 +1,13 @@
-import CardLicence, {CardLicenceProps} from "./CardLicence/CardLicense";
 import { useMemo } from "react";
-import styles from "./css/BlockCard.module.css"
+import styles from "../css/BlockCard.module.css";
 import { useNavigate } from "react-router-dom";
-import Person from "../assets/icons/icon-person.svg"
-import Bag from "../assets/icons/icon-bag.svg"
-import Student from "../assets/icons/icon-student.svg"
+import Person from "../../assets/icons/icon-person.svg";
+import Bag from "../../assets/icons/icon-bag.svg";
+import Student from "../../assets/icons/icon-student.svg";
+import CardLicence, { CardLicenceProps } from "../../features/CardLicence/CardLicense";
 
 
-const BlockCardLicencce = () => {
+const BlockCardLicencce: React.FC = () => {
     const navigate = useNavigate();
 
     const cardLicences = useMemo<CardLicenceProps[]>(() =>  [

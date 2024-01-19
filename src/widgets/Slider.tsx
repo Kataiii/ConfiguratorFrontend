@@ -1,16 +1,16 @@
 import React, { createContext, useState, useEffect } from "react";
-import { SlideProps } from "../shared/ui/Slide";
 import styles from "./css/Slider.module.css"
 import SlidesList from "../features/SlidesList";
-import SliderArrow from "../shared/ui/SliderArrow";
 import Dots from "../features/Dots";
 import { getImages } from "../shared/api/ImagesApi";
+import { SlideProps } from "../shared/ui/forSlider/Slide";
+import SliderArrow from "../shared/ui/forSlider/SliderArrow";
 
-export interface sliderProps {
-    autoplay: boolean,
+export interface SliderProps {
+    autoPlay: boolean,
     autoPlayTime: number,
-    width: '%' | 'px',
-    height: '%' | 'px',
+    width: string,
+    height: string
 }
 
 export class sliderContext {
@@ -23,7 +23,7 @@ export class sliderContext {
 
 export const SliderContext = createContext(new sliderContext());
 
-const Slider = (props: { width: string, height: string, autoPlay: boolean, autoPlayTime: number }) => {
+const Slider: React.FC<SliderProps> = ({width, height, autoPlay, autoPlayTime}) => {
     const [items, SetItems] = useState<SlideProps[]>([]);
     const [slide, SetSlide] = useState(0);
     const [touchPosition, SetTouchPosition] = useState(null);
@@ -76,11 +76,11 @@ const Slider = (props: { width: string, height: string, autoPlay: boolean, autoP
     }
 
     useEffect(() => {
-        if (!props.autoPlay) return;
+        if (!autoPlay) return;
 
         const interval = setInterval(() => {
             changeSlide(1);
-        }, props.autoPlayTime);
+        }, autoPlayTime);
 
         return () => {
             clearInterval(interval);
@@ -115,13 +115,5 @@ const Slider = (props: { width: string, height: string, autoPlay: boolean, autoP
         </div>
     );
 }
-
-
-Slider.defaultProps = {
-    autoPlay: false,
-    autoPlayTime: 5000,
-    width: "100%",
-    height: "100%"
-};
 
 export default Slider;

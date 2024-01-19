@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import { Slider } from 'antd';
-import styles from './css/Video.module.css'
-import Volume from '../../assets/icons/icon-volume-up.svg'
-import NoVolume from '../../assets/icons/icon-volume-mute.svg'
-import Screen from '../../assets/icons/icon-full-screen.svg'
+import styles from '../ui/css/Video.module.css';
+import Volume from '../../assets/icons/icon-volume-up.svg';
+import NoVolume from '../../assets/icons/icon-volume-mute.svg';
 
 interface IconSliderProps {
     max: number;

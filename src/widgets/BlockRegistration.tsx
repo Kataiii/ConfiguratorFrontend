@@ -1,12 +1,12 @@
 import PersonRegist from "../assets/images/image-person-regist.svg"
 import CompanyRegist from "../assets/images/image-company-regist.svg"
-import CardRegist, {cardRegistProps} from "../shared/ui/CardRegist";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import styles from "./css/BlockCard.module.css"
+import CardRegist from "../shared/ui/cards/CardRegist";
 
 
-const BlockRegistration = () => {
+const BlockRegistration: React.FC = () => {
     const navigate = useNavigate();
 
     return(

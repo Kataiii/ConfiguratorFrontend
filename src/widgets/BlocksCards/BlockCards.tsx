@@ -1,13 +1,13 @@
-import styles from "./css/BlockCard.module.css"
-import CardPossibility, {CardProps} from "../shared/ui/CardPossibility";
+import styles from "../css/BlockCard.module.css";
 import { useMemo } from "react";
-import House from "../assets/icons/icon-house.svg"
-import Sofa from "../assets/icons/icon-sofa.svg"
-import Camera from "../assets/icons/icon-camera.svg"
+import House from "../../assets/icons/icon-house.svg";
+import Sofa from "../../assets/icons/icon-sofa.svg";
+import Camera from "../../assets/icons/icon-camera.svg";
+import CardPossibility, { CardProps } from "../../shared/ui/cards/CardPossibility";
 
 
 
-const BlockCards = () => {
+const BlockCards: React.FC = () => {
     const cardPosibilityItems = useMemo<CardProps[]>(() =>  [
         {
           image: House,

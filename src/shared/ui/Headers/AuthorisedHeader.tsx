@@ -1,4 +1,4 @@
-import DropdownMenu, { DropdownButtonItem } from "../DropDown/DropDownMenu";
+import DropdownMenu from "../DropDown/DropDownMenu";
 import LinkLanding from "../LinkLanding";
 import styles from "./styles/Header.module.css"
 import { useContext, useMemo } from "react";
@@ -7,11 +7,11 @@ import ButtonLink from "../ButtonLink";
 import Chat from "../../../assets/icons/icon-chat.svg";
 import MyProject from "../../../assets/icons/icon-my-projects.svg";
 import { Context } from "../../..";
-import PopUpMenu, { PopUpMenuItem } from "../DropDown/PopUpMenu";
+import { PopUpMenuItem } from "../DropDown/PopUpMenu";
 import { ColorText } from "../../../entities/Enums/ColorTextPopUp";
 
 
-const AuthorisedHeader = () => {
+const AuthorisedHeader: React.FC = () => {
     const navigate = useNavigate();
     const locate = useLocation();
     let className = locate.pathname == '/'? styles.AuthHeaderLanding : styles.AuthHeader;
@@ -27,8 +27,7 @@ const AuthorisedHeader = () => {
         content: 'Профиль',
         action: () => navigate('/home/profile'),
         color: ColorText.White
-      }
-      ,
+      },
       {
         content: 'Выйти',
         action: async () => 

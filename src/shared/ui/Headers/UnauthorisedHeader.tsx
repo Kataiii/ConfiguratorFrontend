@@ -6,8 +6,7 @@ import { useNavigate } from "react-router";
 import { ColorText } from "../../../entities/Enums/ColorTextPopUp";
 
 
-
-const UnauthorisedHeader = () => {
+const UnauthorisedHeader: React.FC = () => {
     const navigate = useNavigate();
 
     const unauthorisedmenuItems = useMemo<DropdownButtonItem[]>(() =>  [

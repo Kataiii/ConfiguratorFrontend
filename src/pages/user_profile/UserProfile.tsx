@@ -6,7 +6,7 @@ import { IEmployee } from "../../entities/User/Employee";
 import { IUser } from "../../entities/User/User";
 import CityService from "../../services/CityService";
 import TitlePart from "../../shared/ui/ProfilePart/TitlePart";
-import FormProfile from "../../widgets/FormProfile";
+import FormProfile from "../../widgets/forms/FormProfile";
 import styles from './css/Profile.module.css';
 
 const UserProfile: React.FC = observer(() => {

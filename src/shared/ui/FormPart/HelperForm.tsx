@@ -1,15 +1,20 @@
+import { Nullable } from "../../../entities/Enums/Nullable";
 import styles from "./css/InputForm.module.css"
 
-const HelperForm = (props: { content: string | null }) => {
+interface HelperFormProps{
+    content: Nullable<string>;
+}
+
+const HelperForm: React.FC<HelperFormProps> = ({ content }) => {
     return (
         <div className={styles.FormErrorWrap}>
             <div className={styles.FormError}>
                 {
-                    props.content == null
+                    content == null
                         ?
                         null
                         :
-                        <p dangerouslySetInnerHTML={{ __html: props.content }} className={styles.FormErrorContent}></p>
+                        <p dangerouslySetInnerHTML={{ __html: content }} className={styles.FormErrorContent}></p>
                 }
             </div>
         </div>

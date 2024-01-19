@@ -13,8 +13,8 @@ const HomeRouter = {
             <Outlet context={[]} />
         </AuthGuard>,
     children: [
-        UserProjectRouter.data[0],
-        UserProfileRouter.data[0],
+        UserProjectRouter,
+        UserProfileRouter,
         {
             path: "/home/configurator/project/:id",
             element: <ConfiguratorPage />

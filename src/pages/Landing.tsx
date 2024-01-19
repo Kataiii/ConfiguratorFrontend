@@ -1,12 +1,12 @@
 import styles from "../app/App.module.css"
 import Banner from "../widgets/Banner";
-import BlockCards from "../widgets/BlockCards";
+import BlockCards from "../widgets/BlocksCards/BlockCards";
 import Slider from "../widgets/Slider";
-import BlockCardsAdvantages from "../widgets/BlockCardsAdvantages";
 import VideoPlayer from "../widgets/VideoPlayer";
-import BlockCardLicencce from "../widgets/BlockCardsLicence";
 import BlockPartners from "../widgets/BlockPartners";
 import Footer from "../shared/ui/Footer";
+import BlockCardsAdvantages from "../widgets/BlocksCards/BlockCardsAdvantages";
+import BlockCardLicencce from "../widgets/BlocksCards/BlockCardsLicence";
 
 
 const Landing: React.FC = () =>{
@@ -15,7 +15,7 @@ const Landing: React.FC = () =>{
         <div className={styles.App}>
             <Banner/>
             <BlockCards/>
-            <Slider/>
+            <Slider autoPlay={false} autoPlayTime={100} width={"100%"} height={"100%"}/>
             <BlockCardsAdvantages/>
             <VideoPlayer/>
             <BlockCardLicencce/>

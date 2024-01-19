@@ -3,7 +3,7 @@ import styles from "../app/App.module.css"
 import Button from "../shared/ui/ButtonPrim";
 import {useNavigate} from 'react-router-dom';
 
-const Banner = () => {
+const Banner: React.FC = () => {
     const navigate = useNavigate();
 
     return(

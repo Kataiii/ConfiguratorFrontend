@@ -1,8 +1,8 @@
 import { useContext } from "react";
 import { Context } from "../..";
 import DefaultModal from "../../shared/ui/Modals/DefaultModal";
-import FormRegistCompany from "../../widgets/FormRegistCompany";
 import { useNavigate } from "react-router-dom";
+import FormRegistCompany from "../../widgets/forms/FormRegistCompany";
 
 
 const CompanyRegistPage: React.FC = () => {

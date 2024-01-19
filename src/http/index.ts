@@ -4,7 +4,8 @@ import { Context } from "..";
 import { AuthResponse } from "../entities/Response/AuthResponse";
 
 //TODO проверить работает ли
-export const API_URL = process.env.API_URL;
+export const API_URL = 'http://localhost:5000';
+export const FRONT_URL = 'http://localhost:3000';
 
 
 const $api = axios.create({

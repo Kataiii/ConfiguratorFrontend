@@ -8,7 +8,7 @@ import { useEffect } from "react";
 import { observer } from "mobx-react-lite";
 
 
-const Root = observer(() => {
+const Root: React.FC = observer(() => {
     const className : string = styles.App;
     const {store} = useContext(Context);
 

@@ -1,13 +1,13 @@
 import { observer } from "mobx-react-lite";
 import { useContext, useEffect, useState } from "react";
-import { Context } from "..";
-import FileUploader from "../shared/ui/ProfilePart/FileUploader";
-import FormProfilePart from "../shared/ui/ProfilePart/FormProfilePart";
-import LocationPart from "../shared/ui/ProfilePart/LocationPart";
-import Notifications from "../shared/ui/ProfilePart/Notifications";
-import styles from './css/FormProfile.module.css';
+import { Context } from "../..";
+import FileUploader from "../../shared/ui/ProfilePart/FileUploader";
+import FormProfilePart from "../../shared/ui/ProfilePart/FormProfilePart";
+import LocationPart from "../../shared/ui/ProfilePart/LocationPart";
+import Notifications from "../../shared/ui/ProfilePart/Notifications";
+import styles from '../css/FormProfile.module.css';
 
-const FormProfile = observer(() => {
+const FormProfile: React.FC = observer(() => {
     const {store, activeUser} = useContext(Context);
     const [about, setAboutState] = useState<string | null>(null);
 

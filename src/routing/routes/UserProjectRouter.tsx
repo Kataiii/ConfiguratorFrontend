@@ -5,33 +5,29 @@ import FolderProjectPage from "../../pages/projects/FolderProjectPage";
 import ConfiguratorPage from "../../pages/projects/ConfiguratorPage";
 
 const UserProjectRouter = {
-    data: [
+    path: '/home',
+    element: <Root />,
+    errorElement: <ErrorPage />,
+    children: [
         {
-            path: '/home',
-            element: <Root />,
-            errorElement: <ErrorPage />,
+            path: '/home/',
+            element: <ProjectPage />,
+        },
+        {
+            path: "/home/projects/folders/:name_folder",
+            element: <FolderProjectPage />
+        },
+        {
+            path: '/home/renders',
+            element: <ProjectPage />,
             children: [
                 {
-                    path: '/home/',
-                    element: <ProjectPage />,
-                },
-                {
-                    path: "/home/projects/folders/:name_folder",
+                    path: "/home/renders/folders/:name_folder",
                     element: <FolderProjectPage />
                 },
                 {
-                    path: '/home/renders',
-                    element: <ProjectPage />,
-                    children:[
-                        {
-                            path: "/home/renders/folders/:name_folder",
-                            element: <FolderProjectPage />
-                        },
-                        {
-                            path: "/home/renders/project/:id",
-                            element: <ConfiguratorPage />
-                        }
-                    ]
+                    path: "/home/renders/project/:id",
+                    element: <ConfiguratorPage />
                 }
             ]
         }

@@ -1,4 +1,4 @@
-import styles from "./css/Slide.module.css"
+import styles from "../css/Slide.module.css";
 
 export interface SlideProps{
     title : string,

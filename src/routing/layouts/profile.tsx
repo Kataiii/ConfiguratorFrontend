@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 
 
 
-export default function Root(){
+const Root: React.FC = () => {
     const location = useLocation();
     const [styleState, setStyleState] = useState({
         styleLinkProfile : stylesSidePanel.LinkPersonalActive,
@@ -22,6 +22,7 @@ export default function Root(){
                 setStyleState({styleLinkProfile : stylesSidePanel.LinkPersonal, styleLinkLicence : stylesSidePanel.LinkPersonalActive});
     }, [location])
 
+    //TODO вынести панель в отдельный элемент
     return(
         <div className={styles.AppDev}>
             <AuthorisedHeader></AuthorisedHeader>
@@ -41,3 +42,5 @@ export default function Root(){
         </div>
     );
 }
+
+export default Root;

@@ -3,7 +3,7 @@ import { Outlet } from "react-router-dom";
 import AuthorisedHeader from "../../shared/ui/Headers/AuthorisedHeader";
 
 
-export default function Chat(){
+const Chat: React.FC = () => {
     return(
         <div className={styles.App}>
             <AuthorisedHeader/>
@@ -13,3 +13,5 @@ export default function Chat(){
         </div>
     );
 }
+
+export default Chat;

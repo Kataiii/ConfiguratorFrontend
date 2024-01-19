@@ -1,9 +1,9 @@
 import { useMemo } from "react";
-import CardAdvantage, {CardAdvantageProps} from "../shared/ui/CardAdvantage";
-import styles from "./css/BlockCard.module.css"
+import CardAdvantage, { CardAdvantageProps } from "../../shared/ui/cards/CardAdvantage";
+import styles from "../css/BlockCard.module.css"
 
 
-const BlockCardsAdvantages = () => {
+const BlockCardsAdvantages: React.FC = () => {
     const cardAdvantages = useMemo<CardAdvantageProps[]>(() =>  [
         {
             title: 'Преимущество',

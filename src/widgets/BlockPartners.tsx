@@ -3,7 +3,7 @@ import PartnerUrbus from "../assets/images/partner-urbus.svg"
 import PartnerSstu from "../assets/images/partner-sstu.svg"
 
 
-const BlockPartners = () => {
+const BlockPartners: React.FC = () => {
     const partnersProps : any[] = [
         PartnerUrbus,
         PartnerSstu,

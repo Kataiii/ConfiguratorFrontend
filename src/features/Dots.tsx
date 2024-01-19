@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { SliderContext } from "../widgets/Slider";
-import Dot from "../shared/ui/Dot";
+import Dot from "../shared/ui/forSlider/Dot";
 import styles from "../app/App.module.css"
 
 

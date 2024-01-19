@@ -8,12 +8,10 @@ import CheckboxForm from "./CheckboxForm";
 import HelperForm from "./HelperForm";
 import { useContext, useState } from "react";
 import { schemaPersonRegist, FormValues } from "../../../entities/User/User";
-import RegistUser from "../../../store/registUser";
 import { useNavigate } from "react-router-dom";
 import { Context } from "../../..";
-import DefaultModal from "../Modals/DefaultModal";
 
-
+//TODO разбить и привести в порядок
 const FormVersionTwo = () => {
     const navigate = useNavigate();
     const[helperState, setHelperState] = useState({

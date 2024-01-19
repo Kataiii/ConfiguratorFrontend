@@ -1,5 +1,5 @@
-import Button from "./ButtonPrim";
-import styles from "./css/CardRegister.module.css"
+import Button from "../ButtonPrim";
+import styles from "../css/CardRegister.module.css"
 
 
 export interface cardRegistProps{

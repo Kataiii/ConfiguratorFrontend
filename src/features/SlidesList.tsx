@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
-import Slide from "../shared/ui/Slide";
 import { SliderContext } from "../widgets/Slider";
-import styles from "../app/App.module.css"
+import styles from "../app/App.module.css";
+import Slide from "../shared/ui/forSlider/Slide";
 
 
 const SlidesList: React.FC = () => {

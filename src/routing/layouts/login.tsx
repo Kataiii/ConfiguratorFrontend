@@ -3,8 +3,8 @@ import RegisterHeader from "../../shared/ui/Headers/RegisterHeader";
 import { Outlet } from "react-router-dom";
 
 
-export default function Root(){
-    return(
+const Root: React.FC = () => {
+    return (
         <div className={styles.App}>
             <RegisterHeader></RegisterHeader>
             <div>
@@ -13,3 +13,5 @@ export default function Root(){
         </div>
     );
 }
+
+export default Root;

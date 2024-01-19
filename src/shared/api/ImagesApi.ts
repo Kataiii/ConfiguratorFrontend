@@ -1,8 +1,7 @@
-import { useMemo } from "react";
-import { SlideProps } from "../ui/Slide";
 import Image1 from "../../assets/images/image-slider-pic1.svg"
 import Image2 from "../../assets/images/image-slider-pic2.svg"
 
+//TODO возможно это надо будет убрать
 export const getImages = (length : number) => {
     const sliderProps = [
         {

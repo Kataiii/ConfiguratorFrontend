@@ -1,5 +1,5 @@
-import Tick from "../../assets/icons/icon-tick-square.svg"
-import styles from "./css/CardAdvantage.module.css"
+import Tick from "../../../assets/icons/icon-tick-square.svg"
+import styles from "../css/CardAdvantage.module.css"
 
 export interface CardAdvantageProps{
     title: string,

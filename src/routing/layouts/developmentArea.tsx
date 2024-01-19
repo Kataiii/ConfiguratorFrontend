@@ -9,14 +9,14 @@ import { useState } from "react";
 import { useEffect } from "react";
 import SearchInput from "../../shared/ui/SearchInput";
 
-export default function Root(){
+const Root: React.FC = () => {
+    const location = useLocation();
     const [stateFolder, setStateFolder] = useState(
         {
             title: <Link to="/home">{">"} Все проекты</Link>,
             key: "all_projects"
         }
     )
-    const location = useLocation();
 
     useEffect(() => {
         if(location.pathname.indexOf('/home/renders') == 0){
@@ -33,6 +33,9 @@ export default function Root(){
         }
       }, [location.pathname]);
 
+      //TODO изменить папки
+      //TODO вынести создание папок в отдельный компонент
+      //TODO вынести SidePanel в отдельный элемент
     return(
         <div className={styles.AppDev}>
             <AuthorisedHeader></AuthorisedHeader>
@@ -77,3 +80,5 @@ export default function Root(){
         </div>
     );
 }
+
+export default Root;

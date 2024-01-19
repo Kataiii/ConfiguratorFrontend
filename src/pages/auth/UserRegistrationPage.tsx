@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { Context } from "../..";
-import FormRegistUser from "../../widgets/FormRegistUser";
+import FormRegistUser from "../../widgets/forms/FormRegistUser";
 import { useNavigate } from "react-router-dom";
 import DefaultModal from "../../shared/ui/Modals/DefaultModal";
 

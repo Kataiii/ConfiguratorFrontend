@@ -1,10 +1,10 @@
-import { HeaderForm } from "../shared/ui/FormPart/HeaderForm";
-import LinksConditionsPolicy from "../shared/ui/FormPart/LinksConditionsPolicy";
-import FormCompany from "../shared/ui/FormPart/FormCompany";
-import styles from "./css/Form.module.css"
+import { HeaderForm } from "../../shared/ui/FormPart/HeaderForm";
+import LinksConditionsPolicy from "../../shared/ui/FormPart/LinksConditionsPolicy";
+import FormCompany from "../../shared/ui/FormPart/FormCompany";
+import styles from "../css/Form.module.css"
 
 
-const FormRegistCompany = () => {
+const FormRegistCompany: React.FC = () => {
     return (
         <div>
             <div className={styles.FormDivRegCom}>

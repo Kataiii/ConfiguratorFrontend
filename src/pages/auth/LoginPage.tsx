@@ -1,4 +1,4 @@
-import FormLogin from "../../widgets/FormLogin";
+import FormLogin from "../../widgets/forms/FormLogin";
 
 
 const LoginPage: React.FC = () => {

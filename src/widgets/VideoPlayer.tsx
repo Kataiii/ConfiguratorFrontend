@@ -1,11 +1,11 @@
 import styles from "./css/BlockCard.module.css"
 import Button from "../shared/ui/ButtonPrim";
 import { useNavigate } from "react-router-dom";
-import VideoController, {VideoControllerProps} from "../shared/ui/VideoController";
 import ReactPlayer from 'react-player'
 import stylesVideo from "../shared/ui/css/Video.module.css"
-import React, {useState} from "react";
-import VideoVolume from "../shared/ui/VideoVolume";
+import {useState} from "react";
+import VideoVolume from "../shared/forVideoPlayer/VideoVolume";
+import VideoController from "../shared/forVideoPlayer/VideoController";
 
 const WEBPATHVIDEO = 'http://127.0.0.1:9000'
 
@@ -14,7 +14,7 @@ interface IVideo{
     volume : number
 }
 
-const VideoPlayer = () => {
+const VideoPlayer: React.FC = () => {
     const navigate = useNavigate();
     const [video, setVideo] = useState<IVideo>({
         playing : false,

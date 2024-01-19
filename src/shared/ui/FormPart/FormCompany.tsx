@@ -1,5 +1,5 @@
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useForm, Controller } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { HELPER_PASSWORD_MESSAGE } from "../../common/ValidationHelper";
 import styles from "./css/InputForm.module.css"
 import stylesInput from "./css/InputFormCompany.module.css"
@@ -15,8 +15,8 @@ import { ICompanyType } from "../../../entities/Company/CompanyTypes";
 import CompanyTypesService from "../../../services/CompanyTypeService";
 import { useNavigate } from "react-router-dom";
 
-
-const FormCompany = () => {
+//TODO разьить и привести в порядок
+const FormCompany: React.FC = () => {
     const [helperState, setHelperState] = useState({
         visible: false,
         checkedMail: true,
@@ -34,7 +34,6 @@ const FormCompany = () => {
     const {
         handleSubmit,
         formState: { errors },
-        control,
         clearErrors,
         register
     } = formApi;

@@ -2,15 +2,12 @@ import IconProfile from '../../../assets/icons/icon-profile.svg'
 import IconMenu from '../../../assets/icons/icon-dropdown menu.svg'
 import styles from "../../../app/App.module.css"
 import React from 'react';
-import type { MenuProps } from 'antd';
 import { Dropdown, Space, Typography } from 'antd';
-import { Link } from 'react-router-dom';
 import { ColorText } from '../../../entities/Enums/ColorTextPopUp';
 import { PopUpMenuItem } from './PopUpMenu';
 import stylesMenu from "./css/PopUpMenu.module.css";
 
 const styleText : string = styles.PText;
-const divMenu : string = styles.DivMenu;
 
 export interface DropdownButtonItem {
   content: string,

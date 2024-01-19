@@ -6,12 +6,12 @@ interface ErrorFormProps{
     errorcontent : string
 }
 
-const ErrorForm = (props : ErrorFormProps) => {
+const ErrorForm: React.FC<ErrorFormProps> = ({errorcontent}) => {
     return(
         <div className={styles.FormErrorWrap}>
             <div className={styles.FormError}>
                 <img className={styles.FormErrorImg} src={Error} alt="icon-error"/>
-                <p dangerouslySetInnerHTML={{ __html: props.errorcontent }} className={styles.FormErrorContent}></p>
+                <p dangerouslySetInnerHTML={{ __html: errorcontent }} className={styles.FormErrorContent}></p>
             </div>
         </div>
     )

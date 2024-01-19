@@ -1,11 +1,11 @@
-import styles from "./css/Form.module.css"
+import styles from "../css/Form.module.css"
 import { Link } from "react-router-dom";
-import FormVersionTwo from "../shared/ui/FormPart/FormVersionTwo";
-import LinksConditionsPolicy from "../shared/ui/FormPart/LinksConditionsPolicy";
-import { HeaderForm } from "../shared/ui/FormPart/HeaderForm";
+import FormVersionTwo from "../../shared/ui/FormPart/FormVersionTwo";
+import LinksConditionsPolicy from "../../shared/ui/FormPart/LinksConditionsPolicy";
+import { HeaderForm } from "../../shared/ui/FormPart/HeaderForm";
 
 
-const FormRegistUser = () => {
+const FormRegistUser: React.FC = () => {
 
     return (
         <div>

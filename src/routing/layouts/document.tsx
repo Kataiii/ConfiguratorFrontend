@@ -2,7 +2,7 @@ import styles from "../../app/App.module.css"
 import { Outlet } from "react-router-dom";
 
 
-export default function Document(){
+const Document: React.FC = () => {
     return(
         <div className={styles.App}>
             <div>
@@ -11,3 +11,5 @@ export default function Document(){
         </div>
     );
 }
+
+export default Document;

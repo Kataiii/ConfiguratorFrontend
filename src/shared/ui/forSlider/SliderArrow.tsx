@@ -1,7 +1,7 @@
 import React, {useContext} from "react";
-import { SliderContext } from "../../widgets/Slider";
-import Arrow from "../../assets/icons/icon-arrow.svg"
-import styles from "./css/SliderComponents.module.css"
+import { SliderContext } from "../../../widgets/Slider";
+import Arrow from "../../../assets/icons/icon-arrow.svg"
+import styles from "../css/SliderComponents.module.css"
 
 export interface arrowProps{
     directionArrow : number,

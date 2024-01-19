@@ -9,15 +9,15 @@ interface DefaultModalProps{
     actionBtn: () => void;
 }
 
-const DefaultModal = (props: DefaultModalProps) => {
+const DefaultModal: React.FC<DefaultModalProps> = ({title, message, titleBtn,actionBtn}) => {
     return(
         <div className={styles.ModalDivWrap}>
             <div className={styles.ModalDiv}>
                 <div className={styles.ModalDivContent}>
-                    <h1 className={styles.ModalTitle}>{props.title}</h1>
-                    <p className={styles.ModalContent}>{props.message}</p>
+                    <h1 className={styles.ModalTitle}>{title}</h1>
+                    <p className={styles.ModalContent}>{message}</p>
                 </div>
-                <Button title={props.titleBtn} isDisabled={false} onClick={props.actionBtn}></Button>
+                <Button title={titleBtn} isDisabled={false} onClick={actionBtn}></Button>
             </div>
         </div>
     )

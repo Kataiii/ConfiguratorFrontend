@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { ValidationHelper } from "../../common/ValidationHelper";
 import { Context } from "../../..";
 
-const RecoveryPasswordModal = () => {
+const RecoveryPasswordModal: React.FC = () => {
     const navigate = useNavigate();
     const [email, setEmailState] = useState('');
     const [visibleModal, setVisibleModalState] = useState(false);
