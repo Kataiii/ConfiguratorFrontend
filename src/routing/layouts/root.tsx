@@ -18,7 +18,7 @@ const Root: React.FC = observer(() => {
     }, [])
 
 
-    if(store.isAuth){
+    if(store.getAuth()){
         return(
             <div className={className}>
                 <AuthorisedHeader/>

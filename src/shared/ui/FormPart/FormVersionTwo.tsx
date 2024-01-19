@@ -46,9 +46,9 @@ const FormVersionTwo = () => {
                 store.setFailAuth(true);
             }
             else{
-                await activeUser.refreshActiveUser(store.acount);
+                await activeUser.refreshActiveUser(store.getAccount());
             }
-            store.isAuth ? navigate('/home') : navigate('/login/register/user');
+            store.getAuth() ? navigate('/home') : navigate('/login/register/user');
         }
     );
 

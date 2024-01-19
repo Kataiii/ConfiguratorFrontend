@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useContext } from "react";
-import { Context } from "..";
+import { Context, store } from "..";
 import { AuthResponse } from "../entities/Response/AuthResponse";
 
 //TODO проверить работает ли
@@ -13,9 +13,8 @@ const $api = axios.create({
     baseURL: API_URL
 });
 
-//TODO поменять на store все localStorage
 $api.interceptors.request.use((config) => {
-    config.headers.Authorization = `Bearer ${localStorage.getItem('token')}`;
+    config.headers.Authorization = `Bearer ${store.getAccessToken()}`;
     config.headers.Accept = 'application/json';
     return config;
 });
@@ -28,9 +27,8 @@ $api.interceptors.response.use((config) => {
         origrnalRequest._isRetry = true;
         try{
             const response = await axios.get<AuthResponse>(`${API_URL}/auth/refresh`, {withCredentials: true});
-            const {store} = useContext(Context);
+            store.setAccount(response.data.account);
             store.setAccessToken(response.data.accessToken);
-            localStorage.setItem('token', response.data.accessToken);
             store.setAuth(true);
             return $api.request(origrnalRequest);
         } catch(e){

@@ -1,6 +1,6 @@
 import { AxiosResponse } from "axios";
-import { ICity } from "../entities/City/City";
-import $api from "../http/Index";
+import { ICity } from "../../entities/City/City";
+import $api from "../../http/Index";
 
 
 export default class CityService{

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { ICity } from '../../../entities/City/City';
-import CityService from '../../../services/CityService';
+import CityService from '../../../store/services/CityService';
 import DropDownSelect from '../DropDownSelect';
 import styles from './css/ProfilePartMain.module.css';
 

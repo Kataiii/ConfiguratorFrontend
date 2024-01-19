@@ -12,7 +12,7 @@ import CheckboxForm from "./CheckboxForm";
 import Select from "../MySelect";
 import { Context } from "../../..";
 import { ICompanyType } from "../../../entities/Company/CompanyTypes";
-import CompanyTypesService from "../../../services/CompanyTypeService";
+import CompanyTypesService from "../../../store/services/CompanyTypeService";
 import { useNavigate } from "react-router-dom";
 
 //TODO разьить и привести в порядок
@@ -57,9 +57,9 @@ const FormCompany: React.FC = () => {
                 store.setFailAuth(true);
             }
             else{
-                await activeUser.refreshActiveUser(store.acount);
+                await activeUser.refreshActiveUser(store.getAccount());
             }
-            store.isAuth ? navigate('/home') : navigate('/login/register/company');
+            store.getAuth() ? navigate('/home') : navigate('/login/register/company');
         }
     );
 

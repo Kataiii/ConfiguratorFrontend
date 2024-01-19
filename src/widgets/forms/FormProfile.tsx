@@ -27,11 +27,11 @@ const FormProfile: React.FC = observer(() => {
             <FormProfilePart surname={activeUser.user.surname}
                             name={activeUser.user.name}
                             pathronomyc={activeUser.user.pathronomyc}
-                            email={store.acount.email} 
-                            is_checked={store.acount.is_checked_email}
+                            email={store.getAccount().email} 
+                            is_checked={store.getAccount().is_checked_email}
                             phone_number={activeUser.user.phone_number}
                             about_me={about}
-                            city_id={store.acount.city_id}/>
+                            city_id={store.getAccount().city_id}/>
         </div>
     )
 })

@@ -4,9 +4,9 @@ import { IRole } from "../entities/Role/Role";
 import { ICompany } from "../entities/User/Company";
 import { IEmployee } from "../entities/User/Employee";
 import { IUser } from "../entities/User/User";
-import CompanyService from "../services/CompanyService";
-import EmployeeService from "../services/EmployeeService";
-import UserService from "../services/UserService";
+import CompanyService from "./services/CompanyService";
+import EmployeeService from "./services/EmployeeService";
+import UserService from "./services/UserService";
 
 export default class ActiveUserStore{
     user = {} as IUser | ICompany | IEmployee;

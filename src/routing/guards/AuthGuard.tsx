@@ -12,7 +12,7 @@ interface AuthGuardProps{
 const AuthGuard : React.FC<AuthGuardProps> = observer(({children}) => {
     const [isLoading, setIsLoadingState] = useState(true);
     const {store, activeUser} = useContext(Context);
-    let isAuthorized : boolean = store.isAuth;
+    let isAuthorized : boolean = store.getAuth();
 
     useEffect(() => {
         refreshToken();
@@ -20,7 +20,7 @@ const AuthGuard : React.FC<AuthGuardProps> = observer(({children}) => {
 
     const refreshToken = async() => {
         await store.refresh();
-        await activeUser.refreshActiveUser(store.acount);
+        await activeUser.refreshActiveUser(store.getAccount());
         setIsLoadingState(false);
     }
 

@@ -4,7 +4,7 @@ import { Context } from "../..";
 import { ICompany } from "../../entities/User/Company";
 import { IEmployee } from "../../entities/User/Employee";
 import { IUser } from "../../entities/User/User";
-import CityService from "../../services/CityService";
+import CityService from "../../store/services/CityService";
 import TitlePart from "../../shared/ui/ProfilePart/TitlePart";
 import FormProfile from "../../widgets/forms/FormProfile";
 import styles from './css/Profile.module.css';
@@ -38,11 +38,11 @@ const UserProfile: React.FC = observer(() => {
     }
 
     const onChangeCity = async () => {
-        if(store.acount.city_id == null){
+        if(store.getAccount().city_id == null){
             //TODO определение местоположения
         }
         else{
-            const city = await CityService.getCityById(store.acount.city_id);
+            const city = await CityService.getCityById(store.getAccount().city_id);
             setCityState(city.data.name);
         }
     }
@@ -52,8 +52,8 @@ const UserProfile: React.FC = observer(() => {
             {/* TODO разделение по ролям */}
             <TitlePart login={login} 
                         cityName={city === '' ? undefined : city} 
-                        created={new Date(store.acount.createdAt)} 
-                        endingLicence={new Date(store.acount.createdAt)}/>
+                        created={new Date(store.getAccount().createdAt)} 
+                        endingLicence={new Date(store.getAccount().createdAt)}/>
             <FormProfile/>
         </div>
     )

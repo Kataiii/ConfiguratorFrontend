@@ -7,15 +7,14 @@ import {
 import router from './routing/Router';
 import Store from './store/store';
 import ActiveUserStore from './store/activeUserStore';
-// import { Provider } from 'react-redux';
-// import { storeRTK } from './store/store.rtk';
+
 
 interface State {
   store: Store,
   activeUser: ActiveUserStore
 }
 
-const store = new Store();
+export const store = new Store();
 const activeUser = new ActiveUserStore();
 
 export const Context = createContext<State>({
@@ -29,13 +28,11 @@ const root = ReactDOM.createRoot(
 );
 
 root.render(
-  // <Provider store={storeRTK}>
     <Context.Provider value={{
       store,
       activeUser
     }}>
       <RouterProvider router={router} />
     </Context.Provider>
-  // </Provider>
 );
 

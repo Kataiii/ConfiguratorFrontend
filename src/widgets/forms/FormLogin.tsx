@@ -23,7 +23,7 @@ const FormLogin: React.FC = observer(() => {
     const style = auth.formLogin.failEmail ? stylesInput.FormInputEr : stylesInput.FormInput;
 
     useEffect(() => {
-        store.isAuth ? navigate('/home') : navigate('/login');
+        store.getAuth() ? navigate('/home') : navigate('/login');
     }, []);
 
 

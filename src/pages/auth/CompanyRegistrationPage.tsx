@@ -13,7 +13,7 @@ const CompanyRegistPage: React.FC = () => {
         <div>
             <FormRegistCompany/>
             {
-                store.isFailAuth
+                store.getFailAuth()
                 ? <DefaultModal title="Ошибка регистрации"
                                     message="Такой пользователь уже существует. Попробуйте войти в свой аккаунт"
                                     titleBtn="Войти в аккаунт"
