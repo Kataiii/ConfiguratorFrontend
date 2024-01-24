@@ -9,9 +9,12 @@ import Avatar from '../assets/icons/icon-avatar.svg';
 import { IUser } from "../entities/User/User";
 import { IEmployee } from "../entities/User/Employee";
 import { ICompany } from "../entities/User/Company";
+import styles from "./css/BlockRoleButton.module.css";
+import { useNavigate } from "react-router-dom";
 
 
 const BlockRoleButton: React.FC = () => {
+    const navigate = useNavigate();
     const { store } = useContext(Context);
     const [accounts, setAccounts] = useState<any[]>([]);
     const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -56,6 +59,11 @@ const BlockRoleButton: React.FC = () => {
         }
     }
 
+    const clickHandler = (index: number) => {
+        store.setActiveRole(store.getAccount().roles[index]);
+        navigate('/home');
+    }
+
     return (
         isLoading
             ? <p>Загрузка...</p>
@@ -69,7 +77,7 @@ const BlockRoleButton: React.FC = () => {
                                     image={image} 
                                     title={item.login != undefined ? item.login : item.company_name} 
                                     content={item.surname} 
-                                    onClick={() => console.log(item.login)}/>
+                                    onClick={() => clickHandler(index)}/>
                     })
                 }
                 </>

@@ -7,13 +7,13 @@ interface RoleButtonProps {
     image: string;
     title: string;
     content: string;
-    onClick: () => void
+    onClick: (id:number) => void
 }
 
 
 const RoleButton: React.FC<RoleButtonProps> = ({ image, title, content, onClick }) => {
     return (
-        <div className={styles.wrap} onClick={onClick}>
+        <div className={styles.wrap} onClick={() => onClick}>
             <img src={image} className={styles.image} />
             <div className={styles.wrapInfo}>
                 <p className={styles.infoTitle}>{title}</p>
