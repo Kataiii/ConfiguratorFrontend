@@ -46,15 +46,15 @@ export default class ActiveUserStore{
         switch(this.activeRole.name){
             case 'company':
                 response = await CompanyService.getCompanyById(id);
-                this.setUser(response.data);
+                this.setUser(response);
                 break;
             case 'user':
                 response = await UserService.getUserById(id);
-                this.setUser(response.data);
+                this.setUser(response);
                 break;
             case 'company_user':
                 response = await EmployeeService.getEmployeeById(id);
-                this.setUser(response.data);
+                this.setUser(response);
                 break;
         }
     }

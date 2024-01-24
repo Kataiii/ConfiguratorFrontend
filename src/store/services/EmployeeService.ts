@@ -4,7 +4,7 @@ import $api from "../../http/Index";
 
 
 export default class EmployeeService{
-    static async getEmployeeById(id: number): Promise<AxiosResponse<IEmployee>>{
-        return $api.get<IEmployee>(`/employees/${id}`);
+    static async getEmployeeById(id: number): Promise<IEmployee>{
+        return await (await $api.get<IEmployee>(`/employees/${id}`)).data;
     }
 }

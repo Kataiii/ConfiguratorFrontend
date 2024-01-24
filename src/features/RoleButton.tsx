@@ -3,21 +3,21 @@ import { Context } from "..";
 import Avatar from '../assets/icons/icon-avatar.svg';
 import styles from './css/RoleButton.module.css';
 
+interface RoleButtonProps {
+    image: string;
+    title: string;
+    content: string;
+    onClick: () => void
+}
 
-const RoleButton: React.FC = () => {
-    const { store } = useContext(Context);
-    const account = store.getAccount();
 
+const RoleButton: React.FC<RoleButtonProps> = ({ image, title, content, onClick }) => {
     return (
-        <div>
-            {
-                account.profile_picture == '' || account.profile_picture == null
-                    ? <img src={Avatar} className={styles.image} />
-                    : <img src={account.profile_picture} className={styles.image}/>
-            }
+        <div className={styles.wrap} onClick={onClick}>
+            <img src={image} className={styles.image} />
             <div className={styles.wrapInfo}>
-                <p>Логин</p>
-                <p>фио или какой аккаунт</p>
+                <p className={styles.infoTitle}>{title}</p>
+                <p className={styles.infoContent}>{content}</p>
             </div>
         </div>
     )
