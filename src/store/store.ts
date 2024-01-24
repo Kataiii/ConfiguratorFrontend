@@ -10,7 +10,7 @@ import { IRole } from "../entities/Role/Role";
 import { IAuthDto } from "../entities/Dto/AuthDto";
 
 class Store {
-    private acount: IAccount = {} as IAccount;
+    private account: IAccount = {} as IAccount;
     private accessToken: string = '';
     private activeRole: IRole = {} as IRole;
     private isAuth: boolean = false;
@@ -29,11 +29,11 @@ class Store {
     }
 
     getAccount = (): IAccount => {
-        return structuredClone(this.acount);
+        return this.account;
     }
 
     setAccount = (account: IAccount) => {
-        this.acount = account;
+        this.account = account;
     }
 
     getAccessToken = (): string => {
@@ -66,7 +66,8 @@ class Store {
             this.setStateStore(response.data);
             return this.getAccount();
         } catch (e: any) {
-            return e.response?.status;
+            console.log(e);
+            return 401;
         }
     }
 
@@ -135,7 +136,12 @@ class Store {
         this.setAuth(true);
         this.setFailAuth(false);
 
-        if (this.acount.roles.length == 1) this.setActiveRole(this.acount.roles[0]);
+        if (this.account.roles.length == 1) this.setActiveRole(this.account.roles[0]);
+    }
+
+    checkIsManyRoles = (): boolean => {
+        if(this.account.roles.length > 1) return true;
+        return false;
     }
 }
 

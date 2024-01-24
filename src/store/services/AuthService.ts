@@ -8,7 +8,8 @@ import axios from "axios";
 
 export default class AuthService{
     static async login(email: string, password: string): Promise<AxiosResponse<AuthResponse>>{
-        return $api.post<AuthResponse>('/auth/login', {email, password});
+        const response = await $api.post<AuthResponse>('/auth/login', {email, password});
+        return response;
     }
 
     static async registUser(createUserDto: ICreateUser): Promise<AxiosResponse<AuthResponse>>{
