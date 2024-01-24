@@ -11,6 +11,7 @@ import { IEmployee } from "../entities/User/Employee";
 import { ICompany } from "../entities/User/Company";
 import styles from "./css/BlockRoleButton.module.css";
 import { useNavigate } from "react-router-dom";
+import { Skeleton } from "antd";
 
 
 const BlockRoleButton: React.FC = () => {
@@ -23,12 +24,13 @@ const BlockRoleButton: React.FC = () => {
         : store.getAccount().profile_picture;
 
     useEffect(() => {
-        getAccounts();
+        if (accounts.length == 0) {
+            getAccounts();
+        }
     }, []);
 
     useEffect(() => {
-        console.log(accounts);
-        if(accounts.length > 0){
+        if (accounts.length > 0) {
             setIsLoading(false);
         }
     }, [accounts.length]);
@@ -50,7 +52,7 @@ const BlockRoleButton: React.FC = () => {
                 break;
             case 'company_user':
                 const employee: IEmployee = await EmployeeService.getEmployeeById(id);
-                setAccounts(accounts =>[...accounts, employee]);
+                setAccounts(accounts => [...accounts, employee]);
                 break;
             case 'company':
                 const company: ICompany = await CompanyService.getCompanyById(id);
@@ -65,23 +67,33 @@ const BlockRoleButton: React.FC = () => {
     }
 
     return (
-        isLoading
-            ? <p>Загрузка...</p>
-            : <div>
-                <>
-                {
-                    accounts.map((item,index) => {
-                        console.log(item.login);
-                        return <RoleButton 
-                                    key={index} 
-                                    image={image} 
-                                    title={item.login != undefined ? item.login : item.company_name} 
-                                    content={item.surname} 
-                                    onClick={() => clickHandler(index)}/>
-                    })
-                }
-                </>
-            </div>
+        <div className={styles.wrapList}>
+            {
+                isLoading
+                    ?
+                    <>
+                        {
+                            store.getAccount().roles.map((item, index) => {
+                                <Skeleton key={index} active avatar paragraph={{ rows: 1 }} />
+                            })
+                        }
+                    </>
+                    :
+                    <>
+                        {
+                            accounts.map((item, index) => {
+                                return <RoleButton
+                                    key={index}
+                                    image={image}
+                                    title={item.login != undefined ? item.login : item.company_name}
+                                    content={item.surname}
+                                    onClick={() => clickHandler(index)} 
+                                    isLast={index == accounts.length - 1}/>
+                            })
+                        }
+                    </>
+            }
+        </div>
     )
 }
 

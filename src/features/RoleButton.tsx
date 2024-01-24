@@ -1,23 +1,25 @@
-import { useContext } from "react";
-import { Context } from "..";
-import Avatar from '../assets/icons/icon-avatar.svg';
 import styles from './css/RoleButton.module.css';
 
 interface RoleButtonProps {
     image: string;
     title: string;
     content: string;
-    onClick: (id:number) => void
+    onClick: () => void;
+    isLast: boolean;
 }
 
 
-const RoleButton: React.FC<RoleButtonProps> = ({ image, title, content, onClick }) => {
+const RoleButton: React.FC<RoleButtonProps> = ({ image, title, content, onClick, isLast }) => {
+    const style: string = isLast ? styles.buttonDiv : [styles.buttonDiv, styles.wrapLast].join(' ');
+
     return (
-        <div className={styles.wrap} onClick={() => onClick}>
-            <img src={image} className={styles.image} />
-            <div className={styles.wrapInfo}>
-                <p className={styles.infoTitle}>{title}</p>
-                <p className={styles.infoContent}>{content}</p>
+        <div className={styles.wrap} onClick={onClick}>
+            <div className={style}>
+                <img src={image} className={styles.image} />
+                <div>
+                    <p className={styles.infoTitle}>{title}</p>
+                    <p className={styles.infoContent}>{content}</p>
+                </div>
             </div>
         </div>
     )

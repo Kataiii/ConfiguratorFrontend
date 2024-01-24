@@ -8,11 +8,12 @@ import { AuthResponse } from "../entities/Response/AuthResponse";
 import { API_URL } from "../http/Index";
 import { IRole } from "../entities/Role/Role";
 import { IAuthDto } from "../entities/Dto/AuthDto";
+import { Nullable } from "../entities/Enums/Nullable";
 
 class Store {
     private account: IAccount = {} as IAccount;
     private accessToken: string = '';
-    private activeRole: IRole = {} as IRole;
+    private activeRole: Nullable<IRole> = null;
     private isAuth: boolean = false;
     private isFailAuth: boolean = false;
 
@@ -52,8 +53,8 @@ class Store {
         this.isFailAuth = isFail;
     }
 
-    getActiveRole = (): IRole => {
-        return structuredClone(this.activeRole);
+    getActiveRole = (): IRole|null => {
+        return this.activeRole;
     }
 
     setActiveRole(role: IRole) {

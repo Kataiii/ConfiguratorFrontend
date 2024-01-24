@@ -3,13 +3,14 @@
     justify-content: center;
     flex-direction: column;
     min-height: 80vh;
+    cursor: pointer;
 }
 
 .moduleDiv{
     margin: 0 auto;
     border-radius: 20px;
     background: #4A4A4A;
-    padding: 38px;
+    padding: 38px 0;
     width: 480px;
     height: fit-content;
     display: flex;
@@ -30,6 +31,6 @@
     color: #FCFCFC;
     text-align: center;
     font-family: 'Ubuntu';
-    font-size: 11px;
+    font-size: 14px;
     font-weight: 300;
 }
