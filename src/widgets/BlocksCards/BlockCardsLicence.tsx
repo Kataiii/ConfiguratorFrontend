@@ -70,6 +70,7 @@ const BlockCardLicencce: React.FC = () => {
                         cardLicences.map((item, index) => {
                             return(
                                 <CardLicence 
+                                            key={index}
                                             cardInfo={item.cardInfo}
                                             buttonContent={item.buttonContent}
                                             action={item.action}/>
