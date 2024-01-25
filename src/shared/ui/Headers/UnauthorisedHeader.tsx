@@ -25,7 +25,11 @@ const UnauthorisedHeader: React.FC = () => {
     return(
         <header className={styles.Header}>
             <LinkLanding></LinkLanding>
-            <DropdownMenu links={unauthorisedmenuItems}></DropdownMenu>
+            <div className={styles.BtnLinkWrap}>
+              <div className={styles.DivUndisplay}></div>
+              <div className={styles.DivUndisplay}></div>
+              <DropdownMenu links={unauthorisedmenuItems}></DropdownMenu>
+            </div>
         </header>
     );
 }

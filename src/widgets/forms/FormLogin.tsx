@@ -1,16 +1,13 @@
 import Button from "../../shared/ui/ButtonPrim";
 import styles from "../css/Form.module.css"
 import stylesInput from "../../shared/ui/FormPart/css/InputForm.module.css"
-import ErrorForm from "../../shared/ui/FormPart/ErrorForm";
 import { HeaderForm } from "../../shared/ui/FormPart/HeaderForm";
-import auth from "../../store/auth";
 import { observer } from "mobx-react-lite"
 import { useNavigate } from "react-router"
-import { ChangeEvent, FocusEvent, useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Context } from "../..";
 import { Link } from "react-router-dom";
 import useInput from "../../shared/hooks/UseInput";
-import { IAuthDto } from "../../entities/Dto/AuthDto";
 import WrapperInput from "../../shared/ui/FormPart/WrapperInput";
 
 

@@ -12,12 +12,14 @@ import { useNavigate } from "react-router-dom";
 import { Context } from "../../..";
 
 //TODO разбить и привести в порядок
-const FormVersionTwo = () => {
+const FormRegistUser = () => {
     const navigate = useNavigate();
+    
     const[helperState, setHelperState] = useState({
         visible : false,
         checkedMail : true
     });
+
     const formApi = useForm<FormValues>({
         mode: 'onChange',
         resolver: yupResolver(schemaPersonRegist)
@@ -27,8 +29,6 @@ const FormVersionTwo = () => {
     const {
         handleSubmit,
         formState: { errors },
-        control,
-        clearErrors,
         register
     } = formApi;
 
@@ -163,4 +163,4 @@ const FormVersionTwo = () => {
     );
 }
 
-export default FormVersionTwo;
+export default FormRegistUser;

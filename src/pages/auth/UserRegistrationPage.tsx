@@ -1,8 +1,8 @@
 import { useContext } from "react";
 import { Context } from "../..";
-import FormRegistUser from "../../widgets/forms/FormRegistUser";
 import { useNavigate } from "react-router-dom";
 import DefaultModal from "../../shared/ui/Modals/DefaultModal";
+import BlockRegistUser from "../../widgets/forms/BlockRegistUser";
 
 const UserRegistPage: React.FC = () => {
     const {store} = useContext(Context);
@@ -10,7 +10,7 @@ const UserRegistPage: React.FC = () => {
 
     return(
         <div>
-            <FormRegistUser/>
+            <BlockRegistUser/>
             {
                 store.getFailAuth()
                 ? <DefaultModal title="Ошибка регистрации"

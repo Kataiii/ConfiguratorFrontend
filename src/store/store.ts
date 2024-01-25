@@ -104,7 +104,6 @@ class Store {
         }
     }
 
-    //TODO проверить метод
     recoveryPassword = async (email: string) => {
         try {
             const response = await axios.post<AuthResponse>(`${API_URL}/auth/recovery`, { email: email }, { withCredentials: true })
@@ -114,7 +113,6 @@ class Store {
         }
     }
 
-    //TODO проверить метод
     resetPassword = async (password: string, link: string) => {
         try {
             const response = await axios.post<AuthResponse>(`${API_URL}/recovery-links/recovery/${link}`,

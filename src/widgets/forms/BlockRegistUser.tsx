@@ -1,11 +1,11 @@
 import styles from "../css/Form.module.css"
 import { Link } from "react-router-dom";
-import FormVersionTwo from "../../shared/ui/FormPart/FormVersionTwo";
 import LinksConditionsPolicy from "../../shared/ui/FormPart/LinksConditionsPolicy";
 import { HeaderForm } from "../../shared/ui/FormPart/HeaderForm";
+import FormRegistUser from "../../shared/ui/FormPart/FormRegistUser";
 
 
-const FormRegistUser: React.FC = () => {
+const BlockRegistUser: React.FC = () => {
 
     return (
         <div>
@@ -15,11 +15,11 @@ const FormRegistUser: React.FC = () => {
                             linkTo="/login"
                             linkTitle="Войти"
                             wrapperLink="styles.FormDivWrapLink"/>
-                <FormVersionTwo></FormVersionTwo>
+                <FormRegistUser/>
             </div>
             <LinksConditionsPolicy/>
         </div>
     )
 }
 
-export default FormRegistUser;
+export default BlockRegistUser;

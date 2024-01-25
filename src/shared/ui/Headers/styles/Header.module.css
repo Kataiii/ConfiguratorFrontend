@@ -41,3 +41,7 @@
   display: flex;
   justify-content: space-around;
 }
+
+.DivUndisplay{
+  width: 133px;
+}
