@@ -49,7 +49,11 @@ const FolderProjectPage: React.FC = () => {
     
     useEffect(() => {
        setProjectsList(Projects.apiGetProjectInFolder(folder.findIdFolderByUrl(location.pathname)))  
-    }, [location.pathname])
+    }, [location.pathname]);
+
+    const clickHandler = () => {
+
+    }
 
     const sortProject = (firstProject : Project, secondProject : Project) : number => {
         if(firstProject.update_date > secondProject.update_date) return 1;
@@ -58,7 +62,7 @@ const FolderProjectPage: React.FC = () => {
 
     return(
         <div className={styles.DivProjectPage}>
-            <BlockAddProjects/>
+            <BlockAddProjects onClick={clickHandler}/>
             <>
                 {
                     projectsList.sort(sortProject).map((item, index) => {

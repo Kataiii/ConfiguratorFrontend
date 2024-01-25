@@ -1,6 +1,6 @@
 import styles from "../../app/App.module.css";
 import AuthorisedHeader from "../../shared/ui/Headers/AuthorisedHeader";
-import { Outlet, useLocation } from "react-router-dom";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import stylesSidePanel from "./css/DevelopmentArea.module.css";
 import { Link } from "react-router-dom";
 import BreadApp from "../../shared/ui/Breadcrumb";
@@ -11,6 +11,7 @@ import SearchInput from "../../shared/ui/SearchInput";
 
 const Root: React.FC = () => {
     const location = useLocation();
+    const navigate = useNavigate();
     const [stateFolder, setStateFolder] = useState(
         {
             title: <Link to="/home">{">"} Все проекты</Link>,
@@ -19,6 +20,8 @@ const Root: React.FC = () => {
     )
 
     useEffect(() => {
+        if(location.pathname == "/home") navigate("/home/projects");
+
         if(location.pathname.indexOf('/home/renders') == 0){
             setStateFolder({
                 title: <Link to="/home/renders">{">"} Все рендеры</Link>,
@@ -71,7 +74,6 @@ const Root: React.FC = () => {
                                     <SearchInput/>
                                 </div>
                             </div>
-                            
                             <Outlet></Outlet>
                         </div>
                     </div>

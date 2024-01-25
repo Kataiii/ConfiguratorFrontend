@@ -1,17 +1,15 @@
 import AddProject from "../../assets/icons/icon-create-project.svg"
 import styles from "./css/BlockCard.module.css"
-import { useNavigate, useLocation } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
+import { useState } from "react";
 
-const BlockAddProjects = () => {
-    const location = useLocation();
-    const navigate = useNavigate();
+interface BlockAddProjectsProps{
+    onClick: () => void;
+}
 
-    const onCLickHandler = () => {
-        navigate('/home/configurator/project/untitled');
-    }
-
+const BlockAddProjects: React.FC<BlockAddProjectsProps> = ({onClick}) => {
     return(
-        <div className={styles.DivBlockCard} onClick={onCLickHandler}>
+        <div className={styles.DivBlockCard} onClick={onClick}>
             <img className={styles.ImgBlockCard} src={AddProject}></img>
         </div>
     )

@@ -1,0 +1,77 @@
+.modalDiv{
+    background-color: #4A4A4A;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 20px;
+    padding: 32px 58px 27px;
+    display: flex;
+    flex-direction: column;
+    gap:30px;
+}
+
+.modalTitle{
+    color: #FCFCFC;
+    font-family: 'Ubuntu';
+    font-size: 20px;
+    font-weight: 700;
+    text-align: center;
+    margin: 0;
+}
+
+.modalInscription{
+    color: #FCFCFC;
+    font-family: 'Ubuntu';
+    font-size: 14px;
+    font-weight: 400;
+    margin: 0;
+    padding-bottom: 17px;
+}
+
+.modalInput{
+    border-radius: 23px;
+    background: #FCFCFC;
+    height: 45px;
+    font-size: 14px;
+    font-family: 'Ubuntu';
+    border: none;
+    color: #313131;
+    padding-left: 25px;
+}
+
+.modalInput::placeholder{
+    color: rgba(49, 49, 49, 0.50);
+    font-family: 'Ubuntu';
+    font-size: 14px;
+    font-weight: 300;
+}
+
+.modalInputName{
+    width: 378px;
+}
+
+.modalWrapInputs{
+    display: flex;
+}
+
+.modalWrapFirstInputs{
+    gap: 23px;
+}
+
+.modalWrapSecondInputs{
+    gap: 32px;
+}
+
+.modalInputCountFloor{
+    width: 200px;
+}
+
+.modalButtonWrap{
+    display: flex;
+    justify-content: end;
+}
+
+.modalInputCity{
+    width: 350px;
+}

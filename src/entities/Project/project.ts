@@ -1,5 +1,14 @@
 import { Nullable } from "../Enums/Nullable";
 
+export interface ICreateProjectDto{
+    name: string;
+    construction_type_id: number;
+    floor_number: number;
+    folder_id: number;
+    role_id: number;
+    file_project: File;
+}
+
 export interface IProject{
     id : number;
     name : string;

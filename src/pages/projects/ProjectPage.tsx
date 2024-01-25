@@ -6,10 +6,12 @@ import { Project } from "../../entities/Project/Project";
 import { PopUpMenuItem } from "../../shared/ui/DropDown/PopUpMenu";
 import { ColorText } from "../../entities/Enums/ColorTextPopUp";
 import ProjectCard from "../../features/CardProject/ProjectCard";
+import CreateProjectModal from "../../shared/ui/Modals/CreateProjectModal";
 
 
 const ProjectPage: React.FC = () => {
-    const [projectsList, setProjectsList] = useState(Projects.apiGetAllProjectsForUser())
+    const [projectsList, setProjectsList] = useState(Projects.apiGetAllProjectsForUser());
+    const [isVisible, setIsVisible] = useState<boolean>(false);
 
     const itemMenuProject: PopUpMenuItem[] = useMemo<PopUpMenuItem[]>(() =>  [
         {
@@ -49,9 +51,13 @@ const ProjectPage: React.FC = () => {
         return -1;
     }
 
+    const clickHandler = () => {
+        setIsVisible(isVisible => !isVisible);
+    }
+
     return (
         <div className={styles.DivProjectPage}>
-            <BlockAddProjects/>
+            <BlockAddProjects onClick={clickHandler}/>
             <>
                 {
                     projectsList.sort(sortProject).map((item, index) => {
@@ -59,6 +65,11 @@ const ProjectPage: React.FC = () => {
                     })
                 }
             </>
+            {
+                isVisible
+                ? <CreateProjectModal/>
+                : null
+            }
         </div>
     )
 }
