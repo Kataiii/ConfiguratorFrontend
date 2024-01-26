@@ -23,7 +23,7 @@ const FormProfilePart: React.FC<FormProfilePartProps> = ({surname,
                                                         phone_number, 
                                                         about_me,
                                                         city_id}) => {
-    const {store, activeUser} = useContext(Context);
+    const {store} = useContext(Context);
     const [userData, setUserData] = useState<IUserProfile>(
         {
             surname: surname,
@@ -103,7 +103,7 @@ const FormProfilePart: React.FC<FormProfilePartProps> = ({surname,
                     <textarea name='about_me' id={stylesInputs.InputTextArea} className={styles.Input} onChange={onChangeHandler}></textarea>
                     <div className={stylesInputs.WrapLinkButton}>
                         {
-                            activeUser.roles.length === 1 && !activeUser.roles.find(item => item.name == 'admin')
+                            store.getAccount().roles.length === 1 && !store.getAccount().roles.find(item => item.name == 'admin')
                             ?
                                 null
                             :

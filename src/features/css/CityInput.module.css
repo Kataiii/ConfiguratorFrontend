@@ -1,0 +1,15 @@
+.inputMain{
+    border-radius: 23px;
+    background: #FCFCFC;
+    color: #313131;
+    font-family: 'Ubuntu';
+    font-size: 14px;
+    font-weight: 300;
+}
+
+.inputMain::placeholder{
+    color: rgba(49, 49, 49, 0.50);
+    font-family: 'Ubuntu';
+    font-size: 14px;
+    font-weight: 300;
+}

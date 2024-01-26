@@ -7,19 +7,23 @@ import {
 import router from './routing/Router';
 import Store from './store/store';
 import ActiveUserStore from './store/activeUserStore';
+import CityStore from './store/cityStore';
 
 
 interface State {
   store: Store,
   activeUser: ActiveUserStore
+  cityStore: CityStore
 }
 
 export const store = new Store();
-const activeUser = new ActiveUserStore();
+export const activeUser = new ActiveUserStore();
+export const cityStore = new CityStore();
 
 export const Context = createContext<State>({
   store,
-  activeUser
+  activeUser,
+  cityStore
 })
 
 
@@ -30,7 +34,8 @@ const root = ReactDOM.createRoot(
 root.render(
     <Context.Provider value={{
       store,
-      activeUser
+      activeUser,
+      cityStore
     }}>
       <RouterProvider router={router} />
     </Context.Provider>

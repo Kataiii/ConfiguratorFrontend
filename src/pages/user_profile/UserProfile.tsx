@@ -43,7 +43,7 @@ const UserProfile: React.FC = observer(() => {
         }
         else{
             const city = await CityService.getCityById(store.getAccount().city_id);
-            setCityState(city.data.name);
+            setCityState(city.name);
         }
     }
 
