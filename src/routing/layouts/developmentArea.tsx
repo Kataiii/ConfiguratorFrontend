@@ -5,19 +5,33 @@ import stylesSidePanel from "./css/DevelopmentArea.module.css";
 import { Link } from "react-router-dom";
 import BreadApp from "../../shared/ui/Breadcrumb";
 import MyMenu from "../../shared/ui/MyMenu";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useEffect } from "react";
 import SearchInput from "../../shared/ui/SearchInput";
+import SidePanel from "../../widgets/SidePanel";
+import { Context } from "../..";
+import LoadingPage from "../../pages/LoadingPage";
 
 const Root: React.FC = () => {
+    const {store, folderStore} = useContext(Context);
     const location = useLocation();
     const navigate = useNavigate();
+    const [isLoading, setIsLoading] = useState<boolean>(true);
+
     const [stateFolder, setStateFolder] = useState(
         {
             title: <Link to="/home">{">"} Все проекты</Link>,
             key: "all_projects"
         }
     )
+
+    useEffect(() => {
+        const response = folderStore.getFoldersProjectByBack(store.getActiveRole()?.id || 4);
+        response.then(response => {
+            folderStore.setFoldersProject(response);
+            setIsLoading(false);
+        });
+    }, [])
 
     useEffect(() => {
         if(location.pathname == "/home") navigate("/home/projects");
@@ -38,48 +52,30 @@ const Root: React.FC = () => {
 
       //TODO изменить папки
       //TODO вынести создание папок в отдельный компонент
-      //TODO вынести SidePanel в отдельный элемент
     return(
-        <div className={styles.AppDev}>
-            <AuthorisedHeader></AuthorisedHeader>
-            <div className={stylesSidePanel.MainDiv}>
-                <div className={stylesSidePanel.DivsWrap}>
-                    <div className={stylesSidePanel.SidePanelWrap}>
-                        <div className={stylesSidePanel.SidePanel}>
-                            <Link className={stylesSidePanel.LinkPersonal} 
-                                    to={'/home'}>Все проекты</Link>
-                            <Link className={styles.LinkFolder} to={'/home/projects/folders/unsorted'}>Неотсортированные</Link>
-                            <MyMenu titleMy="Папки" typeFolders="projects"/>
-                            <Link className={stylesSidePanel.LinkPersonal} 
-                                    to={'/home/renders'}>Все рендеры</Link>
-                            <Link className={styles.LinkFolder} to={'/home/renders/folders/unsorted'}>Неотсортированные</Link>
-                            <MyMenu titleMy="Папки" typeFolders="renders"/>
-                            <Link className={stylesSidePanel.LinkPersonal} 
-                                    to={'/home/projects/folders/incoming'}>Входящие</Link>
-                            <Link className={stylesSidePanel.LinkPersonal} 
-                                    to={'/home/projects/folders/sent'}>Отправленные</Link>
-                            <Link className={stylesSidePanel.LinkPersonal} 
-                                    to={'/home/projects/folders/archive'}>Архив</Link>
-                            <Link className={stylesSidePanel.LinkPersonal} 
-                                    to={'/home/projects/folders/basket'}>Корзина</Link>
-                        </div>
-                    </div>
-                    <div className={stylesSidePanel.DivWrapPageContent}>
-                        <div>
-                            <div className={stylesSidePanel.breadCrumpWrap}>
-                                <BreadApp title={stateFolder}/>
-                            </div>
+        isLoading
+        ? <LoadingPage/>
+        :   <div className={styles.AppDev}>
+                <AuthorisedHeader></AuthorisedHeader>
+                <div className={stylesSidePanel.MainDiv}>
+                    <div className={stylesSidePanel.DivsWrap}>
+                        <SidePanel foldersProject={folderStore.getFoldersProject()} />
+                        <div className={stylesSidePanel.DivWrapPageContent}>
                             <div>
-                                <div className={stylesSidePanel.SearchInputWrap}>
-                                    <SearchInput/>
+                                <div className={stylesSidePanel.breadCrumpWrap}>
+                                    {/* <BreadApp title={stateFolder}/> */}
                                 </div>
+                                <div>
+                                    <div className={stylesSidePanel.SearchInputWrap}>
+                                        <SearchInput/>
+                                    </div>
+                                </div>
+                                <Outlet></Outlet>
                             </div>
-                            <Outlet></Outlet>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
     );
 }
 

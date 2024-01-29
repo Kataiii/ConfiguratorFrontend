@@ -1,5 +1,4 @@
 import { makeAutoObservable } from "mobx"
-import { Folder } from "../entities/Folder/Folder";
 import { Project } from "../entities/Project/Project"
 
 class Projects {

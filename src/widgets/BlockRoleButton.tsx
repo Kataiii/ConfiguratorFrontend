@@ -16,7 +16,7 @@ import { Skeleton } from "antd";
 
 const BlockRoleButton: React.FC = () => {
     const navigate = useNavigate();
-    const { store } = useContext(Context);
+    const { store, folderStore } = useContext(Context);
     const [accounts, setAccounts] = useState<any[]>([]);
     const [isLoading, setIsLoading] = useState<boolean>(true);
     const image = store.getAccount().profile_picture == '' || store.getAccount().profile_picture == null
@@ -61,7 +61,7 @@ const BlockRoleButton: React.FC = () => {
         }
     }
 
-    const clickHandler = (index: number) => {
+    const clickHandler = async(index: number) => {
         store.setActiveRole(store.getAccount().roles[index]);
         navigate('/home');
     }
