@@ -1,0 +1,27 @@
+.WrapMenu{
+    width: 150px;
+}
+
+.WrapTitleMenu{
+    display: flex;
+    padding-left: 20px;
+    margin: 0;
+    justify-content: space-between;
+}
+
+.DivTitleMenu{
+    display: flex;
+    gap: 5px;
+}
+
+.TitleMenu{
+    color: #FCFCFC;
+    font-family: 'Ubuntu';
+    font-size: 13px;
+    font-weight: 400;
+    margin: 10px 0;
+}
+
+.ImageButton{
+    cursor: pointer;
+}

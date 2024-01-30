@@ -7,32 +7,30 @@ import { observer } from "mobx-react-lite";
 import SidePanelItem from "../shared/ui/SidePanelItem";
 import { Context } from "..";
 import { FilterFolders } from "../shared/common/FilterFolders";
+import MenuFolders from "../features/MenuFolders";
 
-interface SidePanelProps {
-        foldersProject: IFolderProject[];
-}
 
-const SidePanel: React.FC<SidePanelProps> = observer(({ foldersProject }) => {
-        const {store} = useContext(Context);
+const SidePanel: React.FC = observer(( ) => {
+        const {store, folderStore} = useContext(Context);
         const [itemsMenuProject, setItemsMenuProject] = useState<IFolderProject[]>([]);
         const folderForRole = store.getActiveRole()?.name == 'user' 
-                ? foldersProject.find(item => item.name == "Отправленные")
-                : foldersProject.find(item => item.name == "На просчете");
+                ? folderStore.getFoldersProject().find(item => item.name == "Отправленные")
+                : folderStore.getFoldersProject().find(item => item.name == "На просчете");
 
         useEffect(() => {
                 const folders = store.getActiveRole()?.name == "user" 
-                        ? FilterFolders.filterUserFolders(foldersProject)
-                        : FilterFolders.filterCompanyFolders(foldersProject);
+                        ? FilterFolders.filterUserFolders(folderStore.getFoldersProject())
+                        : FilterFolders.filterCompanyFolders(folderStore.getFoldersProject());
                 setItemsMenuProject(folders);
-        }, [])
+        }, [folderStore.getFoldersProject().length]);
 
         return (
                 <div className={stylesSidePanel.SidePanelWrap}>
                         <div className={stylesSidePanel.SidePanel}>
                                 <Link className={stylesSidePanel.LinkPersonal}
                                         to={'/home'}>Все проекты</Link>
-                                <SidePanelItem style={'LinkFolder'} folder={foldersProject.find(item => item.name == "Неотсортированные") || foldersProject[0]}/>
-                                {/* <MyMenu titleMy="Папки" typeFolders="projects"/> */}
+                                <SidePanelItem style={'LinkFolder'} folder={folderStore.getFoldersProject().find(item => item.name == "Неотсортированные") || folderStore.getFoldersProject()[0]}/>
+                                <MenuFolders folders={itemsMenuProject} typeFolders={"projects"} title={"Папки"} />
                                 <Link className={stylesSidePanel.LinkPersonal}
                                         to={'/home/renders'}>Все рендеры</Link>
 
@@ -41,9 +39,9 @@ const SidePanel: React.FC<SidePanelProps> = observer(({ foldersProject }) => {
                                 <Link className={styles.LinkFolder} to={'/home/renders/folders/unsorted'}>Неотсортированные</Link>
 
                                 {/* <MyMenu titleMy="Папки" typeFolders="renders"/> */}
-                                <SidePanelItem folder={folderForRole || foldersProject[0]}/>
-                                <SidePanelItem folder={foldersProject.find(item => item.name == "Корзина") || foldersProject[0]}/>
-                                <SidePanelItem folder={foldersProject.find(item => item.name == "Архив") || foldersProject[0]}/>
+                                <SidePanelItem folder={folderForRole || folderStore.getFoldersProject()[0]}/>
+                                <SidePanelItem folder={folderStore.getFoldersProject().find(item => item.name == "Корзина") || folderStore.getFoldersProject()[0]}/>
+                                <SidePanelItem folder={folderStore.getFoldersProject().find(item => item.name == "Архив") || folderStore.getFoldersProject()[0]}/>
                         </div>
                 </div>
         );

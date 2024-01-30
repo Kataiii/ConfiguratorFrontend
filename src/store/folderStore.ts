@@ -1,5 +1,5 @@
 import { makeAutoObservable } from "mobx"
-import { IFolderProject } from "../entities/Folder/FolderProject";
+import { ICreateFolderDto, IFolderProject } from "../entities/Folder/FolderProject";
 import { IFolderRender } from "../entities/Folder/FolderRender";
 import FolderProjectService from "./services/FolderProjectServeice";
 
@@ -32,15 +32,9 @@ class Folders{
         return this.foldersRenders;
     }
 
-    apiGetFolders = () => {
-        //Запрос на получение папок, возможно сделать сортировку, удалив постоянные
-        return this.foldersProjects.filter(item => item.name !== 'Неотсортированные' && 
-                                    item.name !== 'Входящие' &&
-                                    item.name !== 'Отправленные' &&
-                                    item.name !== 'Архив' &&
-                                    item.name !== 'Корзина');
+    addFolderProject = async(dto: ICreateFolderDto): Promise<IFolderProject> => {
+        return await FolderProjectService.addFolder(dto);
     }
-
 
     splitForBreadcrumd = (defaultFolders : Record<string, string | null>) : Record<string, string | null> => {
         let mapRoutes : Record<string, string | null> = defaultFolders;

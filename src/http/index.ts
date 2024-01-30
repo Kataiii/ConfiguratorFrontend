@@ -19,6 +19,7 @@ $api.interceptors.request.use((config) => {
     return config;
 });
 
+//TODO Не работает!!!
 $api.interceptors.response.use((config) => {
     return config;
 }, (async error => {

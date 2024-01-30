@@ -59,7 +59,7 @@ const Root: React.FC = () => {
                 <AuthorisedHeader></AuthorisedHeader>
                 <div className={stylesSidePanel.MainDiv}>
                     <div className={stylesSidePanel.DivsWrap}>
-                        <SidePanel foldersProject={folderStore.getFoldersProject()} />
+                        <SidePanel/>
                         <div className={stylesSidePanel.DivWrapPageContent}>
                             <div>
                                 <div className={stylesSidePanel.breadCrumpWrap}>

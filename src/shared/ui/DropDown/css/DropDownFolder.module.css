@@ -1,0 +1,52 @@
+.DivList{
+    border-radius: 0px 11px 11px 11px;
+    background: #313131;
+    margin: 0;
+    margin-left: 15px;
+    padding: 9px 0 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.ItemList{
+    list-style-type: none;
+    color: #FCFCFC;
+    font-family: 'Ubuntu';
+    font-size: 13px;
+    font-weight: 300;
+    padding: 8px 8px 8px 18px;
+    cursor: pointer;
+}
+
+.ItemList:hover{
+    background: #272727;
+}
+
+.ItemList:active{
+    background: #181818;
+}
+
+.DivListHide{
+    padding: 0;
+    overflow: hidden;
+    max-height: 0;
+    opacity: 0;
+    transition: 0.5s ease-out;
+}
+
+.DivListHide > li{
+    opacity: 0;
+    transform: color 0.1s;
+}
+
+.DivListNotHide{
+    max-height:100vh;
+    color: #FCFCFC;
+    transition: 0.5s ease-in, color 0.15s;
+}
+
+.DivListNotHide > li{
+    opacity: 100;
+    transform: color 0.1s;
+}
