@@ -38,3 +38,8 @@
     top: -15px;
     right: 5px;
 }
+
+.TooltipWrap{
+    position: absolute;
+    z-index: 100;
+}

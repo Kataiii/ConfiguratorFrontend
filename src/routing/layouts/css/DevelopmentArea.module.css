@@ -8,14 +8,15 @@
     max-height: 476px;
 }
 
-.SidePanel{
+.SidePanel:not(.ModalMenu){
     display: flex;
     flex-direction: column;
     max-height: 476px;
     background: #4A4A4A;
     border-radius: 0px 20px 20px 0px;
     padding: 36px;
-    overflow: auto;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
 .SidePanel::-webkit-scrollbar{

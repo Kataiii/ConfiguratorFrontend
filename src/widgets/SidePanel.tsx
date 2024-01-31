@@ -26,7 +26,7 @@ const SidePanel: React.FC = observer(( ) => {
 
         return (
                 <div className={stylesSidePanel.SidePanelWrap}>
-                        <div className={stylesSidePanel.SidePanel}>
+                        <div id="SidePanel" className={stylesSidePanel.SidePanel}>
                                 <Link className={stylesSidePanel.LinkPersonal}
                                         to={'/home'}>Все проекты</Link>
                                 <SidePanelItem style={'LinkFolder'} folder={folderStore.getFoldersProject().find(item => item.name == "Неотсортированные") || folderStore.getFoldersProject()[0]}/>

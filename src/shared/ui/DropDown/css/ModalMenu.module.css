@@ -1,0 +1,64 @@
+.MainStyleMenu{
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: 8px 0 9px;
+}
+
+.MenuBackWhite{
+    background-color: #FCFCFC;
+}
+
+.MenuBackBlack{
+    background-color: #313131;
+}
+
+.MenuLeft{
+    border-radius: 0px 12px 12px 12px;
+}
+
+.MenuRight{
+    border-radius: 12px 0px 12px 12px;
+}
+
+.MainStyleItemMenu{
+    font-family: 'Ubuntu';
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    list-style-type: none;
+    padding: 5px 5px 5px 15px;
+    cursor: pointer;
+}
+
+.textColor1{
+    color: #DE7676;
+}
+
+.textColor2{
+    color: #313131;
+}
+
+.MenuBackItemWhite{
+    background-color: #FCFCFC;
+}
+
+.MenuBackItemWhite:hover{
+    background-color: #ebebeb;
+}
+
+.MenuBackItemWhite:active{
+    background-color: #d4d4d4;
+}
+
+.MenuBackItemBlack{
+    background-color: #313131;
+}
+
+.MenuBackItemBlack:hover{
+    background: #272727;
+}
+
+.MenuBackItemBlack:active{
+    background: #181818;
+}

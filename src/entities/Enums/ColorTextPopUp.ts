@@ -1,4 +1,10 @@
 export enum ColorText{
     White,
-    Red
+    Red,
+    Black
+}
+
+export enum ColorBackground{
+    White,
+    Black
 }

@@ -4,7 +4,6 @@ import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import stylesSidePanel from "./css/DevelopmentArea.module.css";
 import { Link } from "react-router-dom";
 import BreadApp from "../../shared/ui/Breadcrumb";
-import MyMenu from "../../shared/ui/MyMenu";
 import { useContext, useState } from "react";
 import { useEffect } from "react";
 import SearchInput from "../../shared/ui/SearchInput";
