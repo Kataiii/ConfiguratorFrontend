@@ -1,0 +1,16 @@
+.input{
+    width: 125px;
+    background-color: #212121;
+    border-radius: 80px;
+    border: none;
+    padding: 5px 10px;
+    color: #FCFCFC;
+    font-family: 'Ubuntu';
+    outline: none;
+}
+
+.input::placeholder{
+    font-size: 13px;
+    color: rgba(252, 252, 252, 0.5);
+    font-family: 'Ubuntu';
+}

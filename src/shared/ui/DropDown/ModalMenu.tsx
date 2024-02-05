@@ -1,4 +1,3 @@
-import { forwardRef } from "react";
 import { ColorBackground, ColorText } from "../../../entities/Enums/ColorTextPopUp";
 import styles from "./css/ModalMenu.module.css";
 

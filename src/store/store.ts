@@ -59,6 +59,7 @@ class Store {
 
     setActiveRole(role: IRole) {
         this.activeRole = role;
+        localStorage.setItem('role', role.name);
     }
 
     login = async (authDto: IAuthDto): Promise<IAccount | number> => {
@@ -99,6 +100,7 @@ class Store {
             this.setAuth(false);
             this.setFailAuth(false);
             this.setAccount({} as IAccount);
+            localStorage.removeItem('role');
         } catch (e: any) {
             return e.response?.status;
         }
@@ -135,7 +137,11 @@ class Store {
         this.setAuth(true);
         this.setFailAuth(false);
 
-        if (this.account.roles.length == 1) this.setActiveRole(this.account.roles[0]);
+        if (this.account.roles.length == 1) 
+        {
+            this.setActiveRole(this.account.roles[0]);
+            localStorage.setItem('role', this.account.roles[0].name);
+        }
     }
 
     checkIsManyRoles = (): boolean => {

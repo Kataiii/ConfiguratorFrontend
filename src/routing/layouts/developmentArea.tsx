@@ -10,6 +10,8 @@ import SearchInput from "../../shared/ui/SearchInput";
 import SidePanel from "../../widgets/SidePanel";
 import { Context } from "../..";
 import LoadingPage from "../../pages/LoadingPage";
+import RoleService from "../../store/services/RoleService";
+import { IRole } from "../../entities/Role/Role";
 
 const Root: React.FC = () => {
     const {store, folderStore} = useContext(Context);
@@ -25,12 +27,21 @@ const Root: React.FC = () => {
     )
 
     useEffect(() => {
+        if(store.getActiveRole() === null){
+            let roleName = localStorage.getItem('role');
+            if(roleName != null) {
+                const response = RoleService.getRoleByName(roleName);
+                response.then(response => {
+                    store.setActiveRole({id: response.id, name: response.name} as IRole);
+                });
+            }
+        }
         const response = folderStore.getFoldersProjectByBack(store.getActiveRole()?.id || 4);
         response.then(response => {
             folderStore.setFoldersProject(response);
             setIsLoading(false);
         });
-    }, [])
+    }, []);
 
     useEffect(() => {
         if(location.pathname == "/home") navigate("/home/projects");
@@ -50,7 +61,6 @@ const Root: React.FC = () => {
       }, [location.pathname]);
 
       //TODO изменить папки
-      //TODO вынести создание папок в отдельный компонент
     return(
         isLoading
         ? <LoadingPage/>
@@ -62,7 +72,7 @@ const Root: React.FC = () => {
                         <div className={stylesSidePanel.DivWrapPageContent}>
                             <div>
                                 <div className={stylesSidePanel.breadCrumpWrap}>
-                                    {/* <BreadApp title={stateFolder}/> */}
+                                    <BreadApp title={stateFolder}/>
                                 </div>
                                 <div>
                                     <div className={stylesSidePanel.SearchInputWrap}>

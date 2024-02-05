@@ -22,17 +22,17 @@ const SidePanel: React.FC = observer(( ) => {
                         ? FilterFolders.filterUserFolders(folderStore.getFoldersProject())
                         : FilterFolders.filterCompanyFolders(folderStore.getFoldersProject());
                 setItemsMenuProject(folders);
-        }, [folderStore.getFoldersProject().length]);
+        }, [folderStore.getFoldersProject(), folderStore.getFoldersProject().length]);
 
         return (
                 <div className={stylesSidePanel.SidePanelWrap}>
                         <div id="SidePanel" className={stylesSidePanel.SidePanel}>
                                 <Link className={stylesSidePanel.LinkPersonal}
-                                        to={'/home'}>Все проекты</Link>
+                                        to={'/home'} onClick={() => folderStore.setActiveFolder(null)}>Все проекты</Link>
                                 <SidePanelItem style={'LinkFolder'} folder={folderStore.getFoldersProject().find(item => item.name == "Неотсортированные") || folderStore.getFoldersProject()[0]}/>
                                 <MenuFolders folders={itemsMenuProject} typeFolders={"projects"} title={"Папки"} />
                                 <Link className={stylesSidePanel.LinkPersonal}
-                                        to={'/home/renders'}>Все рендеры</Link>
+                                        to={'/home/renders'} onClick={() => folderStore.setActiveFolder(null)}>Все рендеры</Link>
 
                                 {/* !!!!!!! */}
                                 {/* TODO заменить на SidePanel с новым entity */}

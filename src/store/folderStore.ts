@@ -1,15 +1,20 @@
 import { makeAutoObservable } from "mobx"
-import { ICreateFolderDto, IFolderProject } from "../entities/Folder/FolderProject";
+import { ICreateFolderDto, IFolderProject, IUpdateFolderDto } from "../entities/Folder/FolderProject";
 import { IFolderRender } from "../entities/Folder/FolderRender";
 import FolderProjectService from "./services/FolderProjectServeice";
 
 
 class Folders{
+    activeFolder: IFolderProject | IFolderRender | null = null;
     foldersProjects : IFolderProject[] = [];
     foldersRenders : IFolderRender[] = [];
 
     constructor() {
         makeAutoObservable(this)
+    }
+
+    setActiveFolder = (folder: IFolderProject | IFolderRender | null) => {
+        this.activeFolder = folder;
     }
 
     setFoldersProject = (folders: IFolderProject[]) => {
@@ -18,6 +23,10 @@ class Folders{
 
     setFolderRenders = (folders: IFolderRender[]) => {
         this.foldersRenders = folders;
+    }
+
+    getAciveFolder = () => {
+        return this.activeFolder;
     }
 
     getFoldersProjectByBack = async (role_id: number) => {
@@ -36,14 +45,17 @@ class Folders{
         return await FolderProjectService.addFolder(dto);
     }
 
-    splitForBreadcrumd = (defaultFolders : Record<string, string | null>) : Record<string, string | null> => {
-        let mapRoutes : Record<string, string | null> = defaultFolders;
-        let tmp : string = '';
-        this.foldersProjects.map(item =>{
-            tmp = item.name.slice(item.name.lastIndexOf('/'));
-            mapRoutes[tmp] = item.name
-        })
-        return mapRoutes;
+    updateFolderName = async(id: number, name: string) => {
+        this.foldersProjects = this.foldersProjects.map(item => {
+            if(item.id === id) item.name = name;
+            return item;
+        });
+        return await FolderProjectService.editFolder({id: id, name: name} as IUpdateFolderDto);
+    }
+
+    deleteFolder = async(id: number) => {
+        this.foldersProjects = this.foldersProjects.filter(item => item.id != id);
+        return await FolderProjectService.deleteFolder(id);
     }
 
     findIdFolderByUrl = (urlFolder : string) : number => {

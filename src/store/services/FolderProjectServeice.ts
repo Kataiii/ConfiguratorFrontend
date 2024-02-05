@@ -1,4 +1,4 @@
-import { ICreateFolderDto, IFolderProject } from "../../entities/Folder/FolderProject";
+import { ICreateFolderDto, IFolderProject, IUpdateFolderDto } from "../../entities/Folder/FolderProject";
 import $api from "../../http/Index";
 
 
@@ -8,8 +8,14 @@ export default class FolderProjectService{
     }
 
     static async addFolder(dto: ICreateFolderDto): Promise<IFolderProject>{
-        console.log('111111111111111');
-        console.log(dto);
         return (await $api.post<IFolderProject>(`/folder-projects`, dto)).data;
+    }
+
+    static async editFolder(dto: IUpdateFolderDto): Promise<IFolderProject>{
+        return (await $api.patch<IFolderProject>(`/folder-projects`, dto)).data;
+    }
+
+    static async deleteFolder(id: number): Promise<IFolderProject>{
+        return (await $api.delete<IFolderProject>(`/folder-projects`, {data: {id: id}})).data;
     }
 }

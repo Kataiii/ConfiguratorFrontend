@@ -1,0 +1,65 @@
+.divModal{
+    position: fixed;
+    background-color: #4A4A4A;
+    border-radius: 20px;
+    padding: 35px;
+    top: 50%;
+    left: 50%;
+    z-index: 100;
+    transform: translate(-50%, -50%);
+}
+
+.titleModal{
+    color: #FFFFFF;
+    font-family: 'Ubuntu';
+    font-size: 20px;
+    font-weight: 400;
+    text-align: center;
+    margin: 0;
+}
+
+.pModal{
+    display: flex;
+    color: #FFFFFF;
+    font-family: 'Ubuntu';
+    font-size: 14px;
+    text-align: center;
+    font-weight: 300;
+}
+
+.pBorderModal{
+    margin: 0;
+    border-bottom: 1px solid #FFFFFF;
+}
+
+.divWrapButtons{
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.buttonModal{
+    color: #313131;
+    font-family: 'Ubuntu';
+    font-size: 13px;
+    font-weight: 300;
+    text-align: center;
+    padding: 12px 55px;
+    background-color: #FFFFFF;
+    border-radius: 24px;
+    border: none;
+}
+
+.buttonModal:hover{
+    background-color: #e6e6e6;
+}
+
+.buttonModal:active{
+    background-color: #cfcfcf;
+}
+
+.buttonCancelModal{
+    position: absolute;
+    top: 15px;
+    right: 15px;
+}

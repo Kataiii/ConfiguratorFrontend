@@ -10,3 +10,8 @@ export interface ICreateFolderDto{
     account_id: number;
     role_id: number;
 }
+
+export interface IUpdateFolderDto{
+    id: number;
+    name: string;
+}

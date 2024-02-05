@@ -1,11 +1,11 @@
 import { ReactElement, useEffect } from "react";
 import { createPortal } from "react-dom";
 
-interface PortalProps{
+interface PortalProps {
     children: ReactElement;
 }
 
-const Portal: React.FC<PortalProps> = ({children}) => {
+const Portal: React.FC<PortalProps> = ({ children }) => {
     const mount = document.getElementById('context_menu-content');
 
     //@ts-ignore
