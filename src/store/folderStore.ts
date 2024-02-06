@@ -41,7 +41,7 @@ class Folders{
         return this.foldersRenders;
     }
 
-    addFolderProject = async(dto: ICreateFolderDto): Promise<IFolderProject> => {
+    addFolderProjectRequest = async(dto: ICreateFolderDto): Promise<IFolderProject> => {
         return await FolderProjectService.addFolder(dto);
     }
 
@@ -60,6 +60,56 @@ class Folders{
 
     findIdFolderByUrl = (urlFolder : string) : number => {
         return this.foldersProjects.filter(item => item.name === urlFolder)[0].id;
+    }
+
+    findFolderByRegExp = (regex: RegExp): IFolderProject[] => {
+        return this.foldersProjects.filter(item => {
+            if(item.name.match(regex) != null){
+                return item;
+            }
+        });
+    }
+
+    findFolderDublicate = (folderName: string) => {
+        let regex: RegExp = new RegExp(`^${folderName}_[0-9]+$`, "gu");
+        let folders: IFolderProject[] = this.findFolderByRegExp(regex);
+        return folders;
+    }
+
+    createMapFolders = (folders: IFolderProject[]): Map<number, IFolderProject> => {
+        let mapFolders = new Map<number, IFolderProject>();
+        folders.forEach(folder => {
+            let index: number = Number(folder.name.substring(folder.name.lastIndexOf("_") + 1));
+            mapFolders.set(index, folder);
+        });
+        return mapFolders;
+    }
+
+    addFolder = async(dto: ICreateFolderDto): Promise<IFolderProject> => {
+        const folder: IFolderProject = await this.addFolderProjectRequest(dto);
+        this.setFoldersProject([...this.getFoldersProject(), folder]);
+        return folder;
+    }
+
+    dublicateFolder = async(folderName: string, account_id: number, role_id?: number)/*: Promise<IFolderProject>*/ => {
+        if(folderName.match(new RegExp(`_[0-9]+$`, "gu")) != null){
+            folderName = folderName.substring(0, folderName.lastIndexOf("_"));
+        }
+
+        const dublicates: IFolderProject[] = this.findFolderDublicate(folderName);
+        let index = 1;
+        if(dublicates.length > 0){
+            //@ts-ignore
+            const map = new Map([...this.createMapFolders(dublicates).entries()].sort((a, b) => a[0] - b[0]));
+            const arrayFolders = Array.from(map, ([key, folder]) => ({key, folder}));
+
+            index = Number(arrayFolders[arrayFolders.length - 1].key) + 1;
+        }
+
+        const newName = `${folderName}_${index}`;
+        console.log(newName);
+        //TODO копирование проектов, связанных с этой папкой
+        return await this.addFolder({name: newName, account_id: account_id, role_id: role_id} as ICreateFolderDto);
     }
 }
 

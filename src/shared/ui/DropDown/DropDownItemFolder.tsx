@@ -20,9 +20,9 @@ interface DropDownItemFolderProps {
 }
 
 const DropDownItemFolder: React.FC<DropDownItemFolderProps> = observer(({ folderId, content, onClick, index }) => {
-    const { folderStore } = useContext(Context);
+    const { store, folderStore } = useContext(Context);
     const [isHide, setIsHide] = useState<boolean>(true);
-    const parent = useRef();
+    const parent = useRef<HTMLDivElement>(null);
     const [coords, setCoords] = useState<Coodinates>({} as Coodinates);
     const [updateHide, setUpdateHide] = useState<boolean>(true);
     const [deleteHide, setDeleteHide] = useState<boolean>(true);
@@ -70,6 +70,11 @@ const DropDownItemFolder: React.FC<DropDownItemFolderProps> = observer(({ folder
         setIsHide(true);
     }
 
+    const duplicationClickHandler = () => {
+        folderStore.dublicateFolder(content, store.getAccount().id, store.getActiveRole()?.id);
+        setIsHide(true);
+    }
+
     const clickCancelHandler = () => {
         setDeleteHide(true);
     }
@@ -97,7 +102,7 @@ const DropDownItemFolder: React.FC<DropDownItemFolderProps> = observer(({ folder
         {
             content: 'Дублировать',
             color: ColorText.Black,
-            onClick: () => console.log('Дублировать')
+            onClick: () => duplicationClickHandler()
         },
         {
             content: 'Удалить',
@@ -107,7 +112,6 @@ const DropDownItemFolder: React.FC<DropDownItemFolderProps> = observer(({ folder
     ], []);
 
     return (
-        //@ts-ignore
         <div key={content} ref={parent} className={styles.wrapDiv}>
             <li className={styles.ItemList} onClick={onClick} onContextMenu={contextMenuHandler}>{content}</li>
             {

@@ -29,8 +29,7 @@ const MenuFolders: React.FC<MenuFoldersProps> = observer(({folders, typeFolders,
                 account_id: store.getAccount().id,
                 role_id: store.getActiveRole()?.id || 4
             };
-            const folder: IFolderProject = await folderStore.addFolderProject(dto);
-            folderStore.setFoldersProject([...folderStore.getFoldersProject(), folder]);
+            await folderStore.addFolder(dto);
         }
     }
 
