@@ -1,4 +1,4 @@
-import { ReactElement, useEffect, useRef } from "react";
+import { ReactElement, useEffect, useRef, useState } from "react";
 import debounce from "lodash/debounce";
 import styles from "./DropDown/css/PopUpMenu.module.css";
 
@@ -18,7 +18,8 @@ interface TooltipPopoverProps{
 const TooltipPopover: React.FC<TooltipPopoverProps> = ({index, children, coord, updateTooltipCoords, closeHandler}) => {
     const updateCoords = debounce(updateTooltipCoords, 25);
     const sidePanel = document.getElementById('SidePanel');
-    const divRef = useRef();
+    const divRef = useRef<HTMLDivElement>(null);
+
 
     //Следование за объектом при прокрутке окна
     useEffect(() => {
@@ -36,11 +37,13 @@ const TooltipPopover: React.FC<TooltipPopoverProps> = ({index, children, coord, 
 
     //Закрытие при нажатии вне компонента
     useEffect(() => {
-        //@ts-ignore
-        const onClick = (e: any) => divRef.current.contains(e.target) || closeHandler(e);
+    
+        const onClick = (e: any) => { 
+            if(!divRef.current?.contains(e.target)) closeHandler(e);
+        }
         document.addEventListener('click', onClick);
         return () => document.removeEventListener('click', onClick);
-    }, []);
+    }, [closeHandler]);
 
     return(
         //@ts-ignore

@@ -1,5 +1,5 @@
 import { observer } from "mobx-react-lite";
-import { useMemo, useState, useRef, useContext } from "react";
+import { useMemo, useState, useRef, useContext, useCallback } from "react";
 import { Context } from "../../..";
 import { ColorBackground, ColorText } from "../../../entities/Enums/ColorTextPopUp";
 import { UpdateToolyip } from "../../common/UpdateTooltip";
@@ -28,7 +28,7 @@ const DropDownItemFolder: React.FC<DropDownItemFolderProps> = observer(({ folder
     const [deleteHide, setDeleteHide] = useState<boolean>(true);
     const [coordsUpdate, setCoordsUpdate] = useState<Coodinates>({} as Coodinates);
     const newName = useInput();
-    const [count, setCount] = useState(0);
+    const [count, setCount] = useState<number>(0);
 
     const contextMenuHandler = (e: any) => {
         e.preventDefault();
@@ -59,6 +59,7 @@ const DropDownItemFolder: React.FC<DropDownItemFolderProps> = observer(({ folder
 
     const keyDownHandler = (e: any) => {
         if (e.key === 'Enter') {
+            setCount(0);
             folderStore.updateFolderName(folderId, newName.value);
             setUpdateHide(true);
         }
@@ -78,18 +79,13 @@ const DropDownItemFolder: React.FC<DropDownItemFolderProps> = observer(({ folder
         setDeleteHide(true);
     }
 
-    //TODO не работает useState
     const closeHandler = (e: any) => {
-        console.log(count);
-        setCount(count+1);
-        console.log(count);
-        // if (count > 1) {
-        //     console.log('count ', count);
-        //     console.log(newName.value);
-        //     folderStore.updateFolderName(folderId, newName.value);
-        //     setUpdateHide(true);
-        //     setCount(0);
-        // }
+        setCount(count => count + 1);
+        if (count > 0) {
+            folderStore.updateFolderName(folderId, newName.value);
+            setUpdateHide(true);
+            setCount(0);
+        }
     }
 
     const itemsMenu = useMemo<ModalMenuItem[]>(() => [
