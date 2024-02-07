@@ -3,8 +3,9 @@ import DropDownItemFolder from "./DropDownItemFolder";
 import styles from "./css/DropDownFolder.module.css";
 import { useNavigate } from "react-router-dom";
 import { observer } from "mobx-react-lite";
-import { useContext } from "react";
+import { useContext, useMemo } from "react";
 import { Context } from "../../..";
+import DraggableList from "../Drag/DraggableList";
 
 interface DropDownFolderProps {
     folders: IFolderProject[];
@@ -15,8 +16,12 @@ const DropDownFolder: React.FC<DropDownFolderProps> = observer(({ folders, isHid
     const navigate = useNavigate();
     const {folderStore} = useContext(Context);
     
+    const items = useMemo<JSX.Element[]>(() =>  [], [])
+    //TODO переместить создание папок в DraggableList
+    
     return (
         <ul className={[styles.DivList, isHide ? styles.DivListHide : styles.DivListNotHide].join(' ')}>
+            <DraggableList items={items} multiplier={50}/>
             <>
                 {
                     folders.map((item, index) => {
