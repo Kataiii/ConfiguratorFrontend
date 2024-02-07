@@ -107,7 +107,6 @@ class Folders{
         }
 
         const newName = `${folderName}_${index}`;
-        console.log(newName);
         //TODO копирование проектов, связанных с этой папкой
         return await this.addFolder({name: newName, account_id: account_id, role_id: role_id} as ICreateFolderDto);
     }

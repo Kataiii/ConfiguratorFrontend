@@ -68,7 +68,6 @@ class Store {
             this.setStateStore(response.data);
             return this.getAccount();
         } catch (e: any) {
-            console.log(e);
             return 401;
         }
     }

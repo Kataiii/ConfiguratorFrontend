@@ -18,7 +18,7 @@ const SidePanelItem: React.FC<SidePanelItemProps> = observer(({folder, style}) =
     return(
         <Link key={folder.id} 
             className={[stylesSidePanel.LinkPersonal, styles[`${style}`]].join(' ')} 
-            to={`/home/projects/folders/${folder.name}`}
+            to={`/home/projects/${folder.name}`}
             onClick={() => folderStore.setActiveFolder(folder)}
         >
             {folder.name}

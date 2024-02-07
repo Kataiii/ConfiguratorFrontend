@@ -1,9 +1,8 @@
 import styles from "../../app/App.module.css";
 import AuthorisedHeader from "../../shared/ui/Headers/AuthorisedHeader";
-import { Outlet, useLocation, useNavigate } from "react-router-dom";
+import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
 import stylesSidePanel from "./css/DevelopmentArea.module.css";
-import { Link } from "react-router-dom";
-import BreadApp from "../../shared/ui/Breadcrumb";
+import BreadApp, { BreadAppItem } from "../../shared/ui/Breadcrumb";
 import { useContext, useState } from "react";
 import { useEffect } from "react";
 import SearchInput from "../../shared/ui/SearchInput";
@@ -12,19 +11,16 @@ import { Context } from "../..";
 import LoadingPage from "../../pages/LoadingPage";
 import RoleService from "../../store/services/RoleService";
 import { IRole } from "../../entities/Role/Role";
+import { SplitUrl } from "../../shared/common/SplitUrl";
+
+
 
 const Root: React.FC = () => {
     const {store, folderStore} = useContext(Context);
     const location = useLocation();
     const navigate = useNavigate();
     const [isLoading, setIsLoading] = useState<boolean>(true);
-
-    const [stateFolder, setStateFolder] = useState(
-        {
-            title: <Link to="/home">{">"} Все проекты</Link>,
-            key: "all_projects"
-        }
-    )
+    const [items, setItems] = useState<BreadAppItem[]>(SplitUrl.splitUrl(location.pathname));
 
     useEffect(() => {
         if(store.getActiveRole() === null){
@@ -45,22 +41,10 @@ const Root: React.FC = () => {
 
     useEffect(() => {
         if(location.pathname == "/home") navigate("/home/projects");
+        if(location.pathname == "/home/projects" || location.pathname == "/home/renders") folderStore.setActiveFolder(null);
+        setItems(SplitUrl.splitUrl(location.pathname));
+    }, [location.pathname]);
 
-        if(location.pathname.indexOf('/home/renders') == 0){
-            setStateFolder({
-                title: <Link to="/home/renders">{">"} Все рендеры</Link>,
-                key: 'all_renders'
-            })
-        }
-        else{
-            setStateFolder({
-                title: <Link to="/home">{">"} Все проекты</Link>,
-                key: "all_projects"
-            })
-        }
-      }, [location.pathname]);
-
-      //TODO изменить папки
     return(
         isLoading
         ? <LoadingPage/>
@@ -72,7 +56,7 @@ const Root: React.FC = () => {
                         <div className={stylesSidePanel.DivWrapPageContent}>
                             <div>
                                 <div className={stylesSidePanel.breadCrumpWrap}>
-                                    <BreadApp title={stateFolder}/>
+                                    <BreadApp items={items}/>
                                 </div>
                                 <div>
                                     <div className={stylesSidePanel.SearchInputWrap}>
