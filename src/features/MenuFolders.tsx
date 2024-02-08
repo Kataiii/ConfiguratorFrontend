@@ -15,12 +15,7 @@ interface MenuFoldersProps{
 
 const MenuFolders: React.FC<MenuFoldersProps> = observer(({folders, typeFolders, title}) => {
     const {store, folderStore} = useContext(Context);
-    const [isHide, setIsHide] = useState<boolean>(false);
-
-    useEffect(() => {
-        console.log(folders);
-        console.log(folderStore.getFoldersProject());
-    }, [folderStore]);
+    const [isHide, setIsHide] = useState<boolean>(true);
 
     const clickHandler = async() => {
         if(typeFolders == "projects"){

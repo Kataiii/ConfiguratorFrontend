@@ -112,7 +112,7 @@ const DropDownItemFolder: React.FC<DropDownItemFolderProps> = observer(({ folder
     ], []);
 
     return (
-        <div key={content} ref={parent} className={styles.wrapDiv}>
+        <div key={content} ref={parent} className={styles.wrapDiv} style={{height: '30px'}}>
             <li className={styles.ItemList} onClick={onClick} onContextMenu={contextMenuHandler}>{content}</li>
             {
                 isHide
