@@ -1,4 +1,4 @@
-import { Nullable } from "../Enums/Nullable";
+import { Nullable } from "./Enums/Nullable";
 
 export interface ICreateProjectDto{
     name: string;
@@ -9,10 +9,18 @@ export interface ICreateProjectDto{
     file_project: File;
 }
 
+export interface IProjectInfo{
+    id: number;
+    name:string;
+    preview?: string;
+    folder_id: number;
+    update_date?:Date;
+}
+
+
 export interface IProject{
     id : number;
     name : string;
-    name_translate : Nullable<string>;
     id_user : number;
     id_folder : number;
     status : string;

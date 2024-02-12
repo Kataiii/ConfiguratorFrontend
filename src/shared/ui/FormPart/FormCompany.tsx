@@ -11,7 +11,7 @@ import { schemaCompanyRegist, FormCompanyValues } from "../../../entities/User/C
 import CheckboxForm from "./CheckboxForm";
 import Select from "../MySelect";
 import { Context } from "../../..";
-import { ICompanyType } from "../../../entities/Company/CompanyTypes";
+import { ICompanyType } from "../../../entities/CompanyTypes";
 import CompanyTypesService from "../../../store/services/CompanyTypeService";
 import { useNavigate } from "react-router-dom";
 

@@ -1,8 +1,8 @@
 import BlockAddProjects from "../../shared/ui/BlockAddProjects";
 import styles from "../../app/App.module.css";
-import Projects from "../../store/project";
+import Projects from "../../store/projectStore";
 import { useMemo, useState } from "react";
-import { Project } from "../../entities/Project/Project";
+import { Project } from "../../entities/Project";
 import { PopUpMenuItem } from "../../shared/ui/DropDown/PopUpMenu";
 import { ColorText } from "../../entities/Enums/ColorTextPopUp";
 import ProjectCard from "../../features/CardProject/ProjectCard";
@@ -10,41 +10,8 @@ import CreateProjectModal from "../../shared/ui/Modals/CreateProjectModal";
 
 
 const ProjectPage: React.FC = () => {
-    const [projectsList, setProjectsList] = useState(Projects.apiGetAllProjectsForUser());
+    const [projectsList, setProjectsList] = useState();
     const [isVisible, setIsVisible] = useState<boolean>(false);
-
-    const itemMenuProject: PopUpMenuItem[] = useMemo<PopUpMenuItem[]>(() =>  [
-        {
-          content: 'Открыть',
-          action: () => console.log('Открыть'),
-          color: ColorText.White
-        },
-        {
-          content: 'Отправить на просчет',
-          action: () => console.log('Отправить на просчет'),
-          color: ColorText.White
-        },
-        {
-            content: 'Переименовать',
-            action: () => console.log('Переименовать'),
-            color: ColorText.White
-        },
-        {
-            content: 'Создать копию',
-            action: () => console.log('Создать копию'),
-            color: ColorText.White
-        },
-        {
-            content: 'Переместить',
-            action: () => console.log('Переместить'),
-            color: ColorText.White
-        },
-        {
-          content: 'Удалить',
-          action: () => console.log('Удалить'),
-          color: ColorText.Red
-        }
-      ], [])
 
     const sortProject = (firstProject : Project, secondProject : Project) : number => {
         if(firstProject.update_date > secondProject.update_date) return 1;
@@ -58,13 +25,14 @@ const ProjectPage: React.FC = () => {
     return (
         <div className={styles.DivProjectPage}>
             <BlockAddProjects onClick={clickHandler}/>
-            <>
+            <ProjectCard key={1} project={{id: 1, name: 'Project', folder_id: 1}}/>
+            {/* <>
                 {
                     projectsList.sort(sortProject).map((item, index) => {
-                        return <ProjectCard key={index} project={item} isActiveMenu={false} itemsMenu={itemMenuProject}/>
+                        return <ProjectCard key={index} project={item}/>
                     })
                 }
-            </>
+            </> */}
             {
                 isVisible
                 ? <CreateProjectModal/>

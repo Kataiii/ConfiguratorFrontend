@@ -1,6 +1,6 @@
 import axios from "axios";
 import { store } from "../..";
-import { ICreateProjectDto, IProject } from "../../entities/Project/Project";
+import { ICreateProjectDto, IProject } from "../../entities/Project";
 import { CreateProjectResponse } from "../../entities/Response/CreateProjectResponse";
 import $api, { API_URL } from "../../http/Index";
 

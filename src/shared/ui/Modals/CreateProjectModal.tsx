@@ -1,13 +1,26 @@
 import Button from "../ButtonPrim";
 import Select from "../MySelect";
 import styles from "../css/CreateProjectModal.module.css";
+import { useEffect, useState } from "react";
+import { IConstructionType } from "../../../entities/ConstructionType";
+import ConstructionTypeService from "../../../store/services/ConstructionTypeService";
 
-//TODO А они нужны?
-// interface CreateProjectModalProps {
-
-// }
 
 const CreateProjectModal: React.FC = () => {
+    const [constructionTypes, setConstructionTypes] = useState<IConstructionType[]>([]);
+    const [idType, setIdType] = useState(1);
+
+    const handleMonthSelect = (id: number) => {
+      setIdType(id);
+    };
+
+    useEffect(() => {
+        const response = ConstructionTypeService.getAllConstructionTypes();
+        response.then(response => {
+            setConstructionTypes(response);
+        })
+    }, [])
+
     return (
         <div className={styles.modalDiv}>
             <h1 className={styles.modalTitle}>Создать проект</h1>
@@ -16,15 +29,14 @@ const CreateProjectModal: React.FC = () => {
                     <p className={styles.modalInscription}>Название проекта</p>
                     <input className={[styles.modalInput, styles.modalInputName].join(' ')} type='text' placeholder="Введите название..." />
                 </div>
-                <div>
+                <div style={{width: '100%'}}>
                     <p className={styles.modalInscription}>Тип строения</p>
-                    {/* TODO настроить селектор для типа строения */}
-                    {/* <Select
-                    options={options}
-                    selected={selectedMonth || null}
+                    <Select
+                    options={constructionTypes}
+                    selected={constructionTypes.find((item) => item.id === idType) ?? null}
                     onChange={handleMonthSelect}
-                    placeholder="Выберите тип организации"
-                /> */}
+                    placeholder="Выберите тип строения..."
+                />
                 </div>
             </div>
 

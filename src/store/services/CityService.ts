@@ -1,5 +1,5 @@
 import { AxiosResponse } from "axios";
-import { ICity } from "../../entities/City/City";
+import { ICity } from "../../entities/City";
 import $api from "../../http/Index";
 
 

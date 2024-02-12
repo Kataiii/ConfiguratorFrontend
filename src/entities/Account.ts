@@ -1,4 +1,4 @@
-import { IRole } from "../Role/Role";
+import { IRole } from "./Role";
 
 export interface IAccount{
     id: number;

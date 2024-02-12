@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { Context } from "..";
-import { IRole } from "../entities/Role/Role";
+import { IRole } from "../entities/Role";
 import RoleButton from "../features/RoleButton";
 import CompanyService from "../store/services/CompanyService";
 import EmployeeService from "../store/services/EmployeeService";

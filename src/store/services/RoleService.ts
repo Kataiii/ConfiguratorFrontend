@@ -1,4 +1,4 @@
-import { IRole } from "../../entities/Role/Role";
+import { IRole } from "../../entities/Role";
 import $api from "../../http/Index";
 
 export default class RoleService{

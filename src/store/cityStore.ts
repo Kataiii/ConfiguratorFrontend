@@ -1,5 +1,5 @@
 import { makeAutoObservable } from "mobx";
-import { ICity } from "../entities/City/City";
+import { ICity } from "../entities/City";
 import CityService from "./services/CityService";
 
 class CityStore{

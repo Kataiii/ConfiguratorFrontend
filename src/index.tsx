@@ -9,25 +9,29 @@ import Store from './store/store';
 import ActiveUserStore from './store/activeUserStore';
 import CityStore from './store/cityStore';
 import Folders from './store/folderStore';
+import ProjectStore from './store/projectStore';
 
 
 interface State {
   store: Store,
   activeUser: ActiveUserStore
   cityStore: CityStore,
-  folderStore: Folders
+  folderStore: Folders,
+  projectStore: ProjectStore
 }
 
 export const store = new Store();
 export const activeUser = new ActiveUserStore();
 export const cityStore = new CityStore();
 export const folderStore = new Folders();
+export const projectStore = new ProjectStore();
 
 export const Context = createContext<State>({
   store,
   activeUser,
   cityStore,
-  folderStore
+  folderStore,
+  projectStore
 })
 
 
@@ -40,7 +44,8 @@ root.render(
       store,
       activeUser,
       cityStore,
-      folderStore
+      folderStore,
+      projectStore
     }}>
       <RouterProvider router={router} />
     </Context.Provider>

@@ -10,7 +10,7 @@ import SidePanel from "../../widgets/SidePanel";
 import { Context } from "../..";
 import LoadingPage from "../../pages/LoadingPage";
 import RoleService from "../../store/services/RoleService";
-import { IRole } from "../../entities/Role/Role";
+import { IRole } from "../../entities/Role";
 import { SplitUrl } from "../../shared/common/SplitUrl";
 
 

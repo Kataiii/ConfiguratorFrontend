@@ -1,5 +1,5 @@
 import { AxiosResponse } from "axios";
-import { ICompanyType } from "../../entities/Company/CompanyTypes";
+import { ICompanyType } from "../../entities/CompanyTypes";
 import $api from "../../http/Index";
 
 

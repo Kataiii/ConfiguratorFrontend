@@ -1,9 +1,9 @@
 import BlockAddProjects from "../../shared/ui/BlockAddProjects";
 import styles from "../../app/App.module.css";
-import Projects from "../../store/project";
+import Projects from "../../store/projectStore";
 import folder from "../../store/folderStore";
 import { useState, useEffect, useMemo } from "react";
-import { Project } from "../../entities/Project/Project";
+import { Project } from "../../entities/Project";
 import { useLocation } from "react-router-dom";
 import { PopUpMenuItem } from "../../shared/ui/DropDown/PopUpMenu";
 import { ColorText } from "../../entities/Enums/ColorTextPopUp";

@@ -1,12 +1,12 @@
 import { makeAutoObservable } from "mobx";
-import { IAccount } from "../entities/Account/Account";
+import { IAccount } from "../entities/Account";
 import { ICreateCompany } from "../entities/User/Company";
 import { ICreateUser } from "../entities/User/User";
 import AuthService from "./services/AuthService";
 import axios from "axios";
 import { AuthResponse } from "../entities/Response/AuthResponse";
 import { API_URL } from "../http/Index";
-import { IRole } from "../entities/Role/Role";
+import { IRole } from "../entities/Role";
 import { IAuthDto } from "../entities/Dto/AuthDto";
 import { Nullable } from "../entities/Enums/Nullable";
 

@@ -18,4 +18,8 @@ export default class FolderProjectService{
     static async deleteFolder(id: number): Promise<IFolderProject>{
         return (await $api.delete<IFolderProject>(`/folder-projects`, {data: {id: id}})).data;
     }
+
+    static async getFolderById(folder_id: number): Promise<IFolderProject>{
+        return (await $api.get<IFolderProject>(`/folder-projects/${folder_id}`)).data;
+    }
 }
