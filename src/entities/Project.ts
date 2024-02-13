@@ -6,11 +6,12 @@ export interface ICreateProjectDto{
     floor_number: number;
     folder_id: number;
     role_id: number;
-    file_project: File;
+    file_project?: File;
+    preview?: File;
 }
 
 export interface IProjectInfo{
-    id: number;
+    id?: number;
     name:string;
     preview?: string;
     folder_id: number;
@@ -23,7 +24,7 @@ export interface IProject{
     name : string;
     id_user : number;
     id_folder : number;
-    status : string;
+    status?: string;
     create_date : Date;
     update_date : Date;
     preview : Nullable<any>;

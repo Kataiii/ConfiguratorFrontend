@@ -1,17 +1,20 @@
 import BlockAddProjects from "../../shared/ui/BlockAddProjects";
 import styles from "../../app/App.module.css";
 import Projects from "../../store/projectStore";
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import { Project } from "../../entities/Project";
 import { PopUpMenuItem } from "../../shared/ui/DropDown/PopUpMenu";
 import { ColorText } from "../../entities/Enums/ColorTextPopUp";
 import ProjectCard from "../../features/CardProject/ProjectCard";
 import CreateProjectModal from "../../shared/ui/Modals/CreateProjectModal";
+import Portal from "../../shared/ui/Portal";
+import TooltipPopover, { Coodinates } from "../../shared/ui/TooltipPopover";
 
 
 const ProjectPage: React.FC = () => {
     const [projectsList, setProjectsList] = useState();
     const [isVisible, setIsVisible] = useState<boolean>(false);
+    const [coords, setCoords] = useState<Coodinates>({} as Coodinates);
 
     const sortProject = (firstProject : Project, secondProject : Project) : number => {
         if(firstProject.update_date > secondProject.update_date) return 1;
@@ -19,7 +22,15 @@ const ProjectPage: React.FC = () => {
     }
 
     const clickHandler = () => {
-        setIsVisible(isVisible => !isVisible);
+        setIsVisible(true);
+        console.log('1');
+    }
+
+    const closeHandler = (e: any) => {
+        //TODO отрабатывает сразу как выводится 1
+        e.stopPropagation();
+        setIsVisible(false);
+        console.log('2');
     }
 
     return (
@@ -35,7 +46,7 @@ const ProjectPage: React.FC = () => {
             </> */}
             {
                 isVisible
-                ? <CreateProjectModal/>
+                ? <CreateProjectModal closeHandler={closeHandler} />
                 : null
             }
         </div>

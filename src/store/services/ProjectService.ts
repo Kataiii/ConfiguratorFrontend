@@ -13,14 +13,19 @@ export default class ProjectService{
         formData.append('floor_number', dto.floor_number.toString());
         formData.append('folder_id', dto.folder_id.toString());
         formData.append('role_id', dto.role_id.toString());
-        formData.append('file_project', dto.file_project);
+        if(dto.file_project !== undefined) formData.append('file_project', dto.file_project);
+        if(dto.preview !== undefined) formData.append('preview', dto.preview);
 
-        return await (await axios.post<CreateProjectResponse>(`${API_URL}/projects`, formData, {
+        return (await axios.post<CreateProjectResponse>(`${API_URL}/projects`, formData, {
             headers: {
               'Content-Type': 'multipart/form-data',
               'Authorization': `Bearer ${store.getAccessToken()}`
             },
             withCredentials: true
         })).data;
+    }
+
+    static async createProjectWithoutFiles(dto: ICreateProjectDto): Promise<CreateProjectResponse>{
+        return (await $api.post<CreateProjectResponse>(`${API_URL}/projects/project`, dto)).data;
     }
 }

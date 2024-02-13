@@ -2,7 +2,6 @@ import Root from "../layouts/developmentArea";
 import ErrorPage from "../layouts/error-page";
 import ProjectPage from "../../pages/projects/ProjectPage";
 import FolderProjectPage from "../../pages/projects/FolderProjectPage";
-import ConfiguratorPage from "../../pages/projects/ConfiguratorPage";
 import LoadingPage from "../../pages/LoadingPage";
 
 const UserProjectRouter = {
@@ -17,10 +16,6 @@ const UserProjectRouter = {
                 {
                     path: "/home/projects/:name_folder",
                     element: <ProjectPage/>
-                },
-                {
-                    path: "/home/projects/:name_folder/:name_project",
-                    element: <ConfiguratorPage/>
                 }
             ]
         },
