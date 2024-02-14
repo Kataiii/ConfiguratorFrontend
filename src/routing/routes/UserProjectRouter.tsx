@@ -1,7 +1,6 @@
 import Root from "../layouts/developmentArea";
 import ErrorPage from "../layouts/error-page";
 import ProjectPage from "../../pages/projects/ProjectPage";
-import FolderProjectPage from "../../pages/projects/FolderProjectPage";
 import LoadingPage from "../../pages/LoadingPage";
 
 const UserProjectRouter = {
@@ -21,12 +20,12 @@ const UserProjectRouter = {
         },
         {
             path: "/home/renders",
-            element: <FolderProjectPage />,
+            element: <ProjectPage />,
             children: [
                 {
                     path: "/home/renders/:name:folder",
                     //TODO переделать потом в страницу для рендеров
-                    element: <FolderProjectPage/>
+                    element: <ProjectPage/>
                 },
                 {
                     //TODO сделать другой элемент или убрать совсем

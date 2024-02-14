@@ -1,19 +1,22 @@
 import styles from './ProjectCard.module.css';
 import { useContext, useEffect, useMemo, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { IProjectInfo } from '../../entities/Project';
+import { IProject } from '../../entities/Project';
 import PopUpMenu, { PopUpMenuItem } from '../../shared/ui/DropDown/PopUpMenu';
 import CardInfo from './CardInfo';
 import { ColorText } from '../../entities/Enums/ColorTextPopUp';
 import IconMenu from "../../assets/icons/icon-dropdown menu.svg";
 import FolderProjectService from '../../store/services/FolderProjectServeice';
+import { observer } from 'mobx-react-lite';
+import { Context } from '../..';
 
 
 interface ProjectCardProps {
-    project: IProjectInfo;
+    project: IProject;
 }
 
-const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
+const ProjectCard: React.FC<ProjectCardProps> = observer(({ project }) => {
+    const {folderStore} = useContext(Context);
     const locate = useLocation();
     const navigate = useNavigate();
     const [isActive, setIsActive] = useState<boolean>(false);
@@ -60,14 +63,18 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
                 setName(response.name);
             })
         }
-    }, [locate.pathname])
-    // const onClickHandler = () => {
-    //     navigate('/home/configurator/project/' + project.name_translate)
-    // }
+    }, [locate.pathname]);
+
+    const clickHandler = () => {
+        const folderName = folderStore.getFoldersProject().find(item => item.id === project.folder_id);
+        console.log(project);
+        console.log(folderName);
+        navigate(`/home/configurator/${folderName}/${project.name}`);
+    }
 
     return (
         <div className={styles.ProjectCardDiv}>
-            <div className={styles.ProjectCardImg}>
+            <div className={styles.ProjectCardImg} onClick={clickHandler}>
                 {
                     project.preview
                         ? <img src={project.preview}></img>
@@ -90,6 +97,6 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
             }
         </div>
     )
-}
+})
 
 export default ProjectCard;

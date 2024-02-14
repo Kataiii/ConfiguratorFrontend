@@ -12,11 +12,13 @@ import LoadingPage from "../../pages/LoadingPage";
 import RoleService from "../../store/services/RoleService";
 import { IRole } from "../../entities/Role";
 import { SplitUrl } from "../../shared/common/SplitUrl";
+import ProjectService from "../../store/services/ProjectService";
+import { IProject } from "../../entities/Project";
 
 
 
 const Root: React.FC = () => {
-    const {store, folderStore} = useContext(Context);
+    const {store, folderStore, projectStore} = useContext(Context);
     const location = useLocation();
     const navigate = useNavigate();
     const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -32,11 +34,30 @@ const Root: React.FC = () => {
                 });
             }
         }
-        const response = folderStore.getFoldersProjectByBack(store.getActiveRole()?.id || 4);
+        //TODO Если убрать ??, то скорее всего раотать не будет
+        const response = folderStore.getFoldersProjectByBack(store.getActiveRole()?.id ?? 4);
         response.then(response => {
             folderStore.setFoldersProject(response);
             setIsLoading(false);
         });
+        const responseProjects  = ProjectService.getAllProjectsPagination(store.getActiveRole()?.id ?? 4, 1, 15);
+        responseProjects.then(response => {
+            let projects: IProject[] = [];
+            const user_id = store.getAccount().id;
+            response.map(item => {
+                projects.push({
+                    id: item.id,
+                    name: item.name,
+                    id_user: user_id,
+                    folder_id: item.folder_id,
+                    createdAt: item.createdAt,
+                    updatedAt: item.updatedAt,
+                    preview: item.preview ?? undefined,
+                    save_file: item.save_file ?? undefined
+                });
+            })
+            projectStore.setProjects(projects);
+        })
     }, []);
 
     useEffect(() => {

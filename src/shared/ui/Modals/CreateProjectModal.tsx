@@ -55,7 +55,7 @@ const CreateProjectModal: React.FC<CreateProjectModalProps> = ({closeHandler}) =
             role_id: store.getActiveRole()?.id ?? 4
         }
 
-        const project = await projectStore.addNewProject(projectInfo);
+        const project = await projectStore.addNewProject(projectInfo, store.getAccount().id);
         const nameFolder = folderStore.getFoldersProject().find(item => item.id === project.folder_id)!.name;
         navigate(`/home/configurator/${nameFolder}/${project.name}`);
     }

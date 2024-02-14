@@ -1,9 +1,9 @@
 import { makeAutoObservable } from "mobx"
-import { ICreateProjectDto, IProjectInfo } from "../entities/Project"
+import { ICreateProjectDto, IProject, IProjectInfo } from "../entities/Project"
 import ProjectService from "./services/ProjectService";
 
 class ProjectStore {
-    projects : IProjectInfo[] = [];
+    projects : IProject[] = [];
 
     constructor() {
         makeAutoObservable(this)
@@ -13,13 +13,23 @@ class ProjectStore {
         return this.projects;
     }
 
-    setProjects = (projects: IProjectInfo[]) => {
+    setProjects = (projects: IProject[]) => {
         this.projects = projects;
     }
 
-    addNewProject = async(dto: ICreateProjectDto) => {
+    addNewProject = async(dto: ICreateProjectDto, user_id: number) => {
         const project = await ProjectService.createProjectWithoutFiles(dto);
-        this.projects = [...this.projects, project];
+        const new_project: IProject = {
+            id: project.id,
+            name: project.name,
+            id_user: user_id,
+            folder_id: project.folder_id,
+            createdAt: project.createdAt,
+            updatedAt: project.updatedAt,
+            preview: project.preview ?? undefined,
+            save_file: project.save_file ?? undefined
+        }
+        this.projects = [...this.projects, new_project];
         return project;
     }
 }
