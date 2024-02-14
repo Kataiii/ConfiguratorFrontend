@@ -6,7 +6,6 @@ import PopUpMenu, { PopUpMenuItem } from '../../shared/ui/DropDown/PopUpMenu';
 import CardInfo from './CardInfo';
 import { ColorText } from '../../entities/Enums/ColorTextPopUp';
 import IconMenu from "../../assets/icons/icon-dropdown menu.svg";
-import FolderProjectService from '../../store/services/FolderProjectServeice';
 import { observer } from 'mobx-react-lite';
 import { Context } from '../..';
 
@@ -53,22 +52,15 @@ const ProjectCard: React.FC<ProjectCardProps> = observer(({ project }) => {
             action: () => console.log('Удалить'),
             color: ColorText.Red
         }
-    ], [])
-
+    ], []);
 
     useEffect(() => {
-        if(locate.pathname === '/home/project'){
-            const response = FolderProjectService.getFolderById(project.folder_id);
-            response.then(response => {
-                setName(response.name);
-            })
-        }
-    }, [locate.pathname]);
+        const folderName = folderStore.getFoldersProject().find(item => item.id === project.folder_id)!.name;
+        setName(folderName);
+    }, []);
 
     const clickHandler = () => {
         const folderName = folderStore.getFoldersProject().find(item => item.id === project.folder_id);
-        console.log(project);
-        console.log(folderName);
         navigate(`/home/configurator/${folderName}/${project.name}`);
     }
 
@@ -82,7 +74,7 @@ const ProjectCard: React.FC<ProjectCardProps> = observer(({ project }) => {
                 }
             </div>
             <div className={styles.ProjectCardDivInfo}>
-                <CardInfo name={project.name} />
+                <CardInfo name={project.name} name_folder={locate.pathname === "/home/projects" ? name : undefined} date={project.updatedAt}/>
                 <img style={{cursor: 'pointer'}} onClick={() => {setIsActive(isActive => !isActive)}} src={IconMenu} />
             </div>
 

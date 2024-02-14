@@ -9,7 +9,7 @@
 
 .ProjectCardImg{
     display: block;
-    height: 142px;
+    height: 175px;
     cursor: pointer;
     overflow: hidden;
 }
@@ -69,13 +69,13 @@
 
 .SimpleMenuDiv{
     position: absolute;
-    bottom: -160px;
-    right: -90px;
+    bottom: -170px;
+    right: -150px;
     z-index: 100;
 }
 
 .ProjectCardDivInfo{
     display: flex;
     justify-content: space-between;
-    padding: 15px;
+    padding: 0 15px;
 }

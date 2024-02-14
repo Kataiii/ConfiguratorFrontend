@@ -1,0 +1,42 @@
+.CardInfo_Title{
+    font-family: 'Ubuntu';
+    font-size: 14px;
+    font-weight: 400;
+    color: rgba(49, 49, 49, 1);
+    line-height: 15px;
+    margin: 0;
+}
+
+.CardInfo_DivTitle{
+    display: flex;
+    gap: 5px;
+}
+
+.CardInfo_Link{
+    margin: 0;
+    font-family: 'Ubuntu';
+    font-size: 10px;
+    font-weight: 400;
+    line-height: 15px;
+    color: rgba(49, 49, 49, 0.7);
+    cursor: pointer;
+}
+
+.CardInfo_Link:hover{
+    background-color: #E4E4E4;
+    color: #1C1C1C;
+    border-radius: 3px;
+}
+
+.CardInfo_Date{
+    font-family: 'Ubuntu';
+    font-size: 10px;
+    font-weight: 400;
+    margin: 3px 0;
+    color: rgba(49, 49, 49, 0.7);
+}
+
+.CardLink_TitleMain{
+    max-width: 104px;
+    overflow: hidden;
+}
