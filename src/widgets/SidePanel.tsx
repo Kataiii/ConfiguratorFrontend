@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import stylesSidePanel from "../routing/layouts/css/DevelopmentArea.module.css";
-import styles from "../app/App.module.css";
 import { IFolderProject } from "../entities/Folder/FolderProject";
 import { useContext, useEffect, useState } from "react";
 import { observer } from "mobx-react-lite";
@@ -29,7 +28,7 @@ const SidePanel: React.FC = observer(() => {
             <div id="SidePanel" className={stylesSidePanel.SidePanel}>
                 <Link className={stylesSidePanel.LinkPersonal}
                     to={'/home'} onClick={() => folderStore.setActiveFolder(null)}>Все проекты</Link>
-                <SidePanelItem style={'LinkFolder'} folder={folderStore.getFoldersProject().find(item => item.name == "Неотсортированные") || folderStore.getFoldersProject()[0]} />
+                <SidePanelItem style={'LinkFolder'} folder={folderStore.getFoldersProject().find(item => item.name == "Неотсортированные") ?? folderStore.getFoldersProject()[0]} />
                 <MenuFolders folders={itemsMenuProject} typeFolders={"projects"} title={"Папки"} />
 
                 {/* TODO сделать меню для рендеров */}
@@ -40,8 +39,8 @@ const SidePanel: React.FC = observer(() => {
                                 <MyMenu titleMy="Папки" typeFolders="renders"/> */}
 
                 <SidePanelItem folder={folderForRole || folderStore.getFoldersProject()[0]} />
-                <SidePanelItem folder={folderStore.getFoldersProject().find(item => item.name == "Корзина") || folderStore.getFoldersProject()[0]} />
-                <SidePanelItem folder={folderStore.getFoldersProject().find(item => item.name == "Архив") || folderStore.getFoldersProject()[0]} />
+                <SidePanelItem folder={folderStore.getFoldersProject().find(item => item.name == "Корзина") ?? folderStore.getFoldersProject()[0]} />
+                <SidePanelItem folder={folderStore.getFoldersProject().find(item => item.name == "Архив") ?? folderStore.getFoldersProject()[0]} />
             </div>
         </div>
     );

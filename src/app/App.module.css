@@ -196,9 +196,6 @@
   margin-left: 20px;
 }
 
-.DivProjectPage{
-  display: flex;
-  flex-wrap: wrap;
-  gap: 18px;
-  margin: 18px 0;
+.DivLastElement{
+  height: 15px;
 }

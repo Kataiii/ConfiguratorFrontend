@@ -5,6 +5,8 @@ import ProjectService from "./services/ProjectService";
 class ProjectStore {
     projects : IProject[] = [];
     countProjects: number = 0;
+    public limit: number = 19;
+    public totalPage: number = 1;
 
     constructor() {
         makeAutoObservable(this)

@@ -38,8 +38,13 @@ export default class ProjectService{
         })).data;
     }
 
-    static async getProjectsByFolderPagination(folder_id: number, page: number, limit: number){
-
+    static async getProjectsByFolderPagination(folder_id: number, page: number, limit: number): Promise<ProjectResponse[]>{
+        return (await $api.get<ProjectResponse[]>(`${API_URL}/projects/pagination/folder/${folder_id}`, {
+            params: {
+                page: page,
+                limit:limit
+            }
+        })).data;
     }
 
     static async editProject(){
