@@ -27,6 +27,9 @@ const ProjectPage: React.FC = observer(() => {
             response = await ProjectService.getAllProjectsPagination(store.getActiveRole()!.id, page, projectStore.limit);
         }
         else{
+            if(folderStore.getAciveFolder() == null){
+                folderStore.setActiveFolder(folderStore.getFoldersProject().find(item => item.id === Number(localStorage.getItem("activeFolderId"))) ?? null);
+            }
             response = await ProjectService.getProjectsByFolderPagination(folderStore.getAciveFolder()!.id, page, projectStore.limit);
         }
         const user_id = store.getAccount().id;
@@ -61,7 +64,7 @@ const ProjectPage: React.FC = observer(() => {
                 projectStore.totalPage = Math.ceil(projectStore.getCountProjects() / projectStore.limit);
             })
         }
-    }, [locate.pathname])
+    }, [locate.pathname]);
 
     // const sortProject = (firstProject : IProject, secondProject : IProject) : number => {
     //     if(firstProject.updatedAt > secondProject.updatedAt) return 1;
@@ -79,6 +82,11 @@ const ProjectPage: React.FC = observer(() => {
 
     return (
         <div>
+            {
+                folderStore.getAciveFolder()?.name === "Корзина"
+                ? <p className={styles.BacketContent}>Файлы в корзине хранятся 30 дней, после чего они удаляются <p className={styles.BacketBorderContent}>навсегда</p></p>
+                : null
+            }
             {
                 isProjectsLoading
                 ? <p>Загрузка</p>

@@ -19,7 +19,10 @@ const SidePanelItem: React.FC<SidePanelItemProps> = observer(({folder, style}) =
         <Link key={folder.id} 
             className={[stylesSidePanel.LinkPersonal, styles[`${style}`]].join(' ')} 
             to={`/home/projects/${folder.name}`}
-            onClick={() => folderStore.setActiveFolder(folder)}
+            onClick={() => {
+                folderStore.setActiveFolder(folder);
+                localStorage.setItem("activeFolderId", String(folder.id));
+            }}
         >
             {folder.name}
         </Link>

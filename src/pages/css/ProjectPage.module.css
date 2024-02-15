@@ -1,6 +1,22 @@
-.DivProjectPage{
-    display: flex;
-    flex-wrap: wrap;
-    gap: 18px;
-    margin: 18px 0;
-  }
+.DivProjectPage {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  margin: 18px 0;
+}
+
+.BacketContent{
+  display: flex;
+  margin: 0;
+  font-family: 'Ubuntu';
+  font-size: 14px;
+  font-weight: 300;
+  color: rgba(49, 49, 49, 0.5);
+  gap: 5px;
+  padding: 15px 25px 0;
+}
+
+.BacketBorderContent{
+  margin: 0;
+  border-bottom: 1px solid rgba(49, 49, 49, 0.5);;
+}

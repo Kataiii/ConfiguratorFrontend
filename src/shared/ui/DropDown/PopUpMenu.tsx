@@ -1,4 +1,6 @@
+import { useRef } from "react";
 import { ColorText } from "../../../entities/Enums/ColorTextPopUp";
+import { useOutsideClick } from "../../hooks/UseOutsideClick";
 import styles from "./css/PopUpMenu.module.css";
 
 
@@ -11,13 +13,17 @@ export interface PopUpMenuItem{
 export interface PopUpMenuProps{
     items: PopUpMenuItem[];
     isFixedLeft: boolean;
+    closeHandler: (e: any) => void;
 }
 
-const PopUpMenu: React.FC<PopUpMenuProps> = ({items, isFixedLeft}) => {
+const PopUpMenu: React.FC<PopUpMenuProps> = ({items, isFixedLeft, closeHandler}) => {
     const styleList = isFixedLeft ? styles.popUpLeft : styles.popUpRight;
+    const ulRef = useRef<HTMLUListElement>(null);
+
+    useOutsideClick(ulRef, closeHandler);
 
     return(
-        <ul className={[styles.popUpMenu, styleList].join(' ')}>
+        <ul ref={ulRef} className={[styles.popUpMenu, styleList].join(' ')}>
             <>
                 {
                     items.map((item, index) => {

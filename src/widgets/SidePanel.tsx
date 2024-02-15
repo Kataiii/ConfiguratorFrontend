@@ -27,7 +27,10 @@ const SidePanel: React.FC = observer(() => {
         <div className={stylesSidePanel.SidePanelWrap}>
             <div id="SidePanel" className={stylesSidePanel.SidePanel}>
                 <Link className={stylesSidePanel.LinkPersonal}
-                    to={'/home'} onClick={() => folderStore.setActiveFolder(null)}>Все проекты</Link>
+                    to={'/home'} onClick={() => {
+                        folderStore.setActiveFolder(null);
+                        localStorage.setItem("activeFolderId", "null");
+                    }}>Все проекты</Link>
                 <SidePanelItem style={'LinkFolder'} folder={folderStore.getFoldersProject().find(item => item.name == "Неотсортированные") ?? folderStore.getFoldersProject()[0]} />
                 <MenuFolders folders={itemsMenuProject} typeFolders={"projects"} title={"Папки"} />
 
@@ -39,8 +42,8 @@ const SidePanel: React.FC = observer(() => {
                                 <MyMenu titleMy="Папки" typeFolders="renders"/> */}
 
                 <SidePanelItem folder={folderForRole || folderStore.getFoldersProject()[0]} />
-                <SidePanelItem folder={folderStore.getFoldersProject().find(item => item.name == "Корзина") ?? folderStore.getFoldersProject()[0]} />
                 <SidePanelItem folder={folderStore.getFoldersProject().find(item => item.name == "Архив") ?? folderStore.getFoldersProject()[0]} />
+                <SidePanelItem folder={folderStore.getFoldersProject().find(item => item.name == "Корзина") ?? folderStore.getFoldersProject()[0]} />
             </div>
         </div>
     );

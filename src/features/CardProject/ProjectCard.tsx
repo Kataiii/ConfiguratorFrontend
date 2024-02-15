@@ -8,6 +8,7 @@ import { ColorText } from '../../entities/Enums/ColorTextPopUp';
 import IconMenu from "../../assets/icons/icon-dropdown menu.svg";
 import { observer } from 'mobx-react-lite';
 import { Context } from '../..';
+import ProjectService from '../../store/services/ProjectService';
 
 
 interface ProjectCardProps {
@@ -15,7 +16,7 @@ interface ProjectCardProps {
 }
 
 const ProjectCard: React.FC<ProjectCardProps> = observer(({ project }) => {
-    const {folderStore} = useContext(Context);
+    const {folderStore, projectStore} = useContext(Context);
     const locate = useLocation();
     const navigate = useNavigate();
     const [isActive, setIsActive] = useState<boolean>(false);
@@ -24,7 +25,7 @@ const ProjectCard: React.FC<ProjectCardProps> = observer(({ project }) => {
     const items: PopUpMenuItem[] = useMemo<PopUpMenuItem[]>(() => [
         {
             content: 'Открыть',
-            action: () => console.log('Открыть'),
+            action: () => navigate(`/home/configurator/${folderStore.getFoldersProject().find(item => item.id === project.folder_id)!.name}/${project.name}`),
             color: ColorText.White
         },
         {
@@ -49,7 +50,14 @@ const ProjectCard: React.FC<ProjectCardProps> = observer(({ project }) => {
         },
         {
             content: 'Удалить',
-            action: () => console.log('Удалить'),
+            action: async () => {
+                if(project.folder_id === folderStore.getFoldersProject().find(item => item.name === "Корзина")!.id){
+                    await ProjectService.deleteProject(project.id);
+                    projectStore.setProjects(projectStore.getProjects().filter(item => item.id != project.id));
+                    return;
+                }
+                console.log('Проект не в корзине');
+            },
             color: ColorText.Red
         }
     ], []);
@@ -62,6 +70,11 @@ const ProjectCard: React.FC<ProjectCardProps> = observer(({ project }) => {
     const clickHandler = () => {
         const folderName = folderStore.getFoldersProject().find(item => item.id === project.folder_id);
         navigate(`/home/configurator/${folderName}/${project.name}`);
+    }
+
+    const closeHandler = (e: any) => {
+        e.stopPropagation();
+        setIsActive(false);
     }
 
     return (
@@ -82,7 +95,7 @@ const ProjectCard: React.FC<ProjectCardProps> = observer(({ project }) => {
                 isActive
                     ?
                     <div className={styles.SimpleMenuDiv}>
-                        <PopUpMenu items={items} isFixedLeft={true} />
+                        <PopUpMenu items={items} isFixedLeft={true} closeHandler={closeHandler}/>
                     </div>
                     :
                     null

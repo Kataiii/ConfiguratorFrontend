@@ -59,6 +59,7 @@ const DropDownFolder: React.FC<DropDownFolderProps> = observer(({ folders, isHid
                                                         onClick={() => {
                                                             navigate(`/home/projects/${item.name}`);
                                                             folderStore.setActiveFolder(item);
+                                                            localStorage.setItem("activeFolderId", String(item.id));
                                                         }} />
                                                 </div>
                                         )}
