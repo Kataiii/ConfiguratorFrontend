@@ -1,16 +1,36 @@
 import BlockAddProjects from "../../shared/ui/BlockAddProjects";
 import styles from "../../app/App.module.css";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import ProjectCard from "../../features/CardProject/ProjectCard";
 import CreateProjectModal from "../../shared/ui/Modals/CreateProjectModal";
 import { observer } from "mobx-react-lite";
 import { Context } from "../..";
 import { IProject } from "../../entities/Project";
+import { useLocation } from "react-router-dom";
+import ProjectService from "../../store/services/ProjectService";
 
 
 const ProjectPage: React.FC = observer(() => {
     const [isVisible, setIsVisible] = useState<boolean>(false);
-    const {projectStore} = useContext(Context);
+    const {store, projectStore, folderStore} = useContext(Context);
+    const locate = useLocation();
+
+    useEffect(() => {
+        const role_id = store.getActiveRole()!.id;
+        if(locate.pathname === "/home/projects"){
+            const response = ProjectService.countAllProjects(role_id);
+            response.then(response => {
+                projectStore.setCountProjects(response);
+            });
+        }
+        else{
+            const folder_id = folderStore.getAciveFolder()!.id;
+            const response = ProjectService.countAllProjectsInFolder(folder_id);
+            response.then(response => {
+                projectStore.setCountProjects(response);
+            })
+        }
+    }, [locate.pathname])
 
     const sortProject = (firstProject : IProject, secondProject : IProject) : number => {
         if(firstProject.updatedAt > secondProject.updatedAt) return 1;

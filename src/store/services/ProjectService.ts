@@ -49,4 +49,12 @@ export default class ProjectService{
     static async deleteProject(id: number){
         return (await $api.delete<IProject>('/projects'), { data: {id: id}}).data;
     }
+
+    static async countAllProjects(role_id: number){
+        return (await $api.get(`${API_URL}/projects/count/${role_id}`)).data;
+    }
+
+    static async countAllProjectsInFolder(folder_id: number){
+        return (await $api.get(`${API_URL}/projects/count/folder/${folder_id}`)).data;
+    }
 }

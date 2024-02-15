@@ -4,6 +4,7 @@ import ProjectService from "./services/ProjectService";
 
 class ProjectStore {
     projects : IProject[] = [];
+    countProjects: number = 0;
 
     constructor() {
         makeAutoObservable(this)
@@ -13,8 +14,16 @@ class ProjectStore {
         return this.projects;
     }
 
+    getCountProjects = () => {
+        return this.countProjects;
+    }
+
     setProjects = (projects: IProject[]) => {
         this.projects = projects;
+    }
+
+    setCountProjects = (count: number) => {
+        this.countProjects = count;
     }
 
     addNewProject = async(dto: ICreateProjectDto, user_id: number) => {
