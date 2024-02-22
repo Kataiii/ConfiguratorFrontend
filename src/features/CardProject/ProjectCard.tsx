@@ -25,7 +25,7 @@ const ProjectCard: React.FC<ProjectCardProps> = observer(({ project }) => {
     const items: PopUpMenuItem[] = useMemo<PopUpMenuItem[]>(() => [
         {
             content: 'Открыть',
-            action: () => navigate(`/home/configurator/${folderStore.getFoldersProject().find(item => item.id === project.folder_id)!.name}/${project.name}`),
+            action: () => navigate(`/home/configurator/${folderStore.getFoldersProject().find(item => item.id === project.folder_id)?.name ?? ''}/${project.name}`),
             color: ColorText.White
         },
         {
@@ -82,7 +82,7 @@ const ProjectCard: React.FC<ProjectCardProps> = observer(({ project }) => {
             <div className={styles.ProjectCardImg} onClick={clickHandler}>
                 {
                     project.preview
-                        ? <img src={project.preview}></img>
+                        ? <img src={`http://localhost:5000/${project.preview}`}></img>
                         : null
                 }
             </div>

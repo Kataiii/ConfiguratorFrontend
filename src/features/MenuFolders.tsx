@@ -20,9 +20,9 @@ const MenuFolders: React.FC<MenuFoldersProps> = observer(({folders, typeFolders,
     const clickHandler = async() => {
         if(typeFolders == "projects"){
             const dto: ICreateFolderDto = {
-                name: "Новая папка",
+                name: folderStore.createNewNameForDublicate("Новая папка"),
                 account_id: store.getAccount().id,
-                role_id: store.getActiveRole()?.id || 4
+                role_id: store.getActiveRole()?.id || -1
             };
             await folderStore.addFolder(dto);
         }

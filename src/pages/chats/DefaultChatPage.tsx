@@ -1,4 +1,5 @@
 import React from "react";
+import InfoModal from "../../shared/ui/Modals/InfoModal";
 
 
 const DefaultChatPage: React.FC = () => {

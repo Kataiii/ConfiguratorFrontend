@@ -1,10 +1,12 @@
-import { useContext } from "react";
+import { createContext, useContext, useEffect } from "react";
 import { Context } from "../..";
 import { useNavigate } from "react-router-dom";
 import DefaultModal from "../../shared/ui/Modals/DefaultModal";
 import BlockRegistUser from "../../widgets/forms/BlockRegistUser";
+import { observer } from "mobx-react-lite";
 
-const UserRegistPage: React.FC = () => {
+
+const UserRegistPage: React.FC = observer(() => {
     const {store} = useContext(Context);
     const navigate = useNavigate();
 
@@ -24,6 +26,6 @@ const UserRegistPage: React.FC = () => {
             }
         </div>
     );
-}
+})
 
 export default UserRegistPage;

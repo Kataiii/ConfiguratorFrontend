@@ -63,3 +63,22 @@
     top: 15px;
     right: 15px;
 }
+
+.divModalInfo{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.divWrapButton{
+    width: fit-content;
+}
+
+.divWrapCheckBox{
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    margin: 0 auto;
+    margin-bottom: 25px;
+}

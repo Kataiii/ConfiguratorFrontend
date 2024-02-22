@@ -10,11 +10,14 @@ import { useContext, useState } from "react";
 import { schemaPersonRegist, FormValues } from "../../../entities/User/User";
 import { useNavigate } from "react-router-dom";
 import { Context } from "../../..";
+import { runInAction } from "mobx";
+import { observer } from "mobx-react-lite";
 
 //TODO разбить и привести в порядок
-const FormRegistUser = () => {
+const FormRegistUser: React.FC = observer(() => {
     const navigate = useNavigate();
-    
+    const {store, activeUser} = useContext(Context);
+
     const[helperState, setHelperState] = useState({
         visible : false,
         checkedMail : true
@@ -24,8 +27,7 @@ const FormRegistUser = () => {
         mode: 'onChange',
         resolver: yupResolver(schemaPersonRegist)
     });
-    const {store, activeUser} = useContext(Context);
-
+    
     const {
         handleSubmit,
         formState: { errors },
@@ -33,23 +35,26 @@ const FormRegistUser = () => {
     } = formApi;
 
     const onSubmit = handleSubmit(
-        async (data) => {
-            const res = await store.registUser(
-                {
-                    login: data.login,
-                    email: data.email,
-                    password: data.password,
-                    is_spam: data.isCheckedMailing
+            (data) => {
+                runInAction( async() => {
+                const res = await store.registUser(
+                    {
+                        login: data.login,
+                        email: data.email,
+                        password: data.password,
+                        is_spam: data.isCheckedMailing
+                    }
+                )
+                if(res == 400){
+                    store.setFailAuth(true);
+                    navigate('/login/register/user');
                 }
-            )
-            if(res === 400){
-                store.setFailAuth(true);
+                else{
+                    await activeUser.refreshActiveUser(store.getAccount());
+                }
+                store.getAuth() ? navigate('/home') : navigate('/login/register/user');
+                })
             }
-            else{
-                await activeUser.refreshActiveUser(store.getAccount());
-            }
-            store.getAuth() ? navigate('/home') : navigate('/login/register/user');
-        }
     );
 
     const onMouseEnterHandler  = () => {
@@ -161,6 +166,6 @@ const FormRegistUser = () => {
             </form>
         </div>
     );
-}
+})
 
 export default FormRegistUser;

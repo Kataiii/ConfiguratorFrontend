@@ -12,6 +12,7 @@ import { useFetching } from "../../shared/hooks/UseFetching";
 import { ConvertionProjects } from "../../shared/common/ConvertionProjects";
 import { useObserver } from "../../shared/hooks/UseObserver";
 import { ProjectResponse } from "../../entities/Response/CreateProjectResponse";
+import { runInAction } from "mobx";
 
 
 const ProjectPage: React.FC = observer(() => {
@@ -24,7 +25,7 @@ const ProjectPage: React.FC = observer(() => {
     const [fetchProjects, isProjectsLoading, projectsError] = useFetching(async () => {
         let response: ProjectResponse[] = [];
         if(locate.pathname === "/home/projects"){
-            response = await ProjectService.getAllProjectsPagination(store.getActiveRole()!.id, page, projectStore.limit);
+            response = await ProjectService.getAllProjectsPagination(store.getActiveRole()?.id ?? -1, page, projectStore.limit);
         }
         else{
             if(folderStore.getAciveFolder() == null){
@@ -43,33 +44,27 @@ const ProjectPage: React.FC = observer(() => {
 
     useEffect(() => {
         fetchProjects();
-    }, [page]);
+    }, [page, locate]);
 
     useEffect(() => {
         projectStore.setProjects([]);
         setPage(1);
         const role_id = store.getActiveRole()!.id;
+        let response;
         if(locate.pathname === "/home/projects"){
-            const response = ProjectService.countAllProjects(role_id);
-            response.then(response => {
-                projectStore.setCountProjects(response);
-                projectStore.totalPage = Math.ceil(projectStore.getCountProjects() / projectStore.limit);
-            });
+            response = ProjectService.countAllProjects(role_id);
         }
         else{
             const folder_id = folderStore.getAciveFolder()!.id;
-            const response = ProjectService.countAllProjectsInFolder(folder_id);
-            response.then(response => {
+            response = ProjectService.countAllProjectsInFolder(folder_id);
+        }
+        response.then(response => {
+            runInAction(() => {
                 projectStore.setCountProjects(response);
                 projectStore.totalPage = Math.ceil(projectStore.getCountProjects() / projectStore.limit);
             })
-        }
+        })
     }, [locate.pathname]);
-
-    // const sortProject = (firstProject : IProject, secondProject : IProject) : number => {
-    //     if(firstProject.updatedAt > secondProject.updatedAt) return 1;
-    //     return -1;
-    // }
 
     const clickHandler = () => {
         setIsVisible(true);

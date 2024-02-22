@@ -78,7 +78,7 @@ class Store {
             this.setStateStore(response.data);
             return response.data.account;
         } catch (e: any) {
-            return e.response?.status;
+            return 400;
         }
     }
 
@@ -88,7 +88,7 @@ class Store {
             this.setStateStore(response.data);
             return response.data.account;
         } catch (e: any) {
-            return e.response?.status;
+            return 400;
         }
     }
 

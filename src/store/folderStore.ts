@@ -4,10 +4,10 @@ import { IFolderRender } from "../entities/Folder/FolderRender";
 import FolderProjectService from "./services/FolderProjectServeice";
 
 
-class Folders{
+class Folders {
     activeFolder: IFolderProject | IFolderRender | null = null;
-    foldersProjects : IFolderProject[] = [];
-    foldersRenders : IFolderRender[] = [];
+    foldersProjects: IFolderProject[] = [];
+    foldersRenders: IFolderRender[] = [];
 
     constructor() {
         makeAutoObservable(this)
@@ -41,30 +41,40 @@ class Folders{
         return this.foldersRenders;
     }
 
-    addFolderProjectRequest = async(dto: ICreateFolderDto): Promise<IFolderProject> => {
+    addFolderProjectRequest = async (dto: ICreateFolderDto): Promise<IFolderProject> => {
         return await FolderProjectService.addFolder(dto);
     }
 
-    updateFolderName = async(id: number, name: string) => {
+    //TODO пока так, потом исправить на что-то более логичное
+    updateFolderName = async (id: number, name: string) => {
+        if (name.match(new RegExp(`_[0-9]+$`, "gu")) != null) {
+            name = name.substring(0, name.lastIndexOf("_"));
+        }
+
+        const dublicates: IFolderProject[] = this.findFolderDublicate(name);
+        let newName: string = '';
+        if(dublicates.length > 0) newName = this.createNewNameForDublicate(name);
+        else newName = name;
+
         this.foldersProjects = this.foldersProjects.map(item => {
-            if(item.id === id) item.name = name;
+            if (item.id === id) item.name = newName;
             return item;
         });
-        return await FolderProjectService.editFolder({id: id, name: name} as IUpdateFolderDto);
+        return await FolderProjectService.editFolder({ id: id, name: newName } as IUpdateFolderDto);
     }
 
-    deleteFolder = async(id: number) => {
+    deleteFolder = async (id: number) => {
         this.foldersProjects = this.foldersProjects.filter(item => item.id != id);
         return await FolderProjectService.deleteFolder(id);
     }
 
-    findIdFolderByUrl = (urlFolder : string) : number => {
+    findIdFolderByUrl = (urlFolder: string): number => {
         return this.foldersProjects.filter(item => item.name === urlFolder)[0].id;
     }
 
     findFolderByRegExp = (regex: RegExp): IFolderProject[] => {
         return this.foldersProjects.filter(item => {
-            if(item.name.match(regex) != null){
+            if (item.name.match(regex) != null) {
                 return item;
             }
         });
@@ -85,30 +95,33 @@ class Folders{
         return mapFolders;
     }
 
-    addFolder = async(dto: ICreateFolderDto): Promise<IFolderProject> => {
+    addFolder = async (dto: ICreateFolderDto): Promise<IFolderProject> => {
         const folder: IFolderProject = await this.addFolderProjectRequest(dto);
         this.setFoldersProject([...this.getFoldersProject(), folder]);
         return folder;
     }
 
-    dublicateFolder = async(folderName: string, account_id: number, role_id?: number)/*: Promise<IFolderProject>*/ => {
-        if(folderName.match(new RegExp(`_[0-9]+$`, "gu")) != null){
+    createNewNameForDublicate = (folderName: string): string => {
+        if (folderName.match(new RegExp(`_[0-9]+$`, "gu")) != null) {
             folderName = folderName.substring(0, folderName.lastIndexOf("_"));
         }
 
         const dublicates: IFolderProject[] = this.findFolderDublicate(folderName);
         let index = 1;
-        if(dublicates.length > 0){
-            //@ts-ignore
-            const map = new Map([...this.createMapFolders(dublicates).entries()].sort((a, b) => a[0] - b[0]));
-            const arrayFolders = Array.from(map, ([key, folder]) => ({key, folder}));
+        if (dublicates.length > 0) {
+            const map = new Map([...Array.from(this.createMapFolders(dublicates).entries())].sort((a, b) => a[0] - b[0]));
+            const arrayFolders = Array.from(map, ([key, folder]) => ({ key, folder }));
 
             index = Number(arrayFolders[arrayFolders.length - 1].key) + 1;
         }
 
-        const newName = `${folderName}_${index}`;
+        return `${folderName}_${index}`;
+    }
+
+    dublicateFolder = async (folderName: string, account_id: number, role_id?: number)/*: Promise<IFolderProject>*/ => {
+        const newName = this.createNewNameForDublicate(folderName);
         //TODO копирование проектов, связанных с этой папкой
-        return await this.addFolder({name: newName, account_id: account_id, role_id: role_id} as ICreateFolderDto);
+        return await this.addFolder({ name: newName, account_id: account_id, role_id: role_id } as ICreateFolderDto);
     }
 }
 

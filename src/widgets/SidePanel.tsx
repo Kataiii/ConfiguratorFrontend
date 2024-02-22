@@ -34,13 +34,6 @@ const SidePanel: React.FC = observer(() => {
                 <SidePanelItem style={'LinkFolder'} folder={folderStore.getFoldersProject().find(item => item.name == "Неотсортированные") ?? folderStore.getFoldersProject()[0]} />
                 <MenuFolders folders={itemsMenuProject} typeFolders={"projects"} title={"Папки"} />
 
-                {/* TODO сделать меню для рендеров */}
-                {/* <Link className={stylesSidePanel.LinkPersonal}
-                                        to={'/home/renders'} onClick={() => folderStore.setActiveFolder(null)}>Все рендеры</Link>
-                               
-                                <Link className={styles.LinkFolder} to={'/home/renders/folders/unsorted'}>Неотсортированные</Link>
-                                <MyMenu titleMy="Папки" typeFolders="renders"/> */}
-
                 <SidePanelItem folder={folderForRole || folderStore.getFoldersProject()[0]} />
                 <SidePanelItem folder={folderStore.getFoldersProject().find(item => item.name == "Архив") ?? folderStore.getFoldersProject()[0]} />
                 <SidePanelItem folder={folderStore.getFoldersProject().find(item => item.name == "Корзина") ?? folderStore.getFoldersProject()[0]} />

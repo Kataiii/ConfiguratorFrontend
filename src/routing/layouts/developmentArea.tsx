@@ -16,7 +16,7 @@ import { useFetching } from "../../shared/hooks/UseFetching";
 
 
 const Root: React.FC = () => {
-    const { store, folderStore, projectStore } = useContext(Context);
+    const { store, folderStore } = useContext(Context);
     const location = useLocation();
     const navigate = useNavigate();
     const [fetchActiveRole, isRoleLoading, roleError] = useFetching(async() => {
@@ -45,7 +45,8 @@ const Root: React.FC = () => {
         if (location.pathname == "/home") navigate("/home/projects");
         if (location.pathname == "/home/projects" || location.pathname == "/home/renders") folderStore.setActiveFolder(null);
         setItems(SplitUrl.splitUrl(location.pathname));
-    }, [location.pathname]);
+        //TODO точно ли это хорошо
+    }, [location.pathname, folderStore.getFoldersProject()]);
 
     return (
         (isRoleLoading || isFoldersLoading)

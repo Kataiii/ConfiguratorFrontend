@@ -1,5 +1,4 @@
-import React from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { folderStore } from "../..";
 import { BreadAppItem } from "../ui/Breadcrumb";
 
@@ -10,7 +9,7 @@ export class SplitUrl{
         let items: BreadAppItem[] = [];
         items.push(this.getItem(arrayNames[2]));
 
-        const activeFolder = folderStore.getAciveFolder();
+        const activeFolder = folderStore.getFoldersProject().find(item => item.id === Number(localStorage.getItem("activeFolderId")));
         if(activeFolder != null){
             items.push({
                 key: arrayNames[arrayNames.length - 1],

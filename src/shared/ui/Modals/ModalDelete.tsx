@@ -8,6 +8,7 @@ interface ModalDeleteProps{
     clickContinueHandler: () => void;
 }
 
+//TODO Переделать под удаление папки и проекта
 const ModalDelete:React.FC<ModalDeleteProps> = ({nameFolder, clickCancelHandler, clickContinueHandler}) => {
     return(
         <div className={styles.divModal}>
