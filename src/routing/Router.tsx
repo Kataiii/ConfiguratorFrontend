@@ -7,6 +7,7 @@ import DocumentsRoutes from "./routes/DocumentsRoute";
 import HomeRouter from "./routes/HomeRouter";
 import ChatsRoute from "./routes/ChatsRoute";
 import ConfiguratorPage from "../pages/projects/ConfiguratorPage";
+import AdminPage from "../pages/AdminPage";
 
 
 const router = createBrowserRouter([
@@ -28,7 +29,11 @@ const router = createBrowserRouter([
 	AuthenticationRoutes,
 	DocumentsRoutes,
 	HomeRouter,
-	ChatsRoute
+	ChatsRoute,
+	{
+		path: "/admin",
+		element: <AdminPage/>
+	}
 ]);
 
 export default router;
