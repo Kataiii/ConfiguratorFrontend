@@ -118,10 +118,11 @@ class Folders {
         return `${folderName}_${index}`;
     }
 
-    dublicateFolder = async (folderName: string, account_id: number, role_id?: number)/*: Promise<IFolderProject>*/ => {
+    dublicateFolder = async (folderId:number, folderName: string, account_id: number, role_id?: number) => {
         const newName = this.createNewNameForDublicate(folderName);
         //TODO копирование проектов, связанных с этой папкой
-        return await this.addFolder({ name: newName, account_id: account_id, role_id: role_id } as ICreateFolderDto);
+        const folder = await this.addFolder({ name: newName, account_id: account_id, role_id: role_id } as ICreateFolderDto);
+        
     }
 }
 

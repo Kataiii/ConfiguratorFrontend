@@ -1,4 +1,3 @@
-import { AxiosResponse } from "axios";
 import { IUser } from "../../entities/User/User";
 import $api from "../../http/Index";
 

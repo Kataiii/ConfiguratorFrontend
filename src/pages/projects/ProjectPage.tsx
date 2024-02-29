@@ -17,54 +17,74 @@ import { runInAction } from "mobx";
 
 const ProjectPage: React.FC = observer(() => {
     const [isVisible, setIsVisible] = useState<boolean>(false);
-    const {store, projectStore, folderStore} = useContext(Context);
+    const { store, projectStore, folderStore } = useContext(Context);
     const locate = useLocation();
     const divRef = useRef<HTMLDivElement>(null);
-    const [page, setPage] = useState<number>(1);
 
     const [fetchProjects, isProjectsLoading, projectsError] = useFetching(async () => {
         let response: ProjectResponse[] = [];
-        if(locate.pathname === "/home/projects"){
-            response = await ProjectService.getAllProjectsPagination(store.getActiveRole()?.id ?? -1, page, projectStore.limit);
+        if (locate.pathname === "/home/projects") {
+            response = await ProjectService.getAllProjectsPagination(
+                store.getActiveRole()?.id ?? -1,
+                projectStore.getCurrentPage(),
+                projectStore.limit,
+                projectStore.sortFactor,
+                projectStore.sortOrder
+            );
         }
-        else{
-            if(folderStore.getAciveFolder() == null){
+        else {
+            if (folderStore.getAciveFolder() == null) {
                 folderStore.setActiveFolder(folderStore.getFoldersProject().find(item => item.id === Number(localStorage.getItem("activeFolderId"))) ?? null);
             }
-            response = await ProjectService.getProjectsByFolderPagination(folderStore.getAciveFolder()!.id, page, projectStore.limit);
+            response = await ProjectService.getProjectsByFolderPagination(
+                folderStore.getAciveFolder()!.id,
+                projectStore.getCurrentPage(),
+                projectStore.limit,
+                projectStore.sortFactor,
+                projectStore.sortOrder
+            );
         }
         const user_id = store.getAccount().id;
         const projects: IProject[] = ConvertionProjects.convertInProject(response, user_id);
         projectStore.setProjects([...projectStore.getProjects(), ...projects]);
     });
 
-    useObserver(divRef, page < projectStore.totalPage, isProjectsLoading, () => {
-        setPage(page => page + 1);
+    useObserver(divRef, projectStore.getCurrentPage() < projectStore.totalPage, isProjectsLoading, () => {
+        runInAction(() => {
+            projectStore.setCurrentPage(projectStore.getCurrentPage() + 1);
+        })
     });
 
     useEffect(() => {
-        fetchProjects();
-    }, [page, locate]);
+        runInAction(() => {
+            projectStore.setProjects([]);
+            projectStore.setCurrentPage(1);
+            const role_id = store.getActiveRole()!.id;
+            let response;
+            if (locate.pathname === "/home/projects") {
+                response = ProjectService.countAllProjects(role_id);
+            }
+            else {
+                const folder_id = folderStore.getAciveFolder()!.id;
+                response = ProjectService.countAllProjectsInFolder(folder_id);
+            }
+            response.then(response => {
+                runInAction(() => {
+                    projectStore.setCountProjects(response);
+                    projectStore.totalPage = Math.ceil(projectStore.getCountProjects() / projectStore.limit);
+                })
+            })
+        });
+    }, [locate.pathname, projectStore.sortFactor, projectStore.sortOrder]);
 
     useEffect(() => {
-        projectStore.setProjects([]);
-        setPage(1);
-        const role_id = store.getActiveRole()!.id;
-        let response;
-        if(locate.pathname === "/home/projects"){
-            response = ProjectService.countAllProjects(role_id);
-        }
-        else{
-            const folder_id = folderStore.getAciveFolder()!.id;
-            response = ProjectService.countAllProjectsInFolder(folder_id);
-        }
-        response.then(response => {
-            runInAction(() => {
-                projectStore.setCountProjects(response);
-                projectStore.totalPage = Math.ceil(projectStore.getCountProjects() / projectStore.limit);
-            })
-        })
-    }, [locate.pathname]);
+        console.log(locate);
+        console.log(projectStore.sortFactor);
+        console.log(projectStore.sortOrder);
+
+        console.log('useEffect ', projectStore.getCurrentPage());
+        fetchProjects();
+    }, [projectStore.getCurrentPage(), locate, projectStore.sortFactor, projectStore.sortOrder]);
 
     const clickHandler = () => {
         setIsVisible(true);
@@ -79,27 +99,22 @@ const ProjectPage: React.FC = observer(() => {
         <div>
             {
                 folderStore.getAciveFolder()?.name === "Корзина"
-                ? <p className={styles.BacketContent}>Файлы в корзине хранятся 30 дней, после чего они удаляются <p className={styles.BacketBorderContent}>навсегда</p></p>
-                : null
-            }
-            {
-                isProjectsLoading
-                ? <p>Загрузка</p>
-                : null
+                    ? <p className={styles.BacketContent}>Файлы в корзине хранятся 30 дней, после чего они удаляются <p className={styles.BacketBorderContent}>навсегда</p></p>
+                    : null
             }
             <div className={styles.DivProjectPage}>
-                <BlockAddProjects onClick={clickHandler}/>
+                <BlockAddProjects onClick={clickHandler} />
                 <>
                     {
                         projectStore.getProjects().map((item, index) => {
-                            return <ProjectCard key={index} project={item}/>
+                            return <ProjectCard key={item.createdAt.toString() + index} project={item} />
                         })
                     }
                 </>
                 {
                     isVisible
-                    ? <CreateProjectModal closeHandler={closeHandler} />
-                    : null
+                        ? <CreateProjectModal closeHandler={closeHandler} />
+                        : null
                 }
             </div>
             <div ref={divRef} className={styles.DivLastElement}></div>

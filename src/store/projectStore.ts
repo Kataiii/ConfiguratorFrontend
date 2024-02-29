@@ -6,10 +6,21 @@ class ProjectStore {
     projects : IProject[] = [];
     countProjects: number = 0;
     public limit: number = 19;
+    private currentPage: number = 1; 
     public totalPage: number = 1;
+    public sortFactor: string = 'По дате';
+    public sortOrder: string = 'По убыванию';
 
     constructor() {
         makeAutoObservable(this)
+    }
+
+    getCurrentPage = () => {
+        return this.currentPage;
+    }
+
+    setCurrentPage = (page: number) => {
+        this.currentPage = page;
     }
 
     getProjects = () => {

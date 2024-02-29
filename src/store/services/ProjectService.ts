@@ -29,20 +29,24 @@ export default class ProjectService{
         return (await $api.post<ProjectResponse>(`${API_URL}/projects/project`, dto)).data;
     }
 
-    static async getAllProjectsPagination(role_id: number, page: number, limit: number): Promise<ProjectResponse[]>{
+    static async getAllProjectsPagination(role_id: number, page: number, limit: number, sortFactor: string,sortOrder: string): Promise<ProjectResponse[]>{
         return (await $api.get<ProjectResponse[]>(`${API_URL}/projects/pagination/${role_id}`, {
             params: {
                 page: page,
-                limit: limit
+                limit: limit,
+                sortFactor: sortFactor,
+                sortOrder: sortOrder
             }
         })).data;
     }
 
-    static async getProjectsByFolderPagination(folder_id: number, page: number, limit: number): Promise<ProjectResponse[]>{
+    static async getProjectsByFolderPagination(folder_id: number, page: number, limit: number, sortFactor: string,sortOrder: string): Promise<ProjectResponse[]>{
         return (await $api.get<ProjectResponse[]>(`${API_URL}/projects/pagination/folder/${folder_id}`, {
             params: {
                 page: page,
-                limit:limit
+                limit:limit,
+                sortFactor: sortFactor,
+                sortOrder: sortOrder
             }
         })).data;
     }

@@ -71,7 +71,7 @@ const DropDownItemFolder: React.FC<DropDownItemFolderProps> = observer(({ folder
     }
 
     const duplicationClickHandler = () => {
-        folderStore.dublicateFolder(content, store.getAccount().id, store.getActiveRole()?.id);
+        folderStore.dublicateFolder(folderId, content, store.getAccount().id, store.getActiveRole()?.id);
         setIsHide(true);
     }
 

@@ -9,7 +9,7 @@ const SearchInput = () => {
     }
 
     return(
-        <div>
+        <div className={styles.DivWrapInput}>
             <input className={styles.Input} value={inputState} type='search' placeholder="Поиск..." onChange={onChangeHandler}/>
         </div>
     )

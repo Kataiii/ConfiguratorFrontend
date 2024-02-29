@@ -1,112 +1,152 @@
 .selectWrapper {
-    position: relative;
-    border-radius: 23px;
-    width: 100%;
-    /* display: flex;
+  position: relative;
+  border-radius: 23px;
+  width: 100%;
+  /* display: flex;
     flex-direction: column;
     justify-content: center; */
-  }
-  
-  .arrow {
-    position: absolute;
-    right: 18px;
-    transition: transform 0.2s ease-in-out, margin-top 0.2s ease-in-out;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    height: 100%;
-  }
-  
-  .placeholder {
-    height: 45px;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    padding: 5px;
-    cursor: pointer;
-    border: 1px;
-    font-family: 'Ubuntu';
-    font-style: normal;
-    font-weight: 300;
-    font-size: 13px;
-    color: #313131;
-    background: #FEFEFE;
-    box-sizing: border-box;
-    width: 100%;
-    border-radius: 23px;
-    padding: 1% 6%;
-  }
-  
-  .placeholder[data-status="default"] {
-    border: 1px solid rgba(0, 0, 0, 0.6);
-  }
-  
-  .placeholder[data-status="invalid"] {
-    border: 1px solid rgba(255, 0, 0, 1);
-  }
-  
-  .placeholder[data-selected="true"] {
-    color: rgb(0, 0, 0);
-  }
-  
-  .selectWrapper[data-is-active="true"] .arrow {
-    transform: rotate(180deg);
-  }
-  
-  .selectWrapper[data-is-active="true"] .placeholder {
-    border: 2px solid #000000;
-    outline: solid 1px #FEFEFE;
-  }
-  
-  .selectWrapper:not([data-is-active="true"])
-    .placeholder:not([data-status="invalid"]):hover {
-    border: 1px solid rgba(0, 0, 0, 0.2);
-  }
-  
-  .select {
-    display: grid;
-    position: absolute;
-    list-style: none;
-    width: 100%;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    z-index: 10;
-    background-color: rgba(255, 255, 255, 1);
-    border-radius: 23px;
-  }
-  
-  .option {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    height: 30px;
-    padding: 5px;
-    border: 1px;
-    cursor: pointer;
-    font-family: 'Ubuntu';
-    font-style: normal;
-    font-weight: 300;
-    font-size: 13px;
-    line-height: 20px;
-    background-color: rgba(255, 255, 255, 0);
-    color: rgba(49, 49, 49, 0.5);
-    padding-left: 6%;
-  }
-  
-  .option[aria-selected="true"] {
-    background-color: rgba(0, 0, 0, 0.05);
-  }
-  .option:hover {
-    background-color: rgba(0, 0, 0, 0.1);
-    border-radius: 23px;
-  }
-  
-  .selectWrapper[data-mode="cells"] .select {
-    grid-template-columns: repeat(1, 1fr);
-  }
-  
-  .selectWrapper[data-mode="cells"] .option {
-    justify-content: start;
-  }
-  
+}
+
+.arrow {
+  position: absolute;
+  right: 18px;
+  transition: transform 0.2s ease-in-out, margin-top 0.2s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+}
+
+.placeholder {
+  height: 45px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 5px;
+  cursor: pointer;
+  border: 1px;
+  font-family: 'Ubuntu';
+  font-style: normal;
+  font-weight: 300;
+  font-size: 13px;
+  color: #313131;
+  background: #FEFEFE;
+  box-sizing: border-box;
+  width: 100%;
+  border-radius: 23px;
+  padding: 1% 6%;
+}
+
+.placeholder[data-status="default"] {
+  border: 1px solid rgba(0, 0, 0, 0.6);
+}
+
+.placeholder[data-status="invalid"] {
+  border: 1px solid rgba(255, 0, 0, 1);
+}
+
+.placeholder[data-selected="true"] {
+  color: rgb(0, 0, 0);
+}
+
+.selectWrapper[data-is-active="true"] .arrow {
+  transform: rotate(180deg);
+}
+
+.selectWrapper[data-is-active="true"] .placeholder {
+  border: 2px solid #000000;
+  outline: solid 1px #FEFEFE;
+}
+
+.selectWrapper:not([data-is-active="true"]) .placeholder:not([data-status="invalid"]):hover {
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.select {
+  display: grid;
+  position: absolute;
+  list-style: none;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  z-index: 10;
+  background-color: rgba(255, 255, 255, 1);
+  border-radius: 23px;
+}
+
+.option {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  height: 30px;
+  padding: 5px;
+  border: 1px;
+  cursor: pointer;
+  font-family: 'Ubuntu';
+  font-style: normal;
+  font-weight: 300;
+  font-size: 13px;
+  line-height: 20px;
+  background-color: rgba(255, 255, 255, 0);
+  color: rgba(49, 49, 49, 0.5);
+  padding-left: 6%;
+}
+
+.option[aria-selected="true"] {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.option:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 23px;
+}
+
+.selectWrapper[data-mode="cells"] .select {
+  grid-template-columns: repeat(1, 1fr);
+}
+
+.selectWrapper[data-mode="cells"] .option {
+  justify-content: start;
+}
+
+select{
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+select option:checked{
+  background: linear-gradient(#313131,#313131);
+  background-color: #313131;
+  background: url("../../../assets/icons/icon-check-mark.svg");
+  background-repeat: no-repeat;
+  background-position: -1px 0;
+}
+
+select option:hover{
+  background-color: #444444;
+}
+
+.SelectSize {
+  overflow: hidden;
+  background-color: #313131;
+  display: flex;
+  gap: 5px;
+  border: none;
+  outline: none;
+}
+
+.SelectSize_Option {
+  font-family: 'Ubuntu';
+  font-size: 12px;
+  font-weight: 300;
+  color: #FCFCFC;
+  width: 115px;
+  padding: 5px 10px 5px 20px;
+  margin: 0 auto;
+}
+
+.SelectSize_Option_Selected{
+  font-weight: 500;
+}

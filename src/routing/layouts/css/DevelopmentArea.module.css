@@ -68,7 +68,8 @@
 }
 
 .SearchInputWrap{
-    width: 50%;
+    display: flex;
+    gap: 22px;
 }
 
 .breadCrumpWrap{

@@ -13,6 +13,7 @@ import RoleService from "../../store/services/RoleService";
 import { IRole } from "../../entities/Role";
 import { SplitUrl } from "../../shared/common/SplitUrl";
 import { useFetching } from "../../shared/hooks/UseFetching";
+import SortingList from "../../widgets/SortingList";
 
 
 const Root: React.FC = () => {
@@ -62,6 +63,7 @@ const Root: React.FC = () => {
                             </div>
                             <div className={stylesSidePanel.SearchInputWrap}>
                                 <SearchInput />
+                                <SortingList/>
                             </div>
                             <Outlet></Outlet>
                         </div>

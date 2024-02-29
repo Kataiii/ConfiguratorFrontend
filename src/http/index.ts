@@ -3,7 +3,6 @@ import { useContext } from "react";
 import { Context, store } from "..";
 import { AuthResponse } from "../entities/Response/AuthResponse";
 
-//TODO проверить работает ли
 export const API_URL = 'http://localhost:5000';
 export const FRONT_URL = 'http://localhost:3000';
 

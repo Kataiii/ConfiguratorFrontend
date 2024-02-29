@@ -5,10 +5,10 @@ import { ICreateUser } from "../entities/User/User";
 import AuthService from "./services/AuthService";
 import axios from "axios";
 import { AuthResponse } from "../entities/Response/AuthResponse";
-import { API_URL } from "../http/Index";
 import { IRole } from "../entities/Role";
 import { IAuthDto } from "../entities/Dto/AuthDto";
 import { Nullable } from "../entities/Enums/Nullable";
+import { API_URL } from "../http/Index";
 
 class Store {
     private account: IAccount = {} as IAccount;

@@ -1,0 +1,36 @@
+.DivWrapTitle{
+    display: flex;
+    gap: 3px;
+}
+
+.TitleContent{
+    font-family: 'Ubuntu';
+    font-size: 14px;
+    font-weight: 300;
+    margin: 0;
+    cursor: pointer;
+}
+
+.WrapModuleMenu{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+}
+
+.DivWrapPopUpMenu{
+    position: absolute;
+    z-index: 100;
+    top: 80%;
+    left: 10%;
+    background-color: #313131;
+    border-radius: 0px 11px 11px 11px;
+    padding: 10px 0;
+}
+
+.DivSplitSort{
+    height: 1px;
+    background-color: #FCFCFC;
+    width: 90%;
+    margin: 5px auto;
+}

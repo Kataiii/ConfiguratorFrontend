@@ -2,20 +2,20 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-  }
-  
-  .App-logo {
+}
+
+.App-logo {
     height: 40vmin;
     pointer-events: none;
-  }
-  
-  @media (prefers-reduced-motion: no-preference) {
+}
+
+@media (prefers-reduced-motion: no-preference) {
     .App-logo {
-      animation: App-logo-spin infinite 20s linear;
+        animation: App-logo-spin infinite 20s linear;
     }
-  }
-  
-  .App-header {
+}
+
+.App-header {
     background-color: #282c34;
     min-height: 100vh;
     display: flex;
@@ -24,178 +24,180 @@
     justify-content: center;
     font-size: calc(10px + 2vmin);
     color: rgba(255, 255, 255, 0);
-  }
-  
-  .App-link {
-    color: #61dafb;
-  }
-  
-  @keyframes App-logo-spin {
-    from {
-      transform: rotate(0deg);
-    }
-    to {
-      transform: rotate(360deg);
-    }
-  }
+}
 
-.LinkLanding{
+.App-link {
+    color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.LinkLanding {
     margin-left: 12%;
     padding: 0;
     box-sizing: border-box;
     background-color: #FCFCFC;
 }
 
-.AppDev{
-  margin: 0;
-  padding: 0;
-  min-height: 100vh;
-  box-sizing: border-box;
-  background-color:  #F2F2F2;;
+.AppDev {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    box-sizing: border-box;
+    background-color: #F2F2F2;
+    ;
 }
 
-.BtnMenu{
-  background-color: #FCFCFC;
+.BtnMenu {
+    background-color: #FCFCFC;
 }
 
-.AntButton{
-  background-color: #61dafb;
+.AntButton {
+    background-color: #61dafb;
 }
 
-.PText{
-  color: #313131;
-  font-size: 13px;
-  line-height: 18.2px;
-  font-family: 'Ubuntu';
-  font-weight: 300;
-  display: block;
+.PText {
+    color: #313131;
+    font-size: 13px;
+    line-height: 18.2px;
+    font-family: 'Ubuntu';
+    font-weight: 300;
+    display: block;
 }
 
-.Bunner{
-  display: flex;
-  justify-content: space-between;
-  /*position: absolute;
+.Bunner {
+    display: flex;
+    justify-content: space-between;
+    /*position: absolute;
   width: 100%;
   height: 983.46px;
   top: 5px;
   z-index: -10;*/
 }
 
-.Bunner_DivContent_Div{
-  display: flex;
-  padding-top: 15%;
+.Bunner_DivContent_Div {
+    display: flex;
+    padding-top: 15%;
 }
 
-.DivContent_Div{
-  width: 70%;
-  margin: 0 auto;
-  padding-left: 30%;
+.DivContent_Div {
+    width: 70%;
+    margin: 0 auto;
+    padding-left: 30%;
 }
 
-.DivContent_Div_Wrapper{
-  margin-bottom: 30px;
+.DivContent_Div_Wrapper {
+    margin-bottom: 30px;
 }
 
-.ImgHouse{
-  display: block;
+.ImgHouse {
+    display: block;
 }
 
-.DivContent_Div_Title{
-  font-family: 'Ubuntu';
-  font-style: normal;
-  font-weight: 700;
-  font-size: 40px;
-  line-height: 46px;
-  color: #313131;
-  margin-bottom: 30px;
+.DivContent_Div_Title {
+    font-family: 'Ubuntu';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 46px;
+    color: #313131;
+    margin-bottom: 30px;
 }
 
-.BtnStyle{
-  padding: 12px 55px;
-  gap: 10px;
-  border: none;
-  background: linear-gradient(0deg, #E73C3C, #E73C3C), #FFFFFF;
-  border-radius: 24px;
-  font-family: 'Ubuntu';
-  font-style: normal;
-  font-weight: 700;
-  font-size: 13px;
-  line-height: 15px;
-  color: #FCFCFC;
+.BtnStyle {
+    padding: 12px 55px;
+    gap: 10px;
+    border: none;
+    background: linear-gradient(0deg, #E73C3C, #E73C3C), #FFFFFF;
+    border-radius: 24px;
+    font-family: 'Ubuntu';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 13px;
+    line-height: 15px;
+    color: #FCFCFC;
 }
 
-.BtnStyle:hover{
-  background: linear-gradient(0deg, #c93434, #c93434), #FCFCFC;
+.BtnStyle:hover {
+    background: linear-gradient(0deg, #c93434, #c93434), #FCFCFC;
 }
 
-.BtnStyle:active{
-  background: linear-gradient(0deg, #8e2424, #8e2424), #FCFCFC;
+.BtnStyle:active {
+    background: linear-gradient(0deg, #8e2424, #8e2424), #FCFCFC;
 }
 
-.BtnStyleDis{
-  padding: 12px 55px;
-  gap: 10px;
-  border: none;
-  background: linear-gradient(0deg, #fb6f6f, #f25c5c), #FFFFFF;
-  border-radius: 24px;
-  font-family: 'Ubuntu';
-  font-style: normal;
-  font-weight: 700;
-  font-size: 13px;
-  line-height: 15px;
-  color: #FCFCFC;
+.BtnStyleDis {
+    padding: 12px 55px;
+    gap: 10px;
+    border: none;
+    background: linear-gradient(0deg, #fb6f6f, #f25c5c), #FFFFFF;
+    border-radius: 24px;
+    font-family: 'Ubuntu';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 13px;
+    line-height: 15px;
+    color: #FCFCFC;
 }
 
-.WrapperBanner{
-  width: 100%;
-  height: 700px;
-  z-index: -9900;
+.WrapperBanner {
+    width: 100%;
+    height: 700px;
+    z-index: -9900;
 }
 
-.Aaa{
-  font-family: 'Ubuntu';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 8px;
-  line-height: 30px;
-  color: #FCFCFC;
-  background: #313131;
-  border-radius: 10px 0px 10px 10px;
-  cursor: pointer;
-  padding: 5%;
+.Aaa {
+    font-family: 'Ubuntu';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 8px;
+    line-height: 30px;
+    color: #FCFCFC;
+    background: #313131;
+    border-radius: 10px 0px 10px 10px;
+    cursor: pointer;
+    padding: 5%;
 }
 
-.DropdownMenuWrapper{
-  margin-right: 12%;
+.DropdownMenuWrapper {
+    margin-right: 12%;
 }
 
-.DivDots{
-  display: flex;
-  justify-content: center;
+.DivDots {
+    display: flex;
+    justify-content: center;
 }
 
 .SlideList {
-  display: flex;
-  height: 100%;
-  transition: transform 0.5s ease-in-out;
-  width: 645px;
+    display: flex;
+    height: 100%;
+    transition: transform 0.5s ease-in-out;
+    width: 645px;
 }
 
-.IFrameDiv{
-  height: 98vh;
-  width: 99.8%;
+.IFrameDiv {
+    height: 98vh;
+    width: 99.8%;
 }
 
-.LinkFolder{
-  font-family: 'Ubuntu';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 13px;
-  color: #FCFCFC;
-  text-decoration: none;
-  margin-left: 20px;
+.LinkFolder {
+    font-family: 'Ubuntu';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 13px;
+    color: #FCFCFC;
+    text-decoration: none;
+    margin-left: 20px;
 }
 
-.DivLastElement{
-  height: 15px;
+.DivLastElement {
+    height: 15px;
 }
